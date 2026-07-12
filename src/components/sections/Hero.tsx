@@ -50,28 +50,27 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        <h1 className="mt-6 font-display font-bold uppercase leading-[0.82] tracking-[-0.03em]">
+        <h1 className="mt-6 font-display font-bold uppercase leading-[0.84] tracking-[-0.03em]">
           <span className="block overflow-hidden">
             <motion.span
-              className="block text-[15vw] md:text-[12vw]"
+              className="block text-[12vw] md:text-[9.5vw]"
               variants={rise}
               custom={0}
               initial="hidden"
               animate={entered ? "show" : "hidden"}
             >
-              Invincible
+              We Engineer
             </motion.span>
           </span>
           <span className="block overflow-hidden">
             <motion.span
-              className="block text-[15vw] md:text-[12vw]"
+              className="block text-[12vw] gradient-text md:text-[9.5vw]"
               variants={rise}
               custom={1}
               initial="hidden"
               animate={entered ? "show" : "hidden"}
             >
-              <span className="gradient-text">Pros</span>
-              <span className="align-top text-[5vw] md:text-[3.5vw]">®</span>
+              The Future
             </motion.span>
           </span>
         </h1>

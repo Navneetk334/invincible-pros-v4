@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useCursor } from "@/hooks/useCursor";
+import Magnetic from "@/components/layout/Magnetic";
 
 const LINE_A = "ENGINEERING";
 const LINE_B = "THE FUTURE";
@@ -48,20 +49,22 @@ export default function Finale() {
             something the future remembers.
           </p>
         </div>
-        <a
-          href="mailto:hello@invinciblepros.com"
-          className="group inline-flex items-center gap-4"
-          {...cta}
-        >
-          <span className="flex h-24 w-24 items-center justify-center rounded-full border border-paper/25 text-sm transition-colors duration-300 group-hover:border-cyan group-hover:bg-cyan group-hover:text-ink md:h-28 md:w-28">
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-              Start
+        <Magnetic strength={0.35}>
+          <a
+            href="mailto:hello@invinciblepros.com"
+            className="group inline-flex items-center gap-4"
+            {...cta}
+          >
+            <span className="flex h-24 w-24 items-center justify-center rounded-full border border-paper/25 text-sm transition-colors duration-300 group-hover:border-cyan group-hover:bg-cyan group-hover:text-ink md:h-28 md:w-28">
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
+                Start
+              </span>
             </span>
-          </span>
-          <span className="font-display text-3xl font-medium tracking-tight transition-transform duration-300 group-hover:translate-x-2 md:text-4xl">
-            a project
-          </span>
-        </a>
+            <span className="font-display text-3xl font-medium tracking-tight transition-transform duration-300 group-hover:translate-x-2 md:text-4xl">
+              a project
+            </span>
+          </a>
+        </Magnetic>
       </div>
 
       {/* the final message */}

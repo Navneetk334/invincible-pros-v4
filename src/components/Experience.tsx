@@ -7,11 +7,13 @@ import Overlays from "@/components/layout/Overlays";
 import Navbar from "@/components/layout/Navbar";
 import DomainRail from "@/components/layout/DomainRail";
 import HUD from "@/components/layout/HUD";
+import ChapterFlash from "@/components/layout/ChapterFlash";
+import SoundManager from "@/components/layout/SoundManager";
 import Preloader from "@/components/preloader/Preloader";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
 import KineticMarquee from "@/components/sections/KineticMarquee";
-import Domains from "@/components/sections/Domains";
+import HorizontalDomains from "@/components/sections/HorizontalDomains";
 import Stats from "@/components/sections/Stats";
 import Finale from "@/components/sections/Finale";
 
@@ -30,6 +32,9 @@ export default function Experience() {
       {/* Persistent WebGL background behind all content */}
       <SceneCanvas />
 
+      <ChapterFlash />
+      <SoundManager />
+
       <SmoothScroll>
         <Navbar />
         <DomainRail />
@@ -38,7 +43,7 @@ export default function Experience() {
           <Hero />
           <Manifesto />
           <KineticMarquee />
-          <Domains />
+          <HorizontalDomains />
           <Stats />
           <Finale />
         </main>

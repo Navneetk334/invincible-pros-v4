@@ -39,10 +39,10 @@ export default function Effects() {
     <EffectComposer multisampling={0}>
       <Bloom
         mipmapBlur
-        intensity={0.5}
-        luminanceThreshold={0.62}
-        luminanceSmoothing={0.2}
-        radius={0.55}
+        intensity={0.32}
+        luminanceThreshold={0.55}
+        luminanceSmoothing={0.25}
+        radius={0.7}
       />
       <ChromaticAberration
         ref={ca}

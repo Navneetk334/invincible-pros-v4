@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  INVINCIBLE PROS — cinematic theme                                 */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-ink: #050609;
+  --color-ink-2: #080a11;
+  --color-ink-3: #0d1019;
+  --color-fog: #9aa3b8;
+  --color-paper: #eef1fb;
+  --color-accent: #4d6bff;
+  --color-accent-2: #7c5cff;
+  --color-cyan: #38e1ff;
+
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --ease-cine: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  overscroll-behavior: none;
+}
+
+/* Hide native cursor on precision pointers (custom cursor takes over) */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Lenis smooth scroll requirements */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Thin minimalist scrollbar (mostly hidden with Lenis) */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utility layers                                                     */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Big cinematic display type */
+  .text-hero {
+    font-size: clamp(3.2rem, 14vw, 15rem);
+    line-height: 0.86;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  .text-section {
+    font-size: clamp(2.4rem, 8vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--color-fog);
+  }
+
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(238, 241, 251, 0.32);
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      100deg,
+      #ffffff 0%,
+      var(--color-cyan) 45%,
+      var(--color-accent-2) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mix-diff {
+    mix-blend-mode: difference;
+  }
+}
+
+/* Film grain overlay */
+.grain {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.7s steps(3) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(-3%, 2%); }
+  66% { transform: translate(2%, -2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Vignette */
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 89;
+  background: radial-gradient(
+    120% 120% at 50% 45%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  * { scroll-behavior: auto; }
+}

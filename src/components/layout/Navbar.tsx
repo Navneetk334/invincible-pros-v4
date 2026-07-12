@@ -13,6 +13,8 @@ const LINKS = [
 
 export default function Navbar() {
   const entered = useStore((s) => s.entered);
+  const muted = useStore((s) => s.muted);
+  const toggleMuted = useStore((s) => s.toggleMuted);
   const link = useCursor("hover");
 
   return (
@@ -46,18 +48,51 @@ export default function Navbar() {
         ))}
       </nav>
 
-      <Magnetic strength={0.5}>
-        <a
-          href="#contact"
-          className="group flex items-center gap-2 rounded-full border border-paper/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
+      <div className="flex items-center gap-3 md:gap-5">
+        {/* sound toggle */}
+        <button
+          type="button"
+          onClick={toggleMuted}
+          aria-label={muted ? "Enable sound" : "Mute sound"}
+          className="flex h-9 items-end gap-[3px] rounded-full border border-paper/20 px-3 py-2 transition-colors hover:border-cyan"
           {...link}
         >
-          Start a project
-          <span className="transition-transform duration-300 group-hover:translate-x-1">
-            →
-          </span>
-        </a>
-      </Magnetic>
+          {[0, 1, 2, 3].map((i) => (
+            <motion.span
+              key={i}
+              className="w-[2px] rounded-full bg-cyan"
+              animate={
+                muted
+                  ? { height: 3 }
+                  : { height: [4, 12, 6, 14, 4] }
+              }
+              transition={
+                muted
+                  ? { duration: 0.2 }
+                  : {
+                      duration: 0.9,
+                      repeat: Infinity,
+                      delay: i * 0.12,
+                      ease: "easeInOut",
+                    }
+              }
+            />
+          ))}
+        </button>
+
+        <Magnetic strength={0.5}>
+          <a
+            href="#contact"
+            className="group hidden items-center gap-2 rounded-full border border-paper/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan sm:flex"
+            {...link}
+          >
+            Start a project
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </Magnetic>
+      </div>
     </motion.header>
   );
 }

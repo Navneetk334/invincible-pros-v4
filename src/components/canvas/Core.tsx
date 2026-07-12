@@ -17,6 +17,8 @@ export default function Core() {
   const mesh = useRef<THREE.Mesh>(null);
   const shell = useRef<THREE.LineSegments>(null);
   const mat = useRef<THREE.ShaderMaterial>(null);
+  const prevDomain = useRef(-1);
+  const surge = useRef(0);
 
   const colorA = useMemo(() => new THREE.Color("#0a1a4d"), []);
   const colorB = useMemo(() => new THREE.Color("#38e1ff"), []);
@@ -38,24 +40,32 @@ export default function Core() {
   }, []);
 
   useFrame((state, delta) => {
-    const { pointer, scroll, themeColor, themeColor2 } = useStore.getState();
+    const { pointer, scroll, themeColor, themeColor2, activeDomain, assembly } =
+      useStore.getState();
     const t = state.clock.elapsedTime;
+
+    // surge the turbulence whenever we cross into a new domain
+    if (activeDomain !== prevDomain.current) {
+      surge.current = 1;
+      prevDomain.current = activeDomain;
+    }
+    surge.current *= 0.93;
 
     if (mat.current) {
       const u = mat.current.uniforms;
       u.uTime.value = t;
-      // turbulence breathes + reacts to scroll
+      // turbulence breathes + reacts to scroll + domain-change surge
       u.uDisplace.value = THREE.MathUtils.lerp(
         u.uDisplace.value,
-        0.11 + Math.sin(t * 0.6) * 0.025 + scroll * 0.1,
-        0.05,
+        0.11 + Math.sin(t * 0.6) * 0.025 + scroll * 0.1 + surge.current * 0.28,
+        0.1,
       );
       colorA.lerp(new THREE.Color(themeColor).multiplyScalar(0.5), 0.06);
       colorB.lerp(new THREE.Color(themeColor2), 0.06);
     }
 
     if (group.current) {
-      group.current.rotation.y += delta * 0.12;
+      group.current.rotation.y += delta * (0.12 + surge.current * 0.6);
       group.current.rotation.x = THREE.MathUtils.lerp(
         group.current.rotation.x,
         pointer.y * 0.35,
@@ -65,6 +75,11 @@ export default function Core() {
         group.current.rotation.z,
         pointer.x * 0.2,
         0.04,
+      );
+      // dissolve as the shards take over during the shatter moment
+      const target = 0.82 * (1 - THREE.MathUtils.smoothstep(assembly, 0, 0.45));
+      group.current.scale.setScalar(
+        THREE.MathUtils.lerp(group.current.scale.x, target, 0.12),
       );
     }
     if (shell.current) {

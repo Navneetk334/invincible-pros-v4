@@ -1,11 +1,13 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Environment, Lightformer } from "@react-three/drei";
 import { Suspense, useMemo } from "react";
 import * as THREE from "three";
 import { useStore } from "@/store/useStore";
 import ParticleField from "./ParticleField";
 import Core from "./Core";
+import Shards from "./Shards";
 import BackgroundFX from "./BackgroundFX";
 import Effects from "./Effects";
 
@@ -46,8 +48,32 @@ export default function SceneCanvas() {
       >
         <color attach="background" args={["#04050a"]} />
         <Suspense fallback={null}>
+          {/* Procedural studio environment — reflections for the metal shards.
+              No external HDR asset is fetched. */}
+          <Environment resolution={256}>
+            <Lightformer
+              intensity={2.4}
+              color="#9ab6ff"
+              position={[0, 3, -4]}
+              scale={[12, 6, 1]}
+            />
+            <Lightformer
+              intensity={1.6}
+              color="#ffffff"
+              position={[-5, -1, 2]}
+              scale={[6, 6, 1]}
+            />
+            <Lightformer
+              intensity={1.8}
+              color="#ff9bd0"
+              position={[5, 2, 3]}
+              scale={[5, 5, 1]}
+            />
+          </Environment>
+
           <BackgroundFX />
           <Core />
+          <Shards />
           <ParticleField />
           <Effects />
         </Suspense>

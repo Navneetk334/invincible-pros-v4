@@ -38,14 +38,6 @@ interface AppState {
   themeColor: string;
   themeColor2: string;
   setTheme: (c: string, c2: string) => void;
-
-  /** signature "shatter" progress 0..1 (core explodes into shards) */
-  assembly: number;
-  setAssembly: (v: number) => void;
-
-  /** procedural audio */
-  muted: boolean;
-  toggleMuted: () => void;
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -75,10 +67,4 @@ export const useStore = create<AppState>((set) => ({
   themeColor: "#4d6bff",
   themeColor2: "#38e1ff",
   setTheme: (c, c2) => set({ themeColor: c, themeColor2: c2 }),
-
-  assembly: 0,
-  setAssembly: (v) => set({ assembly: v }),
-
-  muted: true,
-  toggleMuted: () => set((s) => ({ muted: !s.muted })),
 }));

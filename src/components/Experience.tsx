@@ -5,10 +5,7 @@ import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/layout/CustomCursor";
 import Overlays from "@/components/layout/Overlays";
 import Navbar from "@/components/layout/Navbar";
-import DomainRail from "@/components/layout/DomainRail";
-import HUD from "@/components/layout/HUD";
 import ChapterFlash from "@/components/layout/ChapterFlash";
-import SoundManager from "@/components/layout/SoundManager";
 import Preloader from "@/components/preloader/Preloader";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
@@ -33,12 +30,9 @@ export default function Experience() {
       <SceneCanvas />
 
       <ChapterFlash />
-      <SoundManager />
 
       <SmoothScroll>
         <Navbar />
-        <DomainRail />
-        <HUD />
         <main className="relative z-10">
           <Hero />
           <Manifesto />

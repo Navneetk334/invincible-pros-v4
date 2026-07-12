@@ -13,8 +13,7 @@ import Preloader from "@/components/preloader/Preloader";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
 import KineticMarquee from "@/components/sections/KineticMarquee";
-import Domains from "@/components/sections/Domains";
-import AssemblySection from "@/components/sections/AssemblySection";
+import HorizontalDomains from "@/components/sections/HorizontalDomains";
 import Stats from "@/components/sections/Stats";
 import Finale from "@/components/sections/Finale";
 
@@ -44,8 +43,7 @@ export default function Experience() {
           <Hero />
           <Manifesto />
           <KineticMarquee />
-          <Domains />
-          <AssemblySection />
+          <HorizontalDomains />
           <Stats />
           <Finale />
         </main>

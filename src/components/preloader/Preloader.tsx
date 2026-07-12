@@ -19,11 +19,11 @@ export default function Preloader() {
     let val = 0;
     const tick = () => {
       const remaining = 100 - val;
-      val += Math.max(0.35, remaining * 0.035);
+      val += Math.max(0.9, remaining * 0.06);
       if (val >= 100) {
         val = 100;
         setProgress(100);
-        setTimeout(() => setDone(true), 550);
+        setTimeout(() => setDone(true), 350);
         return;
       }
       setProgress(Math.floor(val));
@@ -36,7 +36,7 @@ export default function Preloader() {
   // Auto-enter shortly after reveal.
   useEffect(() => {
     if (done) {
-      const t = setTimeout(() => enter(), 1200);
+      const t = setTimeout(() => enter(), 900);
       return () => clearTimeout(t);
     }
   }, [done, enter]);

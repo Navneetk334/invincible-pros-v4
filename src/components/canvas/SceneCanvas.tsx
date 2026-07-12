@@ -1,69 +1,55 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Suspense, useMemo } from "react";
 import * as THREE from "three";
 import { useStore } from "@/store/useStore";
 import ParticleField from "./ParticleField";
 import Core from "./Core";
 import BackgroundFX from "./BackgroundFX";
+import Effects from "./Effects";
 
-/** Camera parallax rig — eases toward the pointer for depth. */
+/**
+ * Scroll-driven camera. Rather than scrolling HTML over a static scene, the
+ * camera orbits and dollies around the core as the journey progresses — so
+ * the whole page feels like one continuous move through a 3D space.
+ */
 function Rig() {
   const { camera } = useThree();
-  const target = useRef(new THREE.Vector3());
+  const tmp = useMemo(() => new THREE.Vector3(), []);
 
   useFrame(() => {
-    const { pointer } = useStore.getState();
-    target.current.set(pointer.x * 1.1, pointer.y * 0.8, 6);
-    camera.position.lerp(target.current, 0.05);
+    const { pointer, scroll } = useStore.getState();
+    const angle = scroll * Math.PI * 1.15; // partial orbit across the story
+    const radius = 8.6 - Math.sin(scroll * Math.PI) * 0.9; // dolly in mid-way
+    const tx = Math.sin(angle) * radius + pointer.x * 0.8;
+    const tz = Math.cos(angle) * radius;
+    const ty = pointer.y * 0.6 + Math.sin(scroll * Math.PI * 2.0) * 0.5;
+    camera.position.lerp(tmp.set(tx, ty, tz), 0.045);
     camera.lookAt(0, 0, 0);
   });
   return null;
-}
-
-function ThemeLights() {
-  const l1 = useRef<THREE.PointLight>(null);
-  const l2 = useRef<THREE.PointLight>(null);
-  const c1 = new THREE.Color();
-  const c2 = new THREE.Color();
-
-  useFrame(() => {
-    const { themeColor, themeColor2 } = useStore.getState();
-    if (l1.current) l1.current.color.lerp(c1.set(themeColor), 0.04);
-    if (l2.current) l2.current.color.lerp(c2.set(themeColor2), 0.04);
-  });
-
-  return (
-    <>
-      <ambientLight intensity={0.35} />
-      <pointLight ref={l1} position={[5, 5, 5]} intensity={55} distance={30} />
-      <pointLight
-        ref={l2}
-        position={[-6, -3, 2]}
-        intensity={40}
-        distance={30}
-      />
-    </>
-  );
 }
 
 export default function SceneCanvas() {
   return (
     <div className="fixed inset-0 z-0">
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 42 }}
+        camera={{ position: [0, 0, 8.6], fov: 42 }}
         dpr={[1, 1.8]}
-        gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+        gl={{
+          antialias: false,
+          alpha: false,
+          powerPreference: "high-performance",
+          toneMappingExposure: 1.05,
+        }}
       >
-        <color attach="background" args={["#05060a"]} />
-        <fog attach="fog" args={["#05060a", 10, 34]} />
+        <color attach="background" args={["#04050a"]} />
         <Suspense fallback={null}>
           <BackgroundFX />
-          <ThemeLights />
           <Core />
           <ParticleField />
+          <Effects />
         </Suspense>
         <Rig />
       </Canvas>

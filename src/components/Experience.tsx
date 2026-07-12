@@ -6,9 +6,11 @@ import CustomCursor from "@/components/layout/CustomCursor";
 import Overlays from "@/components/layout/Overlays";
 import Navbar from "@/components/layout/Navbar";
 import DomainRail from "@/components/layout/DomainRail";
+import HUD from "@/components/layout/HUD";
 import Preloader from "@/components/preloader/Preloader";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
+import KineticMarquee from "@/components/sections/KineticMarquee";
 import Domains from "@/components/sections/Domains";
 import Stats from "@/components/sections/Stats";
 import Finale from "@/components/sections/Finale";
@@ -31,9 +33,11 @@ export default function Experience() {
       <SmoothScroll>
         <Navbar />
         <DomainRail />
+        <HUD />
         <main className="relative z-10">
           <Hero />
           <Manifesto />
+          <KineticMarquee />
           <Domains />
           <Stats />
           <Finale />

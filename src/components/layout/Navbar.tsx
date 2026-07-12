@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
+import Magnetic from "@/components/layout/Magnetic";
 
 const LINKS = [
   { label: "Domains", href: "#domains" },
@@ -45,16 +46,18 @@ export default function Navbar() {
         ))}
       </nav>
 
-      <a
-        href="#contact"
-        className="group flex items-center gap-2 rounded-full border border-paper/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
-        {...link}
-      >
-        Start a project
-        <span className="transition-transform duration-300 group-hover:translate-x-1">
-          →
-        </span>
-      </a>
+      <Magnetic strength={0.5}>
+        <a
+          href="#contact"
+          className="group flex items-center gap-2 rounded-full border border-paper/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
+          {...link}
+        >
+          Start a project
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
+        </a>
+      </Magnetic>
     </motion.header>
   );
 }

@@ -10,6 +10,7 @@ const COUNT = 4200;
 const vertex = /* glsl */ `
   uniform float uTime;
   uniform float uSize;
+  uniform float uScroll;
   attribute float aScale;
   attribute float aSpeed;
   varying float vAlpha;
@@ -18,6 +19,8 @@ const vertex = /* glsl */ `
     vec3 p = position;
     p.y += sin(uTime * 0.18 * aSpeed + p.x) * 0.5;
     p.x += cos(uTime * 0.14 * aSpeed + p.z) * 0.5;
+    // gently draw the field inward as the journey progresses
+    p *= 1.0 - uScroll * 0.16;
 
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * mv;
@@ -73,7 +76,8 @@ export default function ParticleField() {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uSize: { value: 26 },
+      uSize: { value: 34 },
+      uScroll: { value: 0 },
       uColor: { value: color },
     }),
     [color],
@@ -83,6 +87,11 @@ export default function ParticleField() {
     const { pointer, scroll, themeColor2 } = useStore.getState();
     if (matRef.current) {
       matRef.current.uniforms.uTime.value = state.clock.elapsedTime;
+      matRef.current.uniforms.uScroll.value = THREE.MathUtils.lerp(
+        matRef.current.uniforms.uScroll.value,
+        scroll,
+        0.05,
+      );
       color.lerp(new THREE.Color(themeColor2), 0.03);
     }
     if (points.current) {

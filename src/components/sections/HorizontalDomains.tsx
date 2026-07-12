@@ -93,6 +93,7 @@ export default function HorizontalDomains() {
   const track = useRef<HTMLDivElement>(null);
   const setTheme = useStore((s) => s.setTheme);
   const setActiveDomain = useStore((s) => s.setActiveDomain);
+  const setJourneyActive = useStore((s) => s.setJourneyActive);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -113,6 +114,8 @@ export default function HorizontalDomains() {
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          // only mark the journey active while this section is pinned
+          onToggle: (self) => setJourneyActive(self.isActive),
           onUpdate: (self) => {
             const idx = Math.min(
               DOMAINS.length - 1,
@@ -127,7 +130,7 @@ export default function HorizontalDomains() {
     }, sectionEl);
 
     return () => ctx.revert();
-  }, [setTheme, setActiveDomain]);
+  }, [setTheme, setActiveDomain, setJourneyActive]);
 
   return (
     <section id="domains" ref={section} className="relative overflow-hidden">

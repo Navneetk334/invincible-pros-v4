@@ -9,7 +9,7 @@ export default function SceneCanvas() {
   return (
     <div className="fixed inset-0 z-0">
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         gl={{
           antialias: false,
           alpha: false,

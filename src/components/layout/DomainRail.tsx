@@ -8,7 +8,8 @@ import { useStore } from "@/store/useStore";
 export default function DomainRail() {
   const active = useStore((s) => s.activeDomain);
   const entered = useStore((s) => s.entered);
-  const visible = entered && active >= 0;
+  const journeyActive = useStore((s) => s.journeyActive);
+  const visible = entered && journeyActive && active >= 0;
 
   return (
     <motion.div

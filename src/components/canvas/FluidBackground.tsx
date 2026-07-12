@@ -73,12 +73,13 @@ export default function FluidBackground() {
           uniform vec3 uColC;
           ${snoise}
 
+          // 3-octave fbm — kept cheap for smooth 60fps
           float fbm(vec3 p) {
             float v = 0.0;
             float a = 0.5;
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
               v += a * snoise(p);
-              p *= 2.02;
+              p *= 2.0;
               a *= 0.5;
             }
             return v;
@@ -91,24 +92,20 @@ export default function FluidBackground() {
 
             float t = uTime * 0.05;
             vec3 q = vec3(p * 1.5, t);
-            q.xy += uMouse * 0.35;
+            q.xy += uMouse * 0.3;
 
-            // domain-warped fbm for organic flow
-            float w = fbm(q * 1.4 + t);
-            float n = fbm(q + w);
-            float n2 = fbm(q * 0.6 - t * 0.6 + n * 0.8);
+            // two domain-warped fbm passes (6 noise evals total)
+            float w = fbm(q + t);
+            float n = fbm(q + w * 0.8);
 
             vec3 col = mix(uColA, uColB, smoothstep(-0.55, 0.75, n));
-            col = mix(col, uColC, smoothstep(0.15, 1.0, n2) * 0.85);
-            col *= 0.35 + 0.7 * smoothstep(-1.0, 1.0, n);
+            col = mix(col, uColC, smoothstep(0.1, 0.9, w) * 0.7);
+            col *= 0.4 + 0.7 * smoothstep(-1.0, 1.0, n);
 
             // light rising from the bottom-centre of the frame
             float d = distance(uv, vec2(0.5, -0.15));
             float rise = smoothstep(1.25, 0.0, d);
             col += rise * uColB * (0.35 + uScroll * 0.15);
-
-            // subtle scanline shimmer
-            col += 0.015 * sin(uv.y * uRes.y * 1.5);
 
             // vignette
             col *= 1.0 - 0.55 * dot(p, p);

@@ -21,6 +21,10 @@ interface AppState {
   activeDomain: number;
   setActiveDomain: (i: number) => void;
 
+  /** true only while the horizontal domains section is pinned/active */
+  journeyActive: boolean;
+  setJourneyActive: (v: boolean) => void;
+
   /** normalized pointer position (-1..1) for WebGL parallax */
   pointer: { x: number; y: number };
   setPointer: (x: number, y: number) => void;
@@ -57,6 +61,9 @@ export const useStore = create<AppState>((set) => ({
 
   activeDomain: -1,
   setActiveDomain: (i) => set({ activeDomain: i }),
+
+  journeyActive: false,
+  setJourneyActive: (v) => set({ journeyActive: v }),
 
   pointer: { x: 0, y: 0 },
   setPointer: (x, y) => set({ pointer: { x, y } }),

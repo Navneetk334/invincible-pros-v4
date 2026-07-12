@@ -13,9 +13,9 @@ import { useStore } from "@/store/useStore";
 export default function ChapterFlash() {
   const active = useStore((s) => s.activeDomain);
   const entered = useStore((s) => s.entered);
-  const assembly = useStore((s) => s.assembly);
+  const journeyActive = useStore((s) => s.journeyActive);
 
-  if (!entered || active < 0 || assembly >= 0.05) return null;
+  if (!entered || !journeyActive || active < 0) return null;
   const flash = DOMAINS[active];
 
   return (

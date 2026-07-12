@@ -12,8 +12,9 @@ export default function HUD() {
   const entered = useStore((s) => s.entered);
   const active = useStore((s) => s.activeDomain);
   const scroll = useStore((s) => s.scroll);
+  const journeyActive = useStore((s) => s.journeyActive);
 
-  const inJourney = entered && active >= 0 && scroll < 0.9;
+  const inJourney = entered && journeyActive && active >= 0;
   const domain = active >= 0 ? DOMAINS[active] : null;
 
   return (

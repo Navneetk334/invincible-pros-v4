@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 
-const WORD = "INVINCIBLE PROS";
+const WORD = "INVINCIBLE PROS.";
 
 export default function Preloader() {
   const progress = useStore((s) => s.progress);
@@ -51,7 +51,9 @@ export default function Preloader() {
         >
           {/* top row */}
           <div className="flex items-center justify-between">
-            <span className="eyebrow">INVINCIBLE&nbsp;PROS</span>
+            <span className="eyebrow">
+              INVINCIBLE&nbsp;PROS<span className="text-cyan">.</span>
+            </span>
             <span className="eyebrow hidden md:block">
               DIGITAL ENGINEERING
             </span>
@@ -77,7 +79,9 @@ export default function Preloader() {
                   }}
                   style={{ display: ch === " " ? "inline" : "inline-block" }}
                 >
-                  {ch === " " ? "\u00A0" : ch}
+                  <span className={ch === "." ? "text-cyan" : undefined}>
+                    {ch === " " ? "\u00A0" : ch}
+                  </span>
                 </motion.span>
               ))}
             </h1>

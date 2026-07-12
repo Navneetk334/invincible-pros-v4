@@ -21,9 +21,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://invinciblepros.example"),
-  title: "INVINCIBLE PROS — Engineering the Future",
+  title: "INVINCIBLE PROS. — Engineering the Future",
   description:
-    "INVINCIBLE PROS is a futuristic digital engineering company. We build software, intelligence, design, infrastructure, hardware and live experiences. Engineering the future.",
+    "INVINCIBLE PROS. is a futuristic digital engineering company. We build software, intelligence, design, infrastructure, hardware and live experiences. Engineering the future.",
   keywords: [
     "IT solutions",
     "software development",
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     "cloud",
     "cyber security",
     "digital transformation",
-    "INVINCIBLE PROS",
+    "INVINCIBLE PROS.",
   ],
   openGraph: {
-    title: "INVINCIBLE PROS — Engineering the Future",
+    title: "INVINCIBLE PROS. — Engineering the Future",
     description:
       "A futuristic digital engineering company. Software · Intelligence · Design · Infrastructure · Hardware · Experience.",
     type: "website",

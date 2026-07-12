@@ -83,7 +83,7 @@ export default function Finale() {
           <div className="flex items-center gap-3">
             <span className="h-2.5 w-2.5 rounded-full bg-cyan" />
             <span className="font-display text-sm font-bold tracking-[0.14em]">
-              INVINCIBLE&nbsp;PROS
+              INVINCIBLE&nbsp;PROS<span className="text-cyan">.</span>
             </span>
           </div>
 
@@ -109,7 +109,7 @@ export default function Finale() {
           </a>
         </div>
         <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.2em] text-fog/60">
-          © {new Date().getFullYear()} Invincible Pros — Engineering the future.
+          © {new Date().getFullYear()} Invincible Pros. — Engineering the future.
         </p>
       </footer>
     </section>

@@ -2,8 +2,6 @@
 
 import { motion, type Variants } from "framer-motion";
 import { useStore } from "@/store/useStore";
-import { useCursor } from "@/hooks/useCursor";
-import Magnetic from "@/components/layout/Magnetic";
 import { DOMAINS } from "@/lib/services";
 
 const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
@@ -16,41 +14,18 @@ const rise: Variants = {
   }),
 };
 
-const fade: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay: 0.9 + i * 0.1, ease: [0.33, 1, 0.68, 1] },
-  }),
-};
-
 export default function Hero() {
   const entered = useStore((s) => s.entered);
-  const primary = useCursor("hover");
-  const secondary = useCursor("hover");
-
   const marquee = [...DOMAINS, ...DOMAINS];
 
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col justify-between overflow-hidden pt-24 pb-6"
+      className="relative flex min-h-screen flex-col justify-between overflow-hidden pt-24 pb-8"
     >
       {/* centre stage */}
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <div className="overflow-hidden">
-          <motion.p
-            className="eyebrow"
-            initial={{ y: 24, opacity: 0 }}
-            animate={entered ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 0.45, duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-          >
-            Digital Engineering Studio
-          </motion.p>
-        </div>
-
-        <h1 className="mt-6 font-display font-bold uppercase leading-[0.84] tracking-[-0.03em]">
+        <h1 className="font-display font-bold uppercase leading-[0.84] tracking-[-0.03em]">
           <span className="block overflow-hidden">
             <motion.span
               className="block text-[12vw] md:text-[9.5vw]"
@@ -75,54 +50,29 @@ export default function Hero() {
           </span>
         </h1>
 
-        <motion.p
-          className="mt-8 max-w-2xl text-base leading-relaxed text-fog md:text-lg"
-          variants={fade}
-          custom={0}
-          initial="hidden"
-          animate={entered ? "show" : "hidden"}
-        >
-          We engineer software, intelligence, design, infrastructure, hardware
-          and live experience — under one roof, for companies that intend to
-          win.
-        </motion.p>
-
+        {/* animated scroll cue (replaces the CTA buttons) */}
         <motion.div
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
-          variants={fade}
-          custom={1}
-          initial="hidden"
-          animate={entered ? "show" : "hidden"}
+          className="mt-20 flex flex-col items-center gap-3"
+          initial={{ opacity: 0, y: 16 }}
+          animate={entered ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.1, duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
         >
-          <Magnetic strength={0.4}>
-            <a
-              href="#contact"
-              className="group flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink transition-transform"
-              style={{
-                backgroundImage:
-                  "linear-gradient(100deg, var(--color-cyan), var(--color-accent-2))",
-              }}
-              {...primary}
-            >
-              Start a project
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
-          </Magnetic>
-          <a
-            href="#domains"
-            className="rounded-full border border-paper/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
-            {...secondary}
-          >
-            Explore the six domains
-          </a>
+          <span className="flex h-11 w-6 justify-center rounded-full border border-paper/30 pt-2">
+            <motion.span
+              className="h-2 w-[3px] rounded-full bg-cyan"
+              animate={{ y: [0, 14, 0], opacity: [1, 0.2, 1] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-fog">
+            Scroll to explore
+          </span>
         </motion.div>
       </div>
 
-      {/* bottom domain marquee */}
+      {/* bottom domain marquee — spaced away from the hero content */}
       <motion.div
-        className="relative flex overflow-hidden border-t border-paper/10 py-5"
+        className="relative mt-12 flex overflow-hidden border-t border-paper/10 py-5"
         initial={{ opacity: 0 }}
         animate={entered ? { opacity: 1 } : {}}
         transition={{ delay: 1.4, duration: 1 }}

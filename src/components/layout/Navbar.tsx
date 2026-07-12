@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
+import AnimatedLogo from "@/components/layout/AnimatedLogo";
 
 const LINKS = [
   { label: "Domains", href: "#domains" },
@@ -22,15 +23,7 @@ export default function Navbar() {
       animate={entered ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.9, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
     >
-      <a href="#top" className="flex items-center gap-3" {...link}>
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-60" />
-          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan" />
-        </span>
-        <span className="font-display text-sm font-bold tracking-[0.14em]">
-          INVINCIBLE&nbsp;PROS
-        </span>
-      </a>
+      <AnimatedLogo />
 
       <nav className="hidden items-center gap-8 md:flex">
         {LINKS.map((l) => (

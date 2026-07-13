@@ -19,16 +19,13 @@ export default function Hero() {
   const marquee = [...DOMAINS, ...DOMAINS];
 
   return (
-    <section
-      id="top"
-      className="relative flex min-h-screen flex-col justify-between overflow-hidden pt-24 pb-8"
-    >
-      {/* centre stage */}
-      <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+    <section id="top" className="relative">
+      {/* full-viewport stage */}
+      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-28 text-center">
         <h1 className="font-display font-bold uppercase leading-[0.84] tracking-[-0.03em]">
           <span className="block overflow-hidden">
             <motion.span
-              className="block text-[12vw] md:text-[9.5vw]"
+              className="block text-[13vw] md:text-[10.5vw]"
               variants={rise}
               custom={0}
               initial="hidden"
@@ -39,7 +36,7 @@ export default function Hero() {
           </span>
           <span className="block overflow-hidden">
             <motion.span
-              className="block text-[12vw] gradient-text md:text-[9.5vw]"
+              className="block text-[13vw] gradient-text md:text-[10.5vw]"
               variants={rise}
               custom={1}
               initial="hidden"
@@ -50,9 +47,9 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* animated scroll cue (replaces the CTA buttons) */}
+        {/* animated scroll cue pinned near the bottom of the viewport */}
         <motion.div
-          className="mt-20 flex flex-col items-center gap-3"
+          className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
           initial={{ opacity: 0, y: 16 }}
           animate={entered ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.1, duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
@@ -70,12 +67,13 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* bottom domain marquee — spaced away from the hero content */}
+      {/* domain marquee — sits below the fold, after the full-screen hero */}
       <motion.div
-        className="relative mt-12 flex overflow-hidden border-t border-paper/10 py-5"
+        className="relative flex overflow-hidden border-y border-paper/10 py-6"
         initial={{ opacity: 0 }}
-        animate={entered ? { opacity: 1 } : {}}
-        transition={{ delay: 1.4, duration: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
       >
         <div className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 animate-marquee">
           {marquee.map((d, i) => (

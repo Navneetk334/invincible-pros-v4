@@ -87,7 +87,7 @@ export default function Finale() {
             style={{
               fontSize: "clamp(2.5rem, 10.6vw, 15rem)",
               backgroundImage:
-                "linear-gradient(to bottom, rgba(238,241,251,0.62) 0%, rgba(124,92,255,0.4) 42%, rgba(56,225,255,0.14) 72%, rgba(5,6,10,0) 100%)",
+                "linear-gradient(to bottom, rgba(224,227,244,0.6) 0%, rgba(224,227,244,0.22) 52%, rgba(224,227,244,0.04) 82%, rgba(224,227,244,0) 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
               color: "transparent",

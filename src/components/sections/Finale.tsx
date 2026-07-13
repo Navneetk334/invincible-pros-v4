@@ -32,7 +32,8 @@ export default function Finale() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
   const cta = useCursor("hover", "Let's talk");
-  const mail = useCursor("hover", "Email");
+  const link = useCursor("hover");
+  const year = new Date().getFullYear();
 
   return (
     <section
@@ -77,40 +78,44 @@ export default function Finale() {
         </h2>
       </motion.div>
 
-      {/* footer */}
-      <footer className="mx-auto w-full max-w-6xl border-t border-paper/10 pt-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-cyan" />
-            <span className="font-display text-sm font-bold tracking-[0.14em]">
-              INVINCIBLE&nbsp;PROS<span className="text-cyan">.</span>
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            {["LinkedIn", "Instagram", "Behance", "X"].map((s) => (
-              <a
-                key={s}
-                href="#"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] text-fog transition-colors hover:text-paper"
-                {...cta}
-              >
-                {s}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="mailto:hello@invinciblepros.com"
-            className="font-mono text-[11px] uppercase tracking-[0.18em] text-fog transition-colors hover:text-paper"
-            {...mail}
+      {/* footer — giant brand signature fading into the floor */}
+      <footer className="w-full">
+        <div className="overflow-hidden">
+          <h2
+            aria-hidden
+            className="select-none whitespace-nowrap text-center font-display font-bold uppercase leading-[0.9] tracking-[-0.04em]"
+            style={{
+              fontSize: "clamp(2.5rem, 10.6vw, 15rem)",
+              backgroundImage:
+                "linear-gradient(to bottom, rgba(238,241,251,0.62) 0%, rgba(124,92,255,0.4) 42%, rgba(56,225,255,0.14) 72%, rgba(5,6,10,0) 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
           >
-            hello@invinciblepros.com
-          </a>
+            Invincible&nbsp;Pros.
+          </h2>
         </div>
-        <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.2em] text-fog/60">
-          © {new Date().getFullYear()} Invincible Pros. — Engineering the future.
-        </p>
+
+        <div className="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-fog">
+            <a href="#" className="transition-colors hover:text-paper" {...link}>
+              Privacy Policy
+            </a>
+            <span className="text-fog/40">·</span>
+            <a href="#" className="transition-colors hover:text-paper" {...link}>
+              Cookie Settings
+            </a>
+            <span className="text-fog/40">·</span>
+            <a href="#" className="transition-colors hover:text-paper" {...link}>
+              Data Processing
+            </a>
+          </div>
+
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fog/70">
+            © {year} Invincible Pros., Inc.
+          </p>
+        </div>
       </footer>
     </section>
   );

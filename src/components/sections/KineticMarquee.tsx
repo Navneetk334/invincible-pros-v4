@@ -16,7 +16,7 @@ function Row({
     <div className="flex overflow-hidden whitespace-nowrap">
       <div
         className={`flex shrink-0 items-center gap-8 pr-8 ${
-          reverse ? "animate-marquee-rev" : "animate-marquee"
+          reverse ? "animate-marquee-slow-rev" : "animate-marquee-slow"
         }`}
       >
         {items.map((s, i) => (

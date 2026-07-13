@@ -183,9 +183,19 @@ html.lenis body {
   animation: marquee-rev 34s linear infinite;
 }
 
+/* Slower variant for the long full-service bands after the manifesto */
+.animate-marquee-slow {
+  animation: marquee 140s linear infinite;
+}
+.animate-marquee-slow-rev {
+  animation: marquee-rev 155s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
-  .animate-marquee-rev {
+  .animate-marquee-rev,
+  .animate-marquee-slow,
+  .animate-marquee-slow-rev {
     animation: none;
   }
 }

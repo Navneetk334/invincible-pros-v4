@@ -49,31 +49,44 @@ const STATS = [
 
 export default function Stats() {
   return (
-    <section className="relative px-6 py-32 md:px-12 md:py-48">
+    <section className="relative px-6 py-24 md:px-12 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <motion.p
-          className="eyebrow mb-14"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        {/* header */}
+        <motion.div
+          className="mb-14 flex flex-col gap-6 border-b border-paper/10 pb-10 md:mb-16 md:flex-row md:items-end md:justify-between"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
         >
-          {"// Capability at scale"}
-        </motion.p>
+          <div>
+            <p className="eyebrow mb-5">{"// Capability at scale"}</p>
+            <h2 className="max-w-xl font-display text-3xl font-bold leading-[1.05] tracking-tight md:text-5xl">
+              Engineered to perform,
+              <br className="hidden md:block" /> trusted to endure.
+            </h2>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-fog md:text-right">
+            The standard we hold ourselves to on every engagement.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-14 md:grid-cols-4">
+        {/* stats row with column dividers */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-y-0">
           {STATS.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, y: 30 }}
+              className="md:border-l md:border-paper/10 md:px-8 md:first:border-l-0 md:first:pl-0"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
             >
-              <div className="font-display text-6xl font-bold tracking-tight md:text-8xl">
+              <div className="font-display text-[3rem] font-bold leading-none tracking-tight tabular-nums md:text-[4.25rem]">
                 <CountUp to={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-4 h-px w-10 bg-cyan" />
-              <p className="mt-4 max-w-[18ch] font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-fog">
+              <div className="mt-5 h-px w-8 bg-cyan" />
+              <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-fog">
                 {s.label}
               </p>
             </motion.div>

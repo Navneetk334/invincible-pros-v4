@@ -16,8 +16,8 @@ export function loopAmount(elapsed: number) {
 
 export function phaseLabel(elapsed: number) {
   const p = (elapsed % PERIOD) / PERIOD;
-  if (p < 0.12) return "A problem.";
-  if (p < 0.58) return "Engineering\u2026";
-  if (p < 0.82) return "Solved.";
+  if (p < 0.12) return "Many Problems";
+  if (p < 0.55) return "One Solution";
+  if (p < 0.82) return "INVINCIBLE PROS.";
   return "";
 }

@@ -4,14 +4,8 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import ChaosScene from "./scenes/ChaosScene";
-import BlueprintScene from "./scenes/BlueprintScene";
-import KnotScene from "./scenes/KnotScene";
 
-const SCENES = {
-  chaos: ChaosScene,
-  blueprint: BlueprintScene,
-  knot: KnotScene,
-} as const;
+const SCENES = { chaos: ChaosScene } as const;
 
 export type LabScene = keyof typeof SCENES;
 
@@ -32,8 +26,8 @@ export default function LabCanvas({ scene }: { scene: LabScene }) {
         <EffectComposer multisampling={0}>
           <Bloom
             mipmapBlur
-            intensity={0.9}
-            luminanceThreshold={0.3}
+            intensity={0.85}
+            luminanceThreshold={0.35}
             luminanceSmoothing={0.3}
             radius={0.7}
           />

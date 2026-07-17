@@ -54,19 +54,19 @@ function DomainPanel({ domain }: { domain: Domain }) {
           </Link>
         </div>
 
-        <ul className="flex flex-col justify-center gap-0.5 border-l border-paper/15 pl-6 md:pl-10">
+        <ul className="grid grid-cols-1 content-center gap-x-10 self-center border-l border-paper/15 pl-6 sm:grid-cols-2 md:pl-10">
           {domain.services.map((s) => (
             <li key={s}>
               <Link
                 href={`/v2/services/${content.slug}`}
-                className="group flex items-center justify-between gap-4 border-b border-paper/5 py-3 transition-transform duration-300 hover:translate-x-2"
+                className="group flex items-center justify-between gap-3 border-b border-paper/8 py-2.5 transition-transform duration-300 hover:translate-x-1.5"
                 {...cursor}
               >
-                <span>
-                  <span className="block font-display text-lg font-medium tracking-tight md:text-2xl">
+                <span className="min-w-0">
+                  <span className="block font-display text-base font-medium leading-tight tracking-tight md:text-lg">
                     {s}
                   </span>
-                  <span className="mt-0.5 block text-xs text-fog">
+                  <span className="mt-0.5 block truncate text-[11px] text-fog">
                     {content.serviceBlurbs[s] ?? ""}
                   </span>
                 </span>
@@ -148,7 +148,7 @@ export default function ServicesV2() {
             <span className="text-outline">Every discipline.</span>
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-fog md:text-lg">
-            Six engineering domains, 38 capabilities, one accountable team. Keep
+            Six service categories, 38 capabilities, one accountable team. Keep
             scrolling to travel sideways through everything we build.
           </p>
         </div>

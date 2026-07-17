@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { LabScene } from "./LabCanvas";
 import { phaseLabel } from "./loop";
@@ -28,36 +28,22 @@ export default function LabView({ scene = "chaos" }: { scene?: LabScene }) {
         <LabCanvas scene={scene} />
       </div>
 
-      {/* top bar */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-6 md:p-10">
-        <Link
-          href="/"
-          className="pointer-events-auto font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-paper"
-        >
-          ← back to site
-        </Link>
-        <span className="font-mono text-xs uppercase tracking-[0.2em] text-fog">
-          Preloader concept
-        </span>
-      </div>
-
-      {/* phase caption (top-centre so it never overlaps the forming logo) */}
-      <div className="pointer-events-none absolute inset-x-0 top-24 flex justify-center">
-        <span className="font-mono text-sm uppercase tracking-[0.34em] text-cyan">
-          {label}
-        </span>
-      </div>
-
-      {/* description */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 md:p-10">
-        <h1 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
-          Chaos → Order
-        </h1>
-        <p className="mt-3 max-w-lg text-sm leading-relaxed text-fog">
-          Scattered fragments — many problems — converge into one solution,
-          forming the INVINCIBLE&nbsp;PROS. logo. Colour shifts red → cyan as it
-          resolves.
-        </p>
+      {/* big centred caption — "Many Problems" → "One Solution" (then the logo forms) */}
+      <div className="pointer-events-none absolute inset-x-0 top-[22%] flex justify-center px-6">
+        <AnimatePresence mode="wait">
+          {label && (
+            <motion.p
+              key={label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
+              className="text-center font-display text-4xl font-bold tracking-tight md:text-6xl"
+            >
+              {label}
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   );

@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { loopAmount } from "../loop";
 
-const COUNT = 950;
+const COUNT = 1700;
 
 type Particle = {
   chaos: THREE.Vector3;
@@ -33,21 +33,22 @@ function sampleText(lines: string[], count: number): THREE.Vector3[] {
   });
   const img = ctx.getImageData(0, 0, W, H).data;
   const pts: [number, number][] = [];
-  for (let y = 0; y < H; y += 3) {
-    for (let x = 0; x < W; x += 3) {
+  for (let y = 0; y < H; y += 2) {
+    for (let x = 0; x < W; x += 2) {
       if (img[(y * W + x) * 4 + 3] > 128) pts.push([x, y]);
     }
   }
   if (pts.length === 0) return [];
-  const scale = 5.2 / W;
+  const scale = 5.4 / W;
   const out: THREE.Vector3[] = [];
   for (let i = 0; i < count; i++) {
+    // even stride across scan-ordered points → uniform coverage of the glyphs
     const [px, py] = pts[Math.floor((i / count) * pts.length)];
     out.push(
       new THREE.Vector3(
         (px - W / 2) * scale,
         -(py - H / 2) * scale,
-        (Math.random() - 0.5) * 0.12,
+        (Math.random() - 0.5) * 0.05,
       ),
     );
   }
@@ -80,7 +81,7 @@ export default function ChaosScene() {
             (Math.random() - 0.5) * 10,
           ),
           order: order[i],
-          sc: 0.03 + Math.random() * 0.045,
+          sc: 0.02 + Math.random() * 0.026,
           spin: new THREE.Vector3(
             Math.random() - 0.5,
             Math.random() - 0.5,
@@ -121,7 +122,7 @@ export default function ChaosScene() {
       d.position.copy(pos.current);
       const spin = drift * 1.2 + 0.05;
       d.rotation.set(t * s.spin.x * spin, t * s.spin.y * spin, t * s.spin.z * spin);
-      d.scale.setScalar(s.sc * (0.55 + a * 0.75));
+      d.scale.setScalar(s.sc * (0.5 + a * 0.7));
       d.updateMatrix();
       m.setMatrixAt(i, d.matrix);
     }
@@ -133,7 +134,7 @@ export default function ChaosScene() {
       const c = scratch.current.copy(red).lerp(cyan, a);
       mat.current.color.copy(c);
       mat.current.emissive.copy(c);
-      mat.current.emissiveIntensity = 0.3 + a * 0.7;
+      mat.current.emissiveIntensity = 0.25 + a * 0.4;
     }
   });
 

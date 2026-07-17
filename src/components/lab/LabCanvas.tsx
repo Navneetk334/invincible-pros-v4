@@ -26,10 +26,10 @@ export default function LabCanvas({ scene }: { scene: LabScene }) {
         <EffectComposer multisampling={0}>
           <Bloom
             mipmapBlur
-            intensity={0.85}
-            luminanceThreshold={0.35}
-            luminanceSmoothing={0.3}
-            radius={0.7}
+            intensity={0.42}
+            luminanceThreshold={0.5}
+            luminanceSmoothing={0.25}
+            radius={0.5}
           />
         </EffectComposer>
       </Suspense>

@@ -94,25 +94,8 @@ export default function Preloader() {
             </AnimatePresence>
           </div>
 
-          {/* top row: brand + skip */}
-          <div className="absolute inset-x-0 top-0 flex items-center justify-between p-6 md:p-10">
-            <span className="eyebrow">
-              INVINCIBLE&nbsp;PROS<span className="text-cyan">.</span>
-            </span>
-            <button
-              type="button"
-              onClick={() => enter()}
-              className="eyebrow transition-colors hover:text-paper"
-            >
-              Skip intro →
-            </button>
-          </div>
-
           {/* bottom row: progress */}
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 md:p-10">
-            <span className="hidden font-mono text-xs text-fog md:block">
-              Loading experience
-            </span>
+          <div className="absolute inset-x-0 bottom-0 flex items-end p-6 md:p-10">
             <div className="flex flex-1 items-center gap-4">
               <div className="relative h-px flex-1 overflow-hidden bg-paper/15">
                 <motion.div

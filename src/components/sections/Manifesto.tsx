@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const TEXT =
-  "We are not a vendor. We are the engineers behind the businesses that refuse to stand still. Where others see complexity, we see systems waiting to be built — from a single line of code to a stadium of light.";
+  "We are not just a service provider—we are the engineering team that powers ambitious businesses. We design, build, and scale technology that transforms ideas into reliable, high-performing solutions. From a single line of code to large-scale digital infrastructure, we turn complexity into systems that drive growth, innovation, and lasting success.";
 
 export default function Manifesto() {
   const container = useRef<HTMLDivElement>(null);

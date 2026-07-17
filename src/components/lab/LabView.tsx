@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { LabScene } from "./LabCanvas";
-import { phaseLabel, loopAmount, smooth, labClock } from "./loop";
+import { phaseLabel, logoReveal, labClock } from "./loop";
 
 const LabCanvas = dynamic(() => import("./LabCanvas"), { ssr: false });
 
@@ -18,7 +18,7 @@ export default function LabView({ scene = "chaos" }: { scene?: LabScene }) {
       // read the same clock the particles use → perfectly synced handoff
       const e = labClock.t;
       setLabel(phaseLabel(e));
-      setLogo(smooth((loopAmount(e) - 0.78) / 0.18));
+      setLogo(logoReveal(e));
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);

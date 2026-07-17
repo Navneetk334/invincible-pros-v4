@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { loopAmount, smooth, labClock } from "../loop";
+import { loopAmount, smooth, labClock, PERIOD } from "../loop";
 
 const COUNT = 1700;
 
@@ -136,9 +136,19 @@ export default function ChaosScene() {
       mat.current.color.copy(c);
       mat.current.emissive.copy(c);
       mat.current.emissiveIntensity = 0.25 + a * 0.4;
-      // fade the fuzzy particles away as they merge, so the crisp wordmark
-      // (rendered as clean HTML text over the canvas) can take over
-      mat.current.opacity = 1 - smooth((a - 0.7) / 0.25) * 0.94;
+      // fully fade the fuzzy particles out as they merge, so only the crisp
+      // white wordmark (clean HTML text over the canvas) remains — no ghost
+      // Opacity is driven by the timeline phase (not merge amount) so the
+      // particles stay fully visible until they've FORMED the logo (p<0.55),
+      // then cross-fade out (0.55→0.68), stay gone through the hold, and
+      // return for the scatter (p>0.82). No ghost behind the white wordmark.
+      const p = (t % PERIOD) / PERIOD;
+      let op: number;
+      if (p < 0.55) op = 1;
+      else if (p < 0.82) op = 1 - smooth((p - 0.55) / 0.13);
+      else op = smooth((p - 0.82) / 0.08);
+      mat.current.opacity = op;
+      m.visible = op > 0.02;
     }
   });
 

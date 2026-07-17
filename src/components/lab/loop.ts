@@ -20,8 +20,14 @@ export function loopAmount(elapsed: number) {
 
 export function phaseLabel(elapsed: number) {
   const p = (elapsed % PERIOD) / PERIOD;
-  if (p < 0.12) return "Many Problems";
-  if (p < 0.52) return "One Solution";
-  // the formed logo speaks for itself from here — no caption
+  if (p < 0.1) return "Many Problems";
+  if (p < 0.45) return "One Solution";
+  // caption clears well before the wordmark appears — no overlap
   return "";
+}
+
+/** DOM wordmark reveal 0..1, sequenced after the caption + particle merge. */
+export function logoReveal(elapsed: number) {
+  const p = (elapsed % PERIOD) / PERIOD;
+  return smooth((p - 0.56) / 0.12) * (1 - smooth((p - 0.8) / 0.08));
 }

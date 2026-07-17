@@ -3,7 +3,7 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { loopAmount, smooth, labClock, PERIOD } from "../loop";
+import { preload, smooth } from "./preloadState";
 
 const COUNT = 600;
 
@@ -16,12 +16,12 @@ type Particle = {
 };
 
 /**
- * Scattered fragments (many problems) converge inward into one compact glowing
- * cluster (one solution) and dissolve — then the crisp white INVINCIBLE PROS.
- * wordmark (rendered as clean HTML over the canvas) takes over. The particles
- * never spell any text, so there is no "shard" version of the logo.
+ * One-shot intro: scattered fragments (many problems) converge into a compact
+ * glowing cluster (one solution) and dissolve. The crisp white wordmark then
+ * fades in over the canvas (handled in Preloader). Progress is driven by
+ * `preload.prog` so it plays once and stops — no looping.
  */
-export default function ChaosScene() {
+export default function PreloaderScene() {
   const mesh = useRef<THREE.InstancedMesh>(null);
   const mat = useRef<THREE.MeshStandardMaterial>(null);
   const dummy = useRef(new THREE.Object3D());
@@ -37,7 +37,6 @@ export default function ChaosScene() {
     };
     const out: Particle[] = [];
     for (let i = 0; i < COUNT; i++) {
-      // converge target: a small filled ball near the centre (not a shape)
       const r = 0.6 * Math.cbrt(h(i * 5));
       const th = h(i * 7) * Math.PI * 2;
       const ph = Math.acos(2 * h(i * 7 + 1) - 1);
@@ -66,9 +65,8 @@ export default function ChaosScene() {
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-    labClock.t = t; // publish for the DOM wordmark overlay
-    const a = loopAmount(t);
-    const p = (t % PERIOD) / PERIOD;
+    const prog = preload.prog;
+    const a = smooth((prog - 0.1) / 0.42); // converge over prog 0.1–0.52
     const m = mesh.current;
     const d = dummy.current;
     if (!m) return;
@@ -94,11 +92,8 @@ export default function ChaosScene() {
       mat.current.color.copy(c);
       mat.current.emissive.copy(c);
       mat.current.emissiveIntensity = 0.3 + a * 0.5;
-      // fade the cluster out as it converges — fully gone before the wordmark
-      let op: number;
-      if (p < 0.4) op = 1;
-      else if (p < 0.82) op = 1 - smooth((p - 0.4) / 0.12);
-      else op = smooth((p - 0.82) / 0.08);
+      // dissolve the cluster before the wordmark appears
+      const op = prog < 0.5 ? 1 : 1 - smooth((prog - 0.5) / 0.12);
       mat.current.opacity = op;
       m.visible = op > 0.02;
     }

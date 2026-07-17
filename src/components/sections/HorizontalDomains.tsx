@@ -141,7 +141,6 @@ export default function HorizontalDomains() {
       >
         {/* intro panel */}
         <div className="flex h-screen w-screen shrink-0 flex-col items-start justify-center px-6 md:px-[8vw]">
-          <p className="eyebrow mb-6">The six domains</p>
           <h2 className="font-display text-[13vw] font-bold uppercase leading-[0.85] tracking-tight md:text-[8vw]">
             One company.
             <br />
@@ -149,7 +148,7 @@ export default function HorizontalDomains() {
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-fog md:text-lg">
             Most companies hand you a fragment. We engineer the whole system.
-            Keep scrolling to travel sideways through all six.
+            Keep scrolling to travel sideways through all services.
           </p>
         </div>
 

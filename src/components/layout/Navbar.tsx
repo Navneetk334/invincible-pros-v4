@@ -6,13 +6,9 @@ import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
 import AnimatedLogo from "@/components/layout/AnimatedLogo";
 
-const LINKS = [
-  { label: "Services", href: "#domains" },
-  { label: "Contact", href: "#contact" },
-];
-
 export default function Navbar() {
   const entered = useStore((s) => s.entered);
+  const openContact = useStore((s) => s.openContact);
   const link = useCursor("hover");
 
   return (
@@ -25,22 +21,29 @@ export default function Navbar() {
       <AnimatedLogo />
 
       <nav className="hidden items-center gap-8 md:flex">
-        {LINKS.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            className="group relative font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-paper"
-            {...link}
-          >
-            {l.label}
-            <span className="absolute -bottom-1 left-0 h-px w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
-          </a>
-        ))}
+        <a
+          href="#domains"
+          className="group relative font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-paper"
+          {...link}
+        >
+          Services
+          <span className="absolute -bottom-1 left-0 h-px w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+        </a>
+        <button
+          type="button"
+          onClick={() => openContact("split")}
+          className="group relative font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-paper"
+          {...link}
+        >
+          Contact
+          <span className="absolute -bottom-1 left-0 h-px w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
+        </button>
       </nav>
 
       <Magnetic strength={0.5}>
-        <a
-          href="#contact"
+        <button
+          type="button"
+          onClick={() => openContact("flow")}
           className="group flex items-center gap-2 rounded-full border border-paper/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
           {...link}
         >
@@ -48,7 +51,7 @@ export default function Navbar() {
           <span className="transition-transform duration-300 group-hover:translate-x-1">
             →
           </span>
-        </a>
+        </button>
       </Magnetic>
     </motion.header>
   );

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
+import { useStore } from "@/store/useStore";
 
 const LINE_A = "ENGINEERING";
 const LINE_B = "THE FUTURE";
@@ -33,6 +34,7 @@ export default function Finale() {
   const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
   const cta = useCursor("hover", "Let's talk");
   const link = useCursor("hover");
+  const openContact = useStore((s) => s.openContact);
   const year = new Date().getFullYear();
 
   return (
@@ -51,8 +53,9 @@ export default function Finale() {
           </p>
         </div>
         <Magnetic strength={0.35}>
-          <a
-            href="mailto:hello@invinciblepros.com"
+          <button
+            type="button"
+            onClick={() => openContact("flow")}
             className="group inline-flex items-center gap-4"
             {...cta}
           >
@@ -64,7 +67,7 @@ export default function Finale() {
             <span className="font-display text-3xl font-medium tracking-tight transition-transform duration-300 group-hover:translate-x-2 md:text-4xl">
               a project
             </span>
-          </a>
+          </button>
         </Magnetic>
       </div>
 

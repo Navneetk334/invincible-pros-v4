@@ -6,6 +6,7 @@ import CustomCursor from "@/components/layout/CustomCursor";
 import Overlays from "@/components/layout/Overlays";
 import Navbar from "@/components/layout/Navbar";
 import ChapterFlash from "@/components/layout/ChapterFlash";
+import ContactOverlay from "@/components/contact/ContactOverlay";
 import Preloader from "@/components/preloader/Preloader";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
@@ -30,6 +31,7 @@ export default function Experience() {
       <SceneCanvas />
 
       <ChapterFlash />
+      <ContactOverlay />
 
       <SmoothScroll>
         <Navbar />

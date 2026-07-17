@@ -28,12 +28,12 @@ export default function HeroV2() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-48 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-40 text-center"
     >
       <h1 className="font-display font-bold uppercase leading-[0.84] tracking-[-0.03em]">
         <span className="block overflow-hidden">
           <motion.span
-            className="block text-[13vw] md:text-[10.5vw]"
+            className="block text-[10.5vw] md:text-[8.2vw]"
             variants={rise}
             custom={0}
             initial="hidden"
@@ -44,7 +44,7 @@ export default function HeroV2() {
         </span>
         <span className="block overflow-hidden">
           <motion.span
-            className="block text-[13vw] gradient-text md:text-[10.5vw]"
+            className="block text-[10.5vw] gradient-text md:text-[8.2vw]"
             variants={rise}
             custom={1}
             initial="hidden"
@@ -56,7 +56,7 @@ export default function HeroV2() {
       </h1>
 
       <motion.p
-        className="mt-8 max-w-2xl text-base leading-relaxed text-fog md:text-lg"
+        className="mt-6 max-w-2xl text-base leading-relaxed text-fog md:text-lg"
         variants={fade}
         custom={0}
         initial="hidden"
@@ -69,7 +69,7 @@ export default function HeroV2() {
 
       {/* microcopy + animated scroll cue, grouped and pinned near the bottom */}
       <motion.div
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-5"
+        className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4"
         initial={{ opacity: 0, y: 16 }}
         animate={entered ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 1.1, duration: 0.8, ease: [0.33, 1, 0.68, 1] }}

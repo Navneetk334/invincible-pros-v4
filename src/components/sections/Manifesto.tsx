@@ -42,7 +42,6 @@ export default function Manifesto() {
       className="relative flex min-h-[120vh] items-center px-6 py-40 md:px-12"
     >
       <div className="mx-auto max-w-5xl">
-        <p className="eyebrow mb-10">{"// 00 — Manifesto"}</p>
         <p className="font-display text-3xl font-medium leading-[1.25] tracking-tight md:text-5xl md:leading-[1.2]">
           {TEXT.split(" ").map((w, i) => (
             <span key={i} data-word className="inline-block">

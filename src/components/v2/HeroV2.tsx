@@ -13,15 +13,6 @@ const rise: Variants = {
   }),
 };
 
-const fade: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay: 1 + i * 0.12, ease: [0.33, 1, 0.68, 1] },
-  }),
-};
-
 export default function HeroV2() {
   const entered = useStore((s) => s.entered);
 
@@ -54,18 +45,6 @@ export default function HeroV2() {
           </motion.span>
         </span>
       </h1>
-
-      <motion.p
-        className="mt-6 max-w-2xl text-base leading-relaxed text-fog md:text-lg"
-        variants={fade}
-        custom={0}
-        initial="hidden"
-        animate={entered ? "show" : "hidden"}
-      >
-        INVINCIBLE&nbsp;PROS. is a digital engineering company building software,
-        AI, cloud infrastructure, mobile apps, enterprise systems and hardware —
-        turning ambitious ideas into reliable, high-performing products.
-      </motion.p>
 
       {/* microcopy + animated scroll cue, grouped and pinned near the bottom */}
       <motion.div

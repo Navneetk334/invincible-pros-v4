@@ -6,7 +6,7 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 const STATS = [
   { to: 100, suffix: "+", label: "Projects delivered" },
   { to: 38, suffix: "+", label: "Capabilities" },
-  { to: 6, suffix: "", label: "Engineering domains" },
+  { to: 6, suffix: "", label: "Service categories" },
   { to: 99, suffix: ".9%", label: "Operational uptime" },
   { to: 24, suffix: "/7", label: "Support" },
 ];
@@ -47,7 +47,7 @@ export default function StatsV2() {
   return (
     <section
       aria-label="Company statistics"
-      className="relative px-6 py-20 md:px-12 md:py-28"
+      className="relative px-6 py-24 md:px-12 md:py-36"
     >
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 md:grid-cols-5 md:gap-y-0">
         {STATS.map((s, i) => (

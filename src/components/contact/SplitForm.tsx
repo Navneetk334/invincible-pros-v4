@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { sendBrief } from "./submit";
 
 const SERVICES = ["Software", "AI / ML", "Design", "Cloud / DevOps", "Hardware", "Events & Media"];
 
@@ -62,7 +63,7 @@ function Floating({
 export default function SplitForm() {
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [services, setServices] = useState<string[]>([]);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
   const toggle = (s: string) =>
     setServices((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]));
@@ -121,13 +122,26 @@ export default function SplitForm() {
           className="rounded-2xl border border-paper/10 bg-white/[0.03] p-6 backdrop-blur-xl md:p-8"
         >
           <AnimatePresence mode="wait">
-            {!sent ? (
+            {status !== "sent" ? (
               <motion.form
                 key="form"
                 exit={{ opacity: 0, scale: 0.98 }}
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  setSent(true);
+                  if (status === "sending") return;
+                  setStatus("sending");
+                  try {
+                    await sendBrief("Contact (Split)", {
+                      Name: form.name,
+                      Email: form.email,
+                      Company: form.company,
+                      Services: services.join(", "),
+                      Message: form.message,
+                    });
+                    setStatus("sent");
+                  } catch {
+                    setStatus("error");
+                  }
                 }}
                 className="space-y-6"
               >
@@ -161,14 +175,21 @@ export default function SplitForm() {
 
                 <motion.button
                   type="submit"
+                  disabled={status === "sending"}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="group flex w-full items-center justify-center gap-2 rounded-full py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink"
+                  className="group flex w-full items-center justify-center gap-2 rounded-full py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink disabled:opacity-60"
                   style={{ backgroundImage: "linear-gradient(100deg, var(--color-cyan), var(--color-accent-2))" }}
                 >
-                  Send project brief
+                  {status === "sending" ? "Sending…" : "Send project brief"}
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </motion.button>
+                {status === "error" && (
+                  <p className="text-center font-mono text-xs text-[#fb7185]">
+                    Couldn&apos;t send — please try again, or email
+                    hello@invinciblepros.com
+                  </p>
+                )}
               </motion.form>
             ) : (
               <motion.div

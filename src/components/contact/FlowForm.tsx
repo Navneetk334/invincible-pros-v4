@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { sendBrief } from "./submit";
 
 type Step = {
   key: string;
@@ -38,20 +39,35 @@ export default function FlowForm() {
   const [step, setStep] = useState(0);
   const [dir, setDir] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const current = STEPS[step];
   const value = answers[current?.key] ?? "";
-  const setValue = (v: string) =>
-    setAnswers((a) => ({ ...a, [current.key]: v }));
+  const setValue = (v: string) => setAnswers((a) => ({ ...a, [current.key]: v }));
 
   const canNext = current?.type === "textarea" ? true : value.trim().length > 0;
   const isLast = step === STEPS.length - 1;
 
+  const submit = async () => {
+    setStatus("sending");
+    try {
+      await sendBrief("Start a project (Flow)", {
+        Name: answers.name ?? "",
+        Email: answers.email ?? "",
+        Service: answers.service ?? "",
+        Budget: answers.budget ?? "",
+        Message: answers.message ?? "",
+      });
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   const next = () => {
-    if (!canNext) return;
+    if (status === "sending" || !canNext) return;
     if (isLast) {
-      setSent(true);
+      submit();
       return;
     }
     setDir(1);
@@ -67,18 +83,17 @@ export default function FlowForm() {
 
   return (
     <main className="relative flex min-h-screen flex-col bg-ink px-6 text-paper">
-      {/* progress */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-paper/10">
         <motion.div
           className="h-full bg-gradient-to-r from-cyan to-accent-2"
-          animate={{ width: sent ? "100%" : `${progress}%` }}
+          animate={{ width: status === "sent" ? "100%" : `${progress}%` }}
           transition={{ duration: 0.5, ease: EASE }}
         />
       </div>
 
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center py-24">
         <AnimatePresence mode="wait">
-          {!sent ? (
+          {status !== "sent" ? (
             <motion.div
               key={current.key}
               initial={{ opacity: 0, y: dir * 40 }}
@@ -139,13 +154,13 @@ export default function FlowForm() {
               <div className="mt-12 flex items-center gap-4">
                 <button
                   onClick={next}
-                  disabled={!canNext}
+                  disabled={!canNext || status === "sending"}
                   className="group flex items-center gap-2 rounded-full bg-paper px-7 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink transition enabled:hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-30"
                 >
-                  {isLast ? "Send it" : "Continue"}
+                  {status === "sending" ? "Sending…" : isLast ? "Send it" : "Continue"}
                   <span className="transition-transform group-enabled:group-hover:translate-x-1">→</span>
                 </button>
-                {step > 0 && (
+                {step > 0 && status !== "sending" && (
                   <button
                     onClick={back}
                     className="font-mono text-[11px] uppercase tracking-[0.18em] text-fog transition-colors hover:text-paper"
@@ -157,6 +172,13 @@ export default function FlowForm() {
                   press enter
                 </span>
               </div>
+
+              {status === "error" && (
+                <p className="mt-5 font-mono text-xs text-[#fb7185]">
+                  Couldn&apos;t send just now — please try again, or email
+                  hello@invinciblepros.com
+                </p>
+              )}
             </motion.div>
           ) : (
             <motion.div
@@ -178,7 +200,7 @@ export default function FlowForm() {
                 Thanks{answers.name ? `, ${answers.name.split(" ")[0]}` : ""}.
               </h2>
               <p className="mx-auto mt-4 max-w-md text-fog">
-                Your brief is on its way to our team. We&apos;ll get back to you
+                Your brief has been sent to our team. We&apos;ll get back to you
                 within 24 hours to start engineering the future.
               </p>
             </motion.div>

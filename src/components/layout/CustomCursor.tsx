@@ -52,7 +52,7 @@ export default function CustomCursor() {
   const isActive = cursor !== "default";
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[100] hidden md:block">
+    <div className="pointer-events-none fixed inset-0 z-[200] hidden md:block">
       {/* trailing ring */}
       <div
         ref={ringRef}

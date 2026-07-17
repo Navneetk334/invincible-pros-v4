@@ -191,11 +191,21 @@ html.lenis body {
   animation: marquee-rev 155s linear infinite;
 }
 
+/* Tech-stack logo strips — four rows drifting at different speeds/directions */
+.animate-tech-a { animation: marquee 58s linear infinite; }
+.animate-tech-b { animation: marquee-rev 72s linear infinite; }
+.animate-tech-c { animation: marquee 66s linear infinite; }
+.animate-tech-d { animation: marquee-rev 80s linear infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-marquee-rev,
   .animate-marquee-slow,
-  .animate-marquee-slow-rev {
+  .animate-marquee-slow-rev,
+  .animate-tech-a,
+  .animate-tech-b,
+  .animate-tech-c,
+  .animate-tech-d {
     animation: none;
   }
 }

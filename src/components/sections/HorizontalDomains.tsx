@@ -8,7 +8,7 @@ import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 
 function DomainPanel({ domain, i }: { domain: Domain; i: number }) {
-  const cursor = useCursor("view", "Domain");
+  const cursor = useCursor("view", "Service Category");
   return (
     <div className="relative flex h-screen w-screen shrink-0 flex-col justify-center px-6 md:px-[8vw]">
       {/* giant ghost index */}
@@ -27,7 +27,7 @@ function DomainPanel({ domain, i }: { domain: Domain; i: number }) {
               style={{ background: domain.color }}
             />
             <span className="eyebrow">
-              Domain {domain.index} / 06
+              Service Category {domain.index} / 06
             </span>
           </div>
           <h3

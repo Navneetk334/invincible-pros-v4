@@ -7,7 +7,7 @@ import Magnetic from "@/components/layout/Magnetic";
 import AnimatedLogo from "@/components/layout/AnimatedLogo";
 
 const LINKS = [
-  { label: "Domains", href: "#domains" },
+  { label: "Services", href: "#domains" },
   { label: "Manifesto", href: "#manifesto" },
   { label: "Contact", href: "#contact" },
 ];

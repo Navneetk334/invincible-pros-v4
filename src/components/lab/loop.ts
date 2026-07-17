@@ -1,5 +1,9 @@
 export const PERIOD = 5.4;
 
+/** Shared clock: the R3F scene writes its elapsed time here so the DOM
+ *  wordmark overlay can stay perfectly in sync with the particles. */
+export const labClock = { t: 0 };
+
 export function smooth(x: number) {
   x = Math.max(0, Math.min(1, x));
   return x * x * (3 - 2 * x);

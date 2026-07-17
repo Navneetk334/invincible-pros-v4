@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { loopAmount } from "../loop";
+import { loopAmount, smooth, labClock } from "../loop";
 
 const COUNT = 1700;
 
@@ -107,8 +107,9 @@ export default function ChaosScene() {
   useFrame((state) => {
     if (!ready || !dataRef.current) return;
     const data = dataRef.current;
-    const a = loopAmount(state.clock.elapsedTime);
     const t = state.clock.elapsedTime;
+    labClock.t = t; // publish for the DOM wordmark overlay
+    const a = loopAmount(t);
     const m = mesh.current;
     const d = dummy.current;
     if (!m) return;
@@ -135,6 +136,9 @@ export default function ChaosScene() {
       mat.current.color.copy(c);
       mat.current.emissive.copy(c);
       mat.current.emissiveIntensity = 0.25 + a * 0.4;
+      // fade the fuzzy particles away as they merge, so the crisp wordmark
+      // (rendered as clean HTML text over the canvas) can take over
+      mat.current.opacity = 1 - smooth((a - 0.7) / 0.25) * 0.94;
     }
   });
 
@@ -148,6 +152,8 @@ export default function ChaosScene() {
         emissiveIntensity={0.3}
         metalness={0.4}
         roughness={0.3}
+        transparent
+        opacity={1}
       />
     </instancedMesh>
   );

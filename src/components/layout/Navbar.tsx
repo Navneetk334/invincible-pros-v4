@@ -8,7 +8,6 @@ import AnimatedLogo from "@/components/layout/AnimatedLogo";
 
 const LINKS = [
   { label: "Services", href: "#domains" },
-  { label: "Manifesto", href: "#manifesto" },
   { label: "Contact", href: "#contact" },
 ];
 

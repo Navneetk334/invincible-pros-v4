@@ -2,8 +2,6 @@
 
 import { motion, type Variants } from "framer-motion";
 import { useStore } from "@/store/useStore";
-import { useCursor } from "@/hooks/useCursor";
-import Magnetic from "@/components/layout/Magnetic";
 
 const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
@@ -26,9 +24,6 @@ const fade: Variants = {
 
 export default function HeroV2() {
   const entered = useStore((s) => s.entered);
-  const openContact = useStore((s) => s.openContact);
-  const primary = useCursor("hover");
-  const secondary = useCursor("hover");
 
   return (
     <section
@@ -72,47 +67,34 @@ export default function HeroV2() {
         turning ambitious ideas into reliable, high-performing products.
       </motion.p>
 
-      <motion.div
-        className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
+      <motion.p
+        className="mt-10 font-mono text-[10px] uppercase tracking-[0.24em] text-fog/70"
         variants={fade}
         custom={1}
         initial="hidden"
         animate={entered ? "show" : "hidden"}
       >
-        <Magnetic strength={0.4}>
-          <button
-            type="button"
-            onClick={() => openContact("flow")}
-            className="group flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink transition-transform"
-            style={{
-              backgroundImage:
-                "linear-gradient(100deg, var(--color-cyan), var(--color-accent-2))",
-            }}
-            {...primary}
-          >
-            Start a project
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </button>
-        </Magnetic>
-        <a
-          href="#work"
-          className="rounded-full border border-paper/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
-          {...secondary}
-        >
-          See our work
-        </a>
-      </motion.div>
-
-      <motion.p
-        className="mt-10 font-mono text-[10px] uppercase tracking-[0.24em] text-fog/70"
-        initial={{ opacity: 0 }}
-        animate={entered ? { opacity: 1 } : {}}
-        transition={{ delay: 1.5, duration: 1 }}
-      >
         Software · AI · Cloud · Hardware — engineered end to end
       </motion.p>
+
+      {/* animated scroll cue pinned near the bottom of the viewport (same as v1) */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
+        initial={{ opacity: 0, y: 16 }}
+        animate={entered ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 1.1, duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+      >
+        <span className="flex h-11 w-6 justify-center rounded-full border border-paper/30 pt-2">
+          <motion.span
+            className="h-2 w-[3px] rounded-full bg-cyan"
+            animate={{ y: [0, 14, 0], opacity: [1, 0.2, 1] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-fog">
+          Scroll to explore
+        </span>
+      </motion.div>
     </section>
   );
 }

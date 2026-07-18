@@ -5,7 +5,7 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const STATS = [
   { to: 50, suffix: "+", label: "Projects delivered" },
-  { to: 38, suffix: "+", label: "Capabilities" },
+  { to: 37, suffix: "+", label: "Capabilities" },
   { to: 6, suffix: "", label: "Service categories" },
   { to: 98, suffix: "%", label: "Operational uptime" },
   { to: 24, suffix: "/7", label: "Support" },

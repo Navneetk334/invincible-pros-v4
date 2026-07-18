@@ -148,7 +148,7 @@ export default function ServicesV2() {
             <span className="text-outline">Every discipline.</span>
           </h2>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-fog md:text-lg">
-            Six service categories, 38 capabilities, one accountable team. Keep
+            Six service categories, 37 capabilities, one accountable team. Keep
             scrolling to travel through everything we build.
           </p>
         </div>

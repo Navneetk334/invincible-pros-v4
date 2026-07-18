@@ -36,10 +36,18 @@ const LIST = [
   "Google Search Console", "Ahrefs", "SEMrush", "Lighthouse",
 ];
 
+// Hardware / component brands to append after the core stack (Android already in LIST).
+const HARDWARE = [
+  "Intel", "AMD", "Dell", "HPE", "Lenovo", "Asus", "MSI", "Cooler Master",
+  "Gigabyte", "ASRock", "Corsair", "Deepcool", "Seagate", "Western Digital",
+  "Micron", "Crucial", "Synology",
+];
+
 // Explicit slug aliases for names that don't match title/slug directly.
 const ALIAS = {
   "CSS3": "css",
   "Cassandra": "apachecassandra",
+  "Cooler Master": "coolermaster",
   "JavaScript": "javascript",
   "Next.js": "nextdotjs",
   "Vue.js": "vuedotjs",
@@ -97,27 +105,33 @@ const FALLBACK = {
   "Premiere Pro": { hex: "#EA77FF", mono: "Pr" },
   "Adobe XD": { hex: "#FF61F6", mono: "Xd" },
   "Canva": { hex: "#00C4CC", mono: "Cv" },
+  "HPE": { hex: "#01A982", mono: "HPE" },
+  "Gigabyte": { hex: "#E8460E", mono: "GB" },
+  "ASRock": { hex: "#A9A9A9", mono: "AR" },
+  "Western Digital": { hex: "#005CB9", mono: "WD" },
+  "Micron": { hex: "#004C97", mono: "Mi" },
+  "Crucial": { hex: "#0072CE", mono: "Cr" },
 };
 
-const result = [];
 const missing = [];
-for (const name of LIST) {
+function resolve(name) {
   let ic = null;
   if (ALIAS[name]) ic = byKey.get(norm(ALIAS[name]));
   if (!ic) ic = byKey.get(norm(name));
-  if (ic) {
-    result.push({ name, path: ic.path, hex: `#${ic.hex}` });
-  } else if (FALLBACK[name]) {
-    result.push({ name, mono: FALLBACK[name].mono, hex: FALLBACK[name].hex });
-  } else {
-    missing.push(name);
-  }
+  if (ic) return { name, path: ic.path, hex: `#${ic.hex}` };
+  if (FALLBACK[name]) return { name, mono: FALLBACK[name].mono, hex: FALLBACK[name].hex };
+  missing.push(name);
+  return null;
 }
 
-// Keep the strongest ~80 in the user's priority order.
-const final = result.slice(0, 80);
+// Core stack: keep the strongest ~80 in the user's priority order.
+const core = LIST.map(resolve).filter(Boolean).slice(0, 80);
+// Append hardware brands, skipping any already present (e.g. Android).
+const seen = new Set(core.map((x) => x.name));
+const hardware = HARDWARE.map(resolve).filter((x) => x && !seen.has(x.name));
+const final = [...core, ...hardware];
 
-console.log(`INCLUDED ${final.length} (matched+fallback of ${result.length})`);
+console.log(`INCLUDED ${final.length} (core ${core.length} + hardware ${hardware.length})`);
 console.log(`SKIPPED (no logo): ${missing.join(", ")}`);
 
 const out =

@@ -141,7 +141,7 @@ export const CATEGORY: Record<string, CategoryContent> = {
       },
     ],
     serviceBlurbs: {
-      "UI UX Design": "Interfaces engineered around real user behaviour.",
+      "UI/UX Design": "Interfaces engineered around real user behaviour.",
       "Brand Identity": "Distinctive systems that scale everywhere.",
       "Graphic Design": "Crafted visuals for every surface.",
       "Motion Graphics": "Motion that gives your product life.",
@@ -205,7 +205,6 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "Hardware solutions",
       "Workstations",
       "CCTV & surveillance",
-      "Biometric systems",
       "Attendance systems",
     ],
     tech: ["Linux", "Python", "Node.js", "PostgreSQL"],
@@ -213,14 +212,13 @@ export const CATEGORY: Record<string, CategoryContent> = {
     faqs: [
       {
         q: "Can hardware integrate with our software?",
-        a: "Yes — we connect CCTV, biometric and attendance systems to your dashboards, HR and access-control software.",
+        a: "Yes — we connect CCTV and attendance systems to your dashboards, HR and access-control software.",
       },
     ],
     serviceBlurbs: {
       "Hardware Solutions": "Engineered machines for real-world demands.",
       Workstations: "High-performance builds for heavy workloads.",
       CCTV: "Surveillance that integrates with your systems.",
-      "Biometric Systems": "Secure, accurate identity and access.",
       "Attendance Systems": "Automated, tamper-proof attendance.",
     },
   },

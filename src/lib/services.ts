@@ -64,7 +64,7 @@ export const DOMAINS: Domain[] = [
     statement:
       "Interfaces that feel inevitable and brands that refuse to be forgotten — crafted frame by frame.",
     services: [
-      "UI UX Design",
+      "UI/UX Design",
       "Brand Identity",
       "Graphic Design",
       "Motion Graphics",
@@ -102,7 +102,6 @@ export const DOMAINS: Domain[] = [
       "Hardware Solutions",
       "Workstations",
       "CCTV",
-      "Biometric Systems",
       "Attendance Systems",
     ],
     color: "#f59e0b",

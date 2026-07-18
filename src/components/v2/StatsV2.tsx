@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const STATS = [
-  { to: 100, suffix: "+", label: "Projects delivered" },
+  { to: 50, suffix: "+", label: "Projects delivered" },
   { to: 38, suffix: "+", label: "Capabilities" },
   { to: 6, suffix: "", label: "Service categories" },
-  { to: 99, suffix: ".9%", label: "Operational uptime" },
+  { to: 98, suffix: "%", label: "Operational uptime" },
   { to: 24, suffix: "/7", label: "Support" },
 ];
 

@@ -364,8 +364,8 @@ export const WHY_US = [
 ];
 
 export const CONTACT = {
-  email: "hello@invinciblepros.com",
-  phone: "+1 (000) 000-0000",
-  whatsapp: "https://wa.me/",
+  email: "admin@invinciblepros.com",
+  phone: "+91 8700025535",
+  whatsapp: "https://wa.me/918700025535",
   schedule: "https://cal.com/",
 };

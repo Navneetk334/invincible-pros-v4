@@ -41,7 +41,7 @@ export default function V2Page() {
     description:
       "A digital engineering company delivering software, AI, cloud infrastructure, hardware and live media end to end.",
     url: "https://invinciblepros.example/v2",
-    email: "hello@invinciblepros.com",
+    email: "admin@invinciblepros.com",
     makesOffer: DOMAINS.map((d) => ({
       "@type": "Offer",
       itemOffered: {

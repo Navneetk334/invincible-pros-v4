@@ -176,7 +176,7 @@ export default function FlowForm() {
               {status === "error" && (
                 <p className="mt-5 font-mono text-xs text-[#fb7185]">
                   Couldn&apos;t send just now — please try again, or email
-                  hello@invinciblepros.com
+                  admin@invinciblepros.com
                 </p>
               )}
             </motion.div>

@@ -107,10 +107,10 @@ export default function SplitForm() {
             plan, a team, and a path to launch.
           </p>
           <a
-            href="mailto:hello@invinciblepros.com"
+            href="mailto:admin@invinciblepros.com"
             className="mt-8 inline-block font-mono text-sm text-paper underline decoration-cyan/50 underline-offset-4 transition-colors hover:text-cyan"
           >
-            hello@invinciblepros.com
+            admin@invinciblepros.com
           </a>
         </div>
 
@@ -187,7 +187,7 @@ export default function SplitForm() {
                 {status === "error" && (
                   <p className="text-center font-mono text-xs text-[#fb7185]">
                     Couldn&apos;t send — please try again, or email
-                    hello@invinciblepros.com
+                    admin@invinciblepros.com
                   </p>
                 )}
               </motion.form>

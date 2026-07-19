@@ -15,7 +15,6 @@ export default function ContactV2() {
     { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
     { label: "Phone", value: CONTACT.phone, href: `tel:${CONTACT.phone.replace(/[^+\d]/g, "")}` },
     { label: "WhatsApp", value: "Message us", href: CONTACT.whatsapp },
-    { label: "Schedule", value: "Book a call", href: CONTACT.schedule },
   ];
 
   return (
@@ -73,7 +72,7 @@ export default function ContactV2() {
           </button>
         </motion.div>
 
-        <div className="mt-16 grid gap-px border border-paper/12 bg-paper/12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-px border border-paper/12 bg-paper/12 sm:grid-cols-2 lg:grid-cols-3">
           {channels.map((c) => (
             <a
               key={c.label}

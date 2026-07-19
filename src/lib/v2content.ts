@@ -367,5 +367,4 @@ export const CONTACT = {
   email: "admin@invinciblepros.com",
   phone: "+91 8700025535",
   whatsapp: "https://wa.me/918700025535",
-  schedule: "https://cal.com/",
 };

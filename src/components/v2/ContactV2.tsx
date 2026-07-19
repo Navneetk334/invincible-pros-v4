@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CONTACT } from "@/lib/v2content";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
@@ -10,12 +9,6 @@ export default function ContactV2() {
   const openContact = useStore((s) => s.openContact);
   const primary = useCursor("hover");
   const link = useCursor("hover");
-
-  const channels = [
-    { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
-    { label: "Phone", value: CONTACT.phone, href: `tel:${CONTACT.phone.replace(/[^+\d]/g, "")}` },
-    { label: "WhatsApp", value: "Message us", href: CONTACT.whatsapp },
-  ];
 
   return (
     <section id="contact" className="relative px-6 py-32 md:px-12 md:py-48">
@@ -71,26 +64,6 @@ export default function ContactV2() {
             Send a message
           </button>
         </motion.div>
-
-        <div className="mt-16 grid gap-px border border-paper/12 bg-paper/12 sm:grid-cols-2 lg:grid-cols-3">
-          {channels.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="group bg-ink p-6 transition-colors hover:bg-paper/[0.03]"
-              {...link}
-            >
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog">
-                {c.label}
-              </span>
-              <span className="mt-2 block font-display text-lg font-medium tracking-tight text-paper transition-colors group-hover:text-cyan">
-                {c.value}
-              </span>
-            </a>
-          ))}
-        </div>
       </div>
     </section>
   );

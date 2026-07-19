@@ -9,33 +9,44 @@ export default function FooterV2() {
   const link = useCursor("hover");
   const year = 2026;
 
+  const channels = [
+    { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
+    {
+      label: "Phone",
+      value: CONTACT.phone,
+      href: `tel:${CONTACT.phone.replace(/[^+\d]/g, "")}`,
+    },
+    { label: "WhatsApp", value: "Message us", href: CONTACT.whatsapp },
+  ];
+
   return (
     <footer className="relative border-t border-paper/12 px-6 pb-10 pt-20 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          {/* brand */}
+          {/* contact — moved from the top contact section */}
           <div>
-            <p className="font-display text-2xl font-bold tracking-tight">
-              INVINCIBLE&nbsp;PROS<span className="text-cyan">.</span>
-            </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-fog">
-              A digital engineering company building software, AI, cloud,
-              hardware and live experiences — end to end, under one roof.
-            </p>
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="mt-6 inline-block font-mono text-xs uppercase tracking-[0.16em] text-paper/80 transition-colors hover:text-cyan"
-              {...link}
-            >
-              {CONTACT.email}
-            </a>
-            <a
-              href={`tel:${CONTACT.phone.replace(/[^+\d]/g, "")}`}
-              className="mt-1 block font-mono text-xs uppercase tracking-[0.16em] text-paper/80 transition-colors hover:text-cyan"
-              {...link}
-            >
-              {CONTACT.phone}
-            </a>
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.24em] text-fog">
+              Contact
+            </h3>
+            <div className="mt-5 grid gap-px overflow-hidden rounded-sm border border-paper/12 bg-paper/12">
+              {channels.map((c) => (
+                <a
+                  key={c.label}
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="group bg-ink p-5 transition-colors hover:bg-paper/[0.03]"
+                  {...link}
+                >
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog">
+                    {c.label}
+                  </span>
+                  <span className="mt-1.5 block font-display text-base font-medium tracking-tight text-paper transition-colors group-hover:text-cyan">
+                    {c.value}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* services */}
@@ -108,8 +119,28 @@ export default function FooterV2() {
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-8 md:flex-row md:items-center">
+      {/* V1-style giant wordmark fading into the floor, below the footer menu */}
+      <div className="mt-16 overflow-hidden">
+        <h2
+          aria-hidden
+          className="select-none whitespace-nowrap text-center font-display font-bold uppercase leading-[0.9] tracking-[-0.04em]"
+          style={{
+            fontSize: "clamp(2.5rem, 10.6vw, 15rem)",
+            backgroundImage:
+              "linear-gradient(to bottom, rgba(224,227,244,0.6) 0%, rgba(224,227,244,0.22) 52%, rgba(224,227,244,0.04) 82%, rgba(224,227,244,0) 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          Invincible&nbsp;Pros.
+        </h2>
+      </div>
+
+      <div className="mx-auto max-w-6xl">
+        <div className="mt-6 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-8 md:flex-row md:items-center">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-fog/70">
             &copy; {year} INVINCIBLE&nbsp;PROS. All rights reserved.
           </p>

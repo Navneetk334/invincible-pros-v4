@@ -40,7 +40,7 @@ export default function Magnetic({
       onPointerMove={onMove}
       onPointerLeave={reset}
       style={{ x: sx, y: sy }}
-      className={className}
+      className={`inline-block${className ? ` ${className}` : ""}`}
     >
       {children}
     </motion.div>

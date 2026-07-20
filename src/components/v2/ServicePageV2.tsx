@@ -218,6 +218,32 @@ export default function ServicePageV2({
             </div>
           </section>
 
+          {/* Industries — same centered trust-bar style as the homepage */}
+          <section
+            aria-label="Industries served"
+            className="relative border-t border-paper/10 px-6 py-16 md:px-12 md:py-20"
+          >
+            <div className="mx-auto max-w-6xl">
+              <p className="mb-7 text-center font-mono text-[10px] uppercase tracking-[0.28em] text-fog">
+                Trusted to engineer for
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-between md:gap-x-4">
+                {content.industries.map((ind, i) => (
+                  <motion.span
+                    key={ind}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.05 }}
+                    className="font-display text-base font-medium tracking-tight text-paper/70 transition-colors hover:text-cyan md:text-lg"
+                  >
+                    {ind}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* Process */}
           <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
@@ -270,32 +296,6 @@ export default function ServicePageV2({
                 (name) => techByName(name) ?? { name, hex: "#8b8fa3" },
               )}
             />
-          </section>
-
-          {/* Industries — same centered trust-bar style as the homepage */}
-          <section
-            aria-label="Industries served"
-            className="relative border-t border-paper/10 px-6 py-16 md:px-12 md:py-20"
-          >
-            <div className="mx-auto max-w-6xl">
-              <p className="mb-7 text-center font-mono text-[10px] uppercase tracking-[0.28em] text-fog">
-                Trusted to engineer for
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-between md:gap-x-4">
-                {content.industries.map((ind, i) => (
-                  <motion.span
-                    key={ind}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                    className="font-display text-base font-medium tracking-tight text-paper/70 transition-colors hover:text-cyan md:text-lg"
-                  >
-                    {ind}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
           </section>
 
           {/* FAQs */}

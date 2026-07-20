@@ -44,7 +44,13 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "Database engineering & optimization",
       "Custom software & digital transformation",
     ],
-    tech: ["React", "Next.js", "Node.js", "Flutter", "Laravel", "PostgreSQL", "GraphQL", "Redis"],
+    tech: [
+      "HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Vue.js",
+      "Angular", "Tailwind CSS", "Node.js", "Express.js", "NestJS", "Laravel",
+      "PHP", "Python", "Django", "FastAPI", ".NET", "Flutter", "React Native",
+      "Kotlin", "Swift", "PostgreSQL", "MySQL", "MongoDB", "Redis", "Firebase",
+      "Supabase", "GraphQL", "JWT", "Docker", "Git", "GitHub",
+    ],
     industries: ["Enterprise", "Startups", "Finance", "Healthcare", "Retail"],
     faqs: [
       {
@@ -92,7 +98,12 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "Dashboard engineering",
       "Digital transformation strategy",
     ],
-    tech: ["Python", "OpenAI", "TensorFlow", "Node.js", "PostgreSQL", "Redis"],
+    tech: [
+      "Python", "FastAPI", "Node.js", "OpenAI", "Anthropic Claude",
+      "Google Gemini", "DeepSeek", "ElevenLabs", "Nvidia", "PostgreSQL",
+      "MongoDB", "Redis", "Power BI", "Tableau", "Looker Studio", "Grafana",
+      "Metabase", "Docker",
+    ],
     industries: ["Finance", "Healthcare", "Manufacturing", "Retail", "Enterprise"],
     faqs: [
       {
@@ -132,7 +143,10 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "Motion graphics",
       "Video production",
     ],
-    tech: ["Figma", "Framer", "After Effects", "React", "GSAP"],
+    tech: [
+      "React", "Next.js", "Vue.js", "Tailwind CSS", "HTML5", "CSS3",
+      "JavaScript", "TypeScript", "Framer Motion", "GSAP", "WordPress",
+    ],
     industries: ["Startups", "Enterprise", "Retail", "Travel", "Education"],
     faqs: [
       {
@@ -168,7 +182,11 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "DevOps & CI/CD",
       "Networking",
     ],
-    tech: ["AWS", "Docker", "Linux", "Node.js", "PostgreSQL", "Redis"],
+    tech: [
+      "AWS", "Microsoft Azure", "Google Cloud", "Cloudflare", "DigitalOcean",
+      "Docker", "Kubernetes", "Nginx", "Apache", "Linux", "Ubuntu", "Git",
+      "GitHub", "Vercel", "Netlify", "Railway", "Render", "PostgreSQL", "Redis",
+    ],
     industries: ["Enterprise", "Finance", "Government", "Healthcare"],
     faqs: [
       {
@@ -207,7 +225,11 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "CCTV & surveillance",
       "Attendance systems",
     ],
-    tech: ["Linux", "Python", "Node.js", "PostgreSQL"],
+    tech: [
+      "Intel", "AMD", "Nvidia", "Dell", "HPE", "Lenovo", "Asus", "MSI",
+      "Gigabyte", "ASRock", "Corsair", "Cooler Master", "Deepcool", "Seagate",
+      "Western Digital", "Micron", "Crucial", "Synology", "Linux", "Python",
+    ],
     industries: ["Government", "Manufacturing", "Education", "Enterprise", "Retail"],
     faqs: [
       {
@@ -242,7 +264,10 @@ export const CATEGORY: Record<string, CategoryContent> = {
       "Photography & videography",
       "Live streaming",
     ],
-    tech: ["OBS", "React", "Node.js", "AWS"],
+    tech: [
+      "React", "Next.js", "Node.js", "AWS", "Cloudflare", "Nvidia", "Linux",
+      "GitHub",
+    ],
     industries: ["Enterprise", "Government", "Education", "Travel", "Retail"],
     faqs: [
       {

@@ -16,6 +16,8 @@ import Overlays from "@/components/layout/Overlays";
 import ContactOverlay from "@/components/contact/ContactOverlay";
 import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
+import TechChip from "@/components/v2/TechChip";
+import { techByName } from "@/lib/techlookup";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -186,10 +188,10 @@ export default function ServicePageV2({
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-10">What we deliver</p>
               <ul className="grid grid-cols-1 border-t border-paper/12 md:grid-cols-2">
-                {content.features.map((f, i) => (
+                {domain.services.map((service, i) => (
                   <motion.li
-                    key={f}
-                    className="flex items-center gap-4 border-b border-paper/12 py-5 md:odd:pr-8 md:even:border-l md:even:border-paper/12 md:even:pl-8"
+                    key={service}
+                    className="flex items-start gap-4 border-b border-paper/12 py-5 md:odd:pr-8 md:even:border-l md:even:border-paper/12 md:even:pl-8"
                     variants={reveal}
                     initial="hidden"
                     whileInView="show"
@@ -197,11 +199,18 @@ export default function ServicePageV2({
                     transition={{ duration: 0.4, delay: (i % 2) * 0.05 }}
                   >
                     <span
-                      className="h-1.5 w-1.5 shrink-0 rounded-full"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
                       style={{ background: domain.color }}
                     />
-                    <span className="font-display text-lg font-medium tracking-tight md:text-xl">
-                      {f}
+                    <span>
+                      <span className="block font-display text-lg font-medium tracking-tight md:text-xl">
+                        {service}
+                      </span>
+                      {content.serviceBlurbs[service] && (
+                        <span className="mt-1 block text-sm leading-relaxed text-fog">
+                          {content.serviceBlurbs[service]}
+                        </span>
+                      )}
                     </span>
                   </motion.li>
                 ))}
@@ -251,13 +260,11 @@ export default function ServicePageV2({
               <div>
                 <p className="eyebrow mb-8">Technology</p>
                 <div className="flex flex-wrap gap-2.5">
-                  {content.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-paper/15 px-4 py-2 font-display text-base font-medium tracking-tight text-paper/80"
-                    >
-                      {t}
-                    </span>
+                  {content.tech.map((name) => (
+                    <TechChip
+                      key={name}
+                      tech={techByName(name) ?? { name, hex: "#8b8fa3" }}
+                    />
                   ))}
                 </div>
               </div>

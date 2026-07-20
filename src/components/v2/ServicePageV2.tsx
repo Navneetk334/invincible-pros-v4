@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -27,30 +26,6 @@ const reveal = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
 };
-
-function Faq({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  const cursor = useCursor("hover");
-  return (
-    <div className="border-b border-paper/12">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="flex w-full items-center justify-between gap-6 py-6 text-left"
-        {...cursor}
-      >
-        <span className="font-display text-lg font-medium tracking-tight md:text-xl">
-          {q}
-        </span>
-        <span className="shrink-0 text-cyan">{open ? "−" : "+"}</span>
-      </button>
-      {open && (
-        <p className="max-w-2xl pb-6 text-base leading-relaxed text-fog">{a}</p>
-      )}
-    </div>
-  );
-}
 
 export default function ServicePageV2({
   domain,
@@ -296,18 +271,6 @@ export default function ServicePageV2({
                 (name) => techByName(name) ?? { name, hex: "#8b8fa3" },
               )}
             />
-          </section>
-
-          {/* FAQs */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
-            <div className="mx-auto max-w-4xl">
-              <p className="eyebrow mb-10">Frequently asked</p>
-              <div>
-                {content.faqs.map((f) => (
-                  <Faq key={f.q} q={f.q} a={f.a} />
-                ))}
-              </div>
-            </div>
           </section>
 
           {/* Related */}

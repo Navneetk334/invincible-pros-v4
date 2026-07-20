@@ -103,8 +103,8 @@ export default function FooterV2() {
               {[
                 { label: "About", href: "/v2/about" },
                 { label: "Case Studies", href: "/v2#work" },
-                { label: "Privacy", href: "/v2#top" },
-                { label: "Terms", href: "/v2#top" },
+                { label: "Privacy", href: "/v2/privacy" },
+                { label: "Terms", href: "/v2/terms" },
               ].map((l) => (
                 <li key={l.label}>
                   <Link

@@ -79,7 +79,9 @@ export default function FooterV2() {
               {[
                 { label: "Work", href: "/v2#work" },
                 { label: "Process", href: "/v2#process" },
-                { label: "Contact", href: "/v2#contact" },
+                { label: "About", href: "/v2/about" },
+                { label: "Careers", href: "/v2/careers" },
+                { label: "Contact", href: "/v2/contact" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link
@@ -101,10 +103,11 @@ export default function FooterV2() {
             </h3>
             <ul className="mt-5 space-y-2.5">
               {[
-                { label: "About", href: "/v2/about" },
                 { label: "Case Studies", href: "/v2#work" },
                 { label: "Privacy", href: "/v2/privacy" },
                 { label: "Terms", href: "/v2/terms" },
+                { label: "Cookies", href: "/v2/cookies" },
+                { label: "Refund", href: "/v2/refund" },
               ].map((l) => (
                 <li key={l.label}>
                   <Link

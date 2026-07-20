@@ -51,7 +51,7 @@ export default async function ServiceCategoryPage({
     provider: {
       "@type": "Organization",
       name: "INVINCIBLE PROS.",
-      url: "https://invinciblepros.example/v2",
+      url: "https://invinciblepros.com/v2",
     },
     areaServed: content.industries,
     hasOfferCatalog: {

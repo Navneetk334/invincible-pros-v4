@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import CookieConsent from "@/components/layout/CookieConsent";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -20,7 +21,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://invinciblepros.example"),
+  metadataBase: new URL("https://invinciblepros.com"),
   title: "INVINCIBLE PROS. — Engineering the Future",
   description:
     "INVINCIBLE PROS. is a futuristic digital engineering company. We build software, intelligence, design, infrastructure, hardware and live experiences. Engineering the future.",
@@ -51,7 +52,10 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrains.variable}`}
     >
-      <body className="bg-ink text-paper antialiased">{children}</body>
+      <body className="bg-ink text-paper antialiased">
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

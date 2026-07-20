@@ -30,13 +30,13 @@ export default function AboutPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About INVINCIBLE PROS.",
-    url: "https://invinciblepros.example/v2/about",
+    url: "https://invinciblepros.com/v2/about",
     mainEntity: {
       "@type": "Organization",
       name: "INVINCIBLE PROS.",
       description:
         "A digital engineering company delivering software, AI, cloud infrastructure, hardware and live media end to end.",
-      url: "https://invinciblepros.example/v2",
+      url: "https://invinciblepros.com/v2",
       email: "admin@invinciblepros.com",
       knowsAbout: DOMAINS.map((d) => d.kicker),
     },

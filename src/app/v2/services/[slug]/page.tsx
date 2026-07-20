@@ -57,21 +57,11 @@ export default async function ServiceCategoryPage({
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `${title} services`,
-      itemListElement: content.features.map((f) => ({
+      itemListElement: domain.services.map((s) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: f },
+        itemOffered: { "@type": "Service", name: s },
       })),
     },
-  };
-
-  const faqLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: content.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
   };
 
   return (
@@ -79,10 +69,6 @@ export default async function ServiceCategoryPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
       <ServicePageV2 domain={domain} content={content} />
     </>

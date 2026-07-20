@@ -24,7 +24,7 @@ export type CategoryContent = {
 
 export const CATEGORY: Record<string, CategoryContent> = {
   build: {
-    slug: "software-engineering",
+    slug: "build",
     blurb:
       "Custom software, web & mobile apps, SaaS platforms, APIs and databases engineered to scale.",
     overview:
@@ -73,7 +73,7 @@ export const CATEGORY: Record<string, CategoryContent> = {
     },
   },
   intelligence: {
-    slug: "ai-and-data",
+    slug: "intelligence",
     blurb:
       "AI integration, machine learning, automation and dashboards that turn data into decisions.",
     overview:
@@ -114,7 +114,7 @@ export const CATEGORY: Record<string, CategoryContent> = {
     },
   },
   design: {
-    slug: "design-and-brand",
+    slug: "design",
     blurb:
       "UI/UX, brand identity, motion and video production that make products feel inevitable.",
     overview:
@@ -149,7 +149,7 @@ export const CATEGORY: Record<string, CategoryContent> = {
     },
   },
   infrastructure: {
-    slug: "cloud-and-security",
+    slug: "infrastructure",
     blurb:
       "Cloud, DevOps, networking, cyber security and anti-debugging — the resilient backbone.",
     overview:
@@ -190,7 +190,7 @@ export const CATEGORY: Record<string, CategoryContent> = {
     },
   },
   hardware: {
-    slug: "hardware-and-security-systems",
+    slug: "hardware",
     blurb:
       "Hardware, workstations, CCTV, biometric and attendance systems where software meets the physical world.",
     overview:
@@ -223,7 +223,7 @@ export const CATEGORY: Record<string, CategoryContent> = {
     },
   },
   experience: {
-    slug: "events-and-live-media",
+    slug: "experience",
     blurb:
       "Events, LED walls, drone coverage, photography, videography and live streaming at scale.",
     overview:

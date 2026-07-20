@@ -1,15 +1,19 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
 import AnimatedLogo from "@/components/layout/AnimatedLogo";
 
+// Absolute targets so the links work from any page (home, service, about),
+// not just when the homepage sections happen to be mounted.
 const LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
+  { label: "Services", href: "/v2#services" },
+  { label: "Work", href: "/v2#work" },
+  { label: "Process", href: "/v2#process" },
+  { label: "About", href: "/v2/about" },
 ];
 
 export default function NavbarV2() {
@@ -24,11 +28,11 @@ export default function NavbarV2() {
       animate={entered ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.9, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
     >
-      <AnimatedLogo />
+      <AnimatedLogo href="/v2#top" />
 
       <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
         {LINKS.map((l) => (
-          <a
+          <Link
             key={l.href}
             href={l.href}
             className="group relative font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-paper"
@@ -36,7 +40,7 @@ export default function NavbarV2() {
           >
             {l.label}
             <span className="absolute -bottom-1 left-0 h-px w-0 bg-cyan transition-all duration-300 group-hover:w-full" />
-          </a>
+          </Link>
         ))}
         <button
           type="button"

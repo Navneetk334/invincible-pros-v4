@@ -11,7 +11,7 @@ import NavbarV2 from "@/components/v2/NavbarV2";
 import HeroV2 from "@/components/v2/HeroV2";
 import TrustBar from "@/components/v2/TrustBar";
 import StatsV2 from "@/components/v2/StatsV2";
-import CompanyIntroV2 from "@/components/v2/CompanyIntroV2";
+import Manifesto from "@/components/sections/Manifesto";
 import ServicesV2 from "@/components/v2/ServicesV2";
 import ProcessV2 from "@/components/v2/ProcessV2";
 import TechStackV2 from "@/components/v2/TechStackV2";
@@ -46,7 +46,7 @@ export default function ExperienceV2() {
           <HeroV2 />
           <TrustBar />
           <StatsV2 />
-          <CompanyIntroV2 />
+          <Manifesto />
           <ServicesV2 />
           <ProcessV2 />
           <TechStackV2 />

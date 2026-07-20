@@ -28,7 +28,7 @@ export default function NavbarV2() {
       animate={entered ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.9, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
     >
-      <AnimatedLogo href="/v2#top" />
+      <AnimatedLogo href="/v2" />
 
       <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
         {LINKS.map((l) => (

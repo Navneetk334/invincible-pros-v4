@@ -1,21 +1,23 @@
 "use client";
 
-import Link from "next/link";
 import { useCursor } from "@/hooks/useCursor";
 
 /**
  * Static white wordmark logo — INVINCIBLE PROS. (the dot = Professionals).
- * `href` lets each site point the logo at its own home (defaults to the
- * in-page top anchor for the original site).
+ *
+ * Rendered as a plain anchor (not a Next <Link>) so clicking it performs a
+ * full page reload to the site home and always lands at the top — never a
+ * client-side hash jump (which previously stacked `#top#top` and could crash
+ * the router). `href` lets each site point at its own home.
  */
-export default function AnimatedLogo({ href = "#top" }: { href?: string }) {
+export default function AnimatedLogo({ href = "/" }: { href?: string }) {
   const link = useCursor("hover");
 
   return (
-    <Link href={href} className="flex items-center" {...link}>
+    <a href={href} className="flex items-center" {...link}>
       <span className="font-display text-sm font-bold tracking-[0.14em] text-white">
         INVINCIBLE&nbsp;PROS.
       </span>
-    </Link>
+    </a>
   );
 }

@@ -16,6 +16,16 @@ export default function SmoothScroll({
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Don't let the browser restore the previous scroll position on reload —
+    // the page should always open at the top. Deep-links to an anchor
+    // (e.g. /v2#services) are still respected.
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

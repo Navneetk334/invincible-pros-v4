@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -35,10 +36,18 @@ export default function ServicePageV2({
   content: CategoryContent;
 }) {
   const openContact = useStore((s) => s.openContact);
+  const enter = useStore((s) => s.enter);
   const primary = useCursor("hover");
   const linkCursor = useCursor("hover");
   const related = DOMAINS.filter((d) => d.id !== domain.id).slice(0, 3);
   const title = domain.title.charAt(0) + domain.title.slice(1).toLowerCase();
+
+  // Service pages have no preloader, so the shared `entered` flag (which the
+  // preloader normally sets) stays false on a hard refresh — leaving the fixed
+  // navbar stuck at opacity:0. Mark it entered on mount so the header reveals.
+  useEffect(() => {
+    enter();
+  }, [enter]);
 
   return (
     <>

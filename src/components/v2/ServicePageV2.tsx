@@ -16,7 +16,7 @@ import Overlays from "@/components/layout/Overlays";
 import ContactOverlay from "@/components/contact/ContactOverlay";
 import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
-import TechChip from "@/components/v2/TechChip";
+import TechMarquee from "@/components/v2/TechMarquee";
 import { techByName } from "@/lib/techlookup";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
@@ -254,33 +254,38 @@ export default function ServicePageV2({
             </div>
           </section>
 
-          {/* Tech + Industries */}
+          {/* Technology — same auto-scrolling marquee as the homepage */}
+          <section
+            aria-label="Technology"
+            className="relative overflow-hidden border-t border-paper/10 py-24 md:py-32"
+          >
+            <div className="mx-auto mb-10 max-w-6xl px-6 md:mb-14 md:px-12">
+              <p className="eyebrow mb-6">Technology</p>
+              <h2 className="font-display text-[9vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[3.4vw]">
+                The {title.toLowerCase()} stack.
+              </h2>
+            </div>
+            <TechMarquee
+              items={content.tech.map(
+                (name) => techByName(name) ?? { name, hex: "#8b8fa3" },
+              )}
+            />
+          </section>
+
+          {/* Industries */}
           <section className="relative px-6 py-24 md:px-12 md:py-32">
-            <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2">
-              <div>
-                <p className="eyebrow mb-8">Technology</p>
-                <div className="flex flex-wrap gap-2.5">
-                  {content.tech.map((name) => (
-                    <TechChip
-                      key={name}
-                      tech={techByName(name) ?? { name, hex: "#8b8fa3" }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div>
-                <p className="eyebrow mb-8">Industries</p>
-                <ul className="space-y-2">
-                  {content.industries.map((ind) => (
-                    <li
-                      key={ind}
-                      className="border-b border-paper/10 pb-2 font-display text-lg font-medium tracking-tight text-paper/80"
-                    >
-                      {ind}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="mx-auto max-w-6xl">
+              <p className="eyebrow mb-8">Industries</p>
+              <ul className="space-y-2 md:max-w-md">
+                {content.industries.map((ind) => (
+                  <li
+                    key={ind}
+                    className="border-b border-paper/10 pb-2 font-display text-lg font-medium tracking-tight text-paper/80"
+                  >
+                    {ind}
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
 

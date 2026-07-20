@@ -276,11 +276,11 @@ export default function ServicePageV2({
           <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-8">Industries</p>
-              <ul className="space-y-2 md:max-w-md">
+              <ul className="flex flex-wrap gap-2.5">
                 {content.industries.map((ind) => (
                   <li
                     key={ind}
-                    className="border-b border-paper/10 pb-2 font-display text-lg font-medium tracking-tight text-paper/80"
+                    className="rounded-full border border-paper/15 px-4 py-2 font-display text-base font-medium tracking-tight text-paper/80"
                   >
                     {ind}
                   </li>

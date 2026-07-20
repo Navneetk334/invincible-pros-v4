@@ -22,31 +22,32 @@ export default function FooterV2() {
   return (
     <footer className="relative border-t border-paper/12 px-6 pb-10 pt-20 md:px-12">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-4">
           {/* contact — moved from the top contact section */}
           <div>
             <h3 className="font-mono text-[10px] uppercase tracking-[0.24em] text-fog">
               Contact
             </h3>
-            <div className="mt-5 grid gap-px overflow-hidden rounded-sm border border-paper/12 bg-paper/12">
+            <ul className="mt-5 space-y-3.5">
               {channels.map((c) => (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  target={c.href.startsWith("http") ? "_blank" : undefined}
-                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="group bg-ink p-5 transition-colors hover:bg-paper/[0.03]"
-                  {...link}
-                >
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-fog">
-                    {c.label}
-                  </span>
-                  <span className="mt-1.5 block font-display text-base font-medium tracking-tight text-paper transition-colors group-hover:text-cyan">
-                    {c.value}
-                  </span>
-                </a>
+                <li key={c.label}>
+                  <a
+                    href={c.href}
+                    target={c.href.startsWith("http") ? "_blank" : undefined}
+                    rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="group block"
+                    {...link}
+                  >
+                    <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-fog/70">
+                      {c.label}
+                    </span>
+                    <span className="mt-0.5 block text-sm text-paper/75 transition-colors group-hover:text-cyan">
+                      {c.value}
+                    </span>
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* services */}

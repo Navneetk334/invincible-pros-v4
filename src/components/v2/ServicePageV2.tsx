@@ -147,7 +147,7 @@ export default function ServicePageV2({
           </section>
 
           {/* Benefits */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-10">Why it matters</p>
               <div className="grid gap-px border border-paper/12 bg-paper/12 sm:grid-cols-2">
@@ -218,7 +218,7 @@ export default function ServicePageV2({
           {/* Industries — same centered trust-bar style as the homepage */}
           <section
             aria-label="Industries served"
-            className="relative border-t border-paper/10 px-6 py-16 md:px-12 md:py-20"
+            className="relative px-6 py-16 md:px-12 md:py-20"
           >
             <div className="mx-auto max-w-6xl">
               <p className="mb-7 text-center font-mono text-[10px] uppercase tracking-[0.28em] text-fog">
@@ -242,7 +242,7 @@ export default function ServicePageV2({
           </section>
 
           {/* Process */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-10">How we build</p>
               <ol className="relative border-l border-paper/12">
@@ -280,7 +280,7 @@ export default function ServicePageV2({
           {/* Technology — same auto-scrolling marquee as the homepage */}
           <section
             aria-label="Technology"
-            className="relative overflow-hidden border-t border-paper/10 py-24 md:py-32"
+            className="relative overflow-hidden py-24 md:py-32"
           >
             <div className="mx-auto mb-10 max-w-6xl px-6 md:mb-14 md:px-12">
               <p className="eyebrow mb-6">Technology</p>
@@ -326,7 +326,7 @@ export default function ServicePageV2({
           </section>
 
           {/* CTA */}
-          <section className="relative border-t border-paper/10 px-6 py-28 md:px-12 md:py-40">
+          <section className="relative px-6 py-28 md:px-12 md:py-40">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-[10vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[4.5vw]">
                 Ready to build with{" "}

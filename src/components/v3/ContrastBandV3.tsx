@@ -14,7 +14,7 @@ const METRICS = [
  */
 export default function ContrastBandV3() {
   return (
-    <section className="relative overflow-hidden border-y border-paper/10 px-6 py-28 md:py-40">
+    <section className="relative overflow-hidden px-6 py-28 md:py-40">
       <div className="mx-auto max-w-5xl text-center">
         <motion.p
           className="eyebrow"

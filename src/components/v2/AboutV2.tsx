@@ -151,7 +151,7 @@ export default function AboutV2() {
           </section>
 
           {/* Story */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[auto_1fr] md:gap-20">
               <p className="eyebrow md:pt-2">Our story</p>
               <div className="max-w-3xl space-y-8">
@@ -177,12 +177,12 @@ export default function AboutV2() {
           </section>
 
           {/* Stats (reused from the homepage) */}
-          <div className="border-t border-paper/10">
+          <div>
             <StatsV2 />
           </div>
 
           {/* What we do */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-4">What we do</p>
               <h2 className="mb-12 max-w-3xl font-display text-[9vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[3.6vw]">
@@ -223,7 +223,7 @@ export default function AboutV2() {
           </section>
 
           {/* Values */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-4">What we stand for</p>
               <h2 className="mb-12 max-w-3xl font-display text-[9vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[3.6vw]">
@@ -255,12 +255,12 @@ export default function AboutV2() {
           </section>
 
           {/* Why us (reused from the homepage) */}
-          <div className="border-t border-paper/10">
+          <div>
             <WhyUsV2 />
           </div>
 
           {/* CTA */}
-          <section className="relative border-t border-paper/10 px-6 py-28 md:px-12 md:py-40">
+          <section className="relative px-6 py-28 md:px-12 md:py-40">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-[10vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[4.5vw]">
                 Let&rsquo;s build something{" "}

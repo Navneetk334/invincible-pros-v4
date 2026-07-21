@@ -7,7 +7,7 @@ export default function TechStackV2() {
   return (
     <section
       aria-label="Technology stack"
-      className="relative overflow-hidden border-y border-paper/10 py-24 md:py-32"
+      className="relative overflow-hidden py-24 md:py-32"
     >
       <div className="mx-auto mb-12 max-w-6xl px-6 md:mb-16 md:px-12">
         <p className="eyebrow mb-6">Engineered with</p>

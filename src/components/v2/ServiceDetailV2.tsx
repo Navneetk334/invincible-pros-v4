@@ -152,7 +152,7 @@ export default function ServiceDetailV2({
           </section>
 
           {/* What's included */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-10">What&rsquo;s included</p>
               <ul className="grid grid-cols-1 border-t border-paper/12 md:grid-cols-2">
@@ -180,7 +180,7 @@ export default function ServiceDetailV2({
           </section>
 
           {/* Technology */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-8">Technology</p>
               <div className="flex flex-wrap gap-2.5">
@@ -196,7 +196,7 @@ export default function ServiceDetailV2({
 
           {/* Related services */}
           {related.length > 0 && (
-            <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+            <section className="relative px-6 py-24 md:px-12 md:py-32">
               <div className="mx-auto max-w-6xl">
                 <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
                   <p className="eyebrow">More in {categoryTitle}</p>
@@ -234,7 +234,7 @@ export default function ServiceDetailV2({
           )}
 
           {/* CTA */}
-          <section className="relative border-t border-paper/10 px-6 py-28 md:px-12 md:py-40">
+          <section className="relative px-6 py-28 md:px-12 md:py-40">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-[10vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[4.5vw]">
                 Need{" "}

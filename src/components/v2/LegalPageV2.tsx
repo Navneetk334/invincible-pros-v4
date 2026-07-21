@@ -84,7 +84,7 @@ export default function LegalPageV2({
 
           {/* Body */}
           <section className="relative px-6 pb-32 md:px-12">
-            <div className="mx-auto max-w-3xl space-y-12 border-t border-paper/10 pt-12">
+            <div className="mx-auto max-w-3xl space-y-12 pt-12">
               {sections.map((s, i) => (
                 <div key={s.heading}>
                   <div className="flex items-baseline gap-4">

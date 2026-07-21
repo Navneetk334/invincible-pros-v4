@@ -136,7 +136,7 @@ export default function CareersV2() {
           </section>
 
           {/* Why join */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-4">Why join</p>
               <h2 className="mb-12 max-w-3xl font-display text-[9vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[3.6vw]">
@@ -169,7 +169,7 @@ export default function CareersV2() {
           </section>
 
           {/* Disciplines */}
-          <section className="relative border-t border-paper/10 px-6 py-24 md:px-12 md:py-32">
+          <section className="relative px-6 py-24 md:px-12 md:py-32">
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-4">Where we hire</p>
               <h2 className="mb-12 max-w-3xl font-display text-[9vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[3.6vw]">
@@ -205,7 +205,7 @@ export default function CareersV2() {
           </section>
 
           {/* CTA */}
-          <section className="relative border-t border-paper/10 px-6 py-28 md:px-12 md:py-40">
+          <section className="relative px-6 py-28 md:px-12 md:py-40">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-[10vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[4.5vw]">
                 Don&rsquo;t see your role?{" "}

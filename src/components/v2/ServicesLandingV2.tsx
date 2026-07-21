@@ -92,7 +92,7 @@ export default function ServicesLandingV2() {
             return (
               <section
                 key={domain.id}
-                className="relative border-t border-paper/10 px-6 py-20 md:px-12 md:py-28"
+                className="relative px-6 py-20 md:px-12 md:py-28"
               >
                 <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
                   <div>
@@ -161,7 +161,7 @@ export default function ServicesLandingV2() {
           })}
 
           {/* CTA */}
-          <section className="relative border-t border-paper/10 px-6 py-28 md:px-12 md:py-40">
+          <section className="relative px-6 py-28 md:px-12 md:py-40">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-[10vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[4.5vw]">
                 Not sure where to{" "}

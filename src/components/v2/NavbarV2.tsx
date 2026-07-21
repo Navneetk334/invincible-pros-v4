@@ -139,7 +139,7 @@ export default function NavbarV2() {
                 className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:text-cyan"
                 {...link}
               >
-                View all services →
+                <ScrambleText text="View all services" /> →
               </Link>
             </div>
 
@@ -161,7 +161,7 @@ export default function NavbarV2() {
                         className="h-1.5 w-1.5 shrink-0 rounded-full"
                         style={{ background: domain.color }}
                       />
-                      {title}
+                      <ScrambleText text={title} />
                     </Link>
                     <ul className="space-y-1">
                       {servicesForCategory(domain.id).map((s) => (
@@ -172,7 +172,7 @@ export default function NavbarV2() {
                             className="block text-[13px] leading-snug text-fog transition-all hover:translate-x-1 hover:text-cyan"
                             {...link}
                           >
-                            {s.name}
+                            <ScrambleText text={s.name} />
                           </Link>
                         </li>
                       ))}

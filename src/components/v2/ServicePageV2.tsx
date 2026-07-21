@@ -23,6 +23,7 @@ import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
 import TechMarquee from "@/components/v2/TechMarquee";
 import { techByName } from "@/lib/techlookup";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -72,15 +73,15 @@ export default function ServicePageV2({
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
                 <Link href="/v2" className="hover:text-cyan" {...linkCursor}>
-                  Home
+                  <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <Link
-                  href="/v2#services"
+                  href="/v2/services"
                   className="hover:text-cyan"
                   {...linkCursor}
                 >
-                  Services
+                  <ScrambleText text="Services" />
                 </Link>
                 <span aria-hidden>/</span>
                 <span className="text-paper/80">{title}</span>
@@ -135,7 +136,7 @@ export default function ServicePageV2({
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -198,7 +199,7 @@ export default function ServicePageV2({
                       />
                       <span className="min-w-0 flex-1">
                         <span className="block font-display text-lg font-medium tracking-tight transition-colors group-hover:text-cyan md:text-xl">
-                          {s.name}
+                          <ScrambleText text={s.name} />
                         </span>
                         <span className="mt-1 block text-sm leading-relaxed text-fog">
                           {content.serviceBlurbs[s.name] ?? s.overview}
@@ -311,7 +312,9 @@ export default function ServicePageV2({
                       style={{ background: d.color }}
                     />
                     <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight transition-colors group-hover:text-cyan">
-                      {d.title.charAt(0) + d.title.slice(1).toLowerCase()}
+                      <ScrambleText
+                        text={d.title.charAt(0) + d.title.slice(1).toLowerCase()}
+                      />
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-fog">
                       {CATEGORY[d.id].blurb}
@@ -341,7 +344,7 @@ export default function ServicePageV2({
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

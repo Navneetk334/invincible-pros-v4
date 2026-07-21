@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 export default function ContactV2() {
   const openContact = useStore((s) => s.openContact);
@@ -49,7 +50,7 @@ export default function ContactV2() {
               }}
               {...primary}
             >
-              Start a project
+              <ScrambleText text="Start a project" activeClassName="text-ink/60" />
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
@@ -61,7 +62,7 @@ export default function ContactV2() {
             className="rounded-full border border-paper/25 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
             {...link}
           >
-            Send a message
+            <ScrambleText text="Send a message" />
           </button>
         </motion.div>
       </div>

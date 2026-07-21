@@ -8,6 +8,7 @@ import { DOMAINS, type Domain } from "@/lib/services";
 import { CATEGORY } from "@/lib/v2content";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 function DomainPanel({ domain }: { domain: Domain }) {
   const cursor = useCursor("view", "Open");
@@ -50,7 +51,7 @@ function DomainPanel({ domain }: { domain: Domain }) {
             style={{ color: domain.color2 }}
             {...cursor}
           >
-            Explore {domain.title.toLowerCase()} →
+            <ScrambleText text={`Explore ${domain.title.toLowerCase()}`} /> →
           </Link>
         </div>
 
@@ -64,7 +65,7 @@ function DomainPanel({ domain }: { domain: Domain }) {
               >
                 <span className="min-w-0">
                   <span className="block font-display text-base font-medium leading-tight tracking-tight md:text-lg">
-                    {s}
+                    <ScrambleText text={s} />
                   </span>
                   <span className="mt-0.5 block truncate text-[11px] text-fog">
                     {content.serviceBlurbs[s] ?? ""}

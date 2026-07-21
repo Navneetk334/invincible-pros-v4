@@ -14,6 +14,7 @@ import Overlays from "@/components/layout/Overlays";
 import ContactOverlay from "@/components/contact/ContactOverlay";
 import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -57,7 +58,7 @@ export default function ContactPageV2() {
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
                 <Link href="/v2" className="hover:text-cyan" {...link}>
-                  Home
+                  <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <span className="text-paper/80">Contact</span>
@@ -105,7 +106,7 @@ export default function ContactPageV2() {
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -117,7 +118,7 @@ export default function ContactPageV2() {
                   className="rounded-full border border-paper/25 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
                   {...link}
                 >
-                  Send a message
+                  <ScrambleText text="Send a message" />
                 </button>
               </motion.div>
 
@@ -140,7 +141,7 @@ export default function ContactPageV2() {
                       {c.label}
                     </span>
                     <span className="mt-2 block font-display text-lg font-medium tracking-tight text-paper transition-colors group-hover:text-cyan">
-                      {c.value}
+                      <ScrambleText text={c.value} />
                     </span>
                   </a>
                 ))}

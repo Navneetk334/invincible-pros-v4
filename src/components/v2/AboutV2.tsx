@@ -17,6 +17,7 @@ import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
 import StatsV2 from "@/components/v2/StatsV2";
 import WhyUsV2 from "@/components/v2/WhyUsV2";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -89,7 +90,7 @@ export default function AboutV2() {
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
                 <Link href="/v2" className="hover:text-cyan" {...linkCursor}>
-                  Home
+                  <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <span className="text-paper/80">About</span>
@@ -139,7 +140,7 @@ export default function AboutV2() {
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -205,7 +206,9 @@ export default function AboutV2() {
                       </span>
                     </div>
                     <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight transition-colors group-hover:text-cyan">
-                      {d.title.charAt(0) + d.title.slice(1).toLowerCase()}
+                      <ScrambleText
+                        text={d.title.charAt(0) + d.title.slice(1).toLowerCase()}
+                      />
                     </h3>
                     <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-fog">
                       {d.kicker}
@@ -275,7 +278,7 @@ export default function AboutV2() {
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

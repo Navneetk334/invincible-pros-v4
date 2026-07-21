@@ -15,6 +15,7 @@ import Overlays from "@/components/layout/Overlays";
 import ContactOverlay from "@/components/contact/ContactOverlay";
 import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -75,7 +76,7 @@ export default function CareersV2() {
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
                 <Link href="/v2" className="hover:text-cyan" {...link}>
-                  Home
+                  <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <span className="text-paper/80">Careers</span>
@@ -124,7 +125,7 @@ export default function CareersV2() {
                     }}
                     {...primary}
                   >
-                    Send your portfolio
+                    <ScrambleText text="Send your portfolio" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -225,7 +226,7 @@ export default function CareersV2() {
                     }}
                     {...primary}
                   >
-                    Apply now
+                    <ScrambleText text="Apply now" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

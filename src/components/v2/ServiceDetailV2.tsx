@@ -21,6 +21,7 @@ import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
 import TechChip from "@/components/v2/TechChip";
 import { techByName } from "@/lib/techlookup";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -73,11 +74,11 @@ export default function ServiceDetailV2({
                 className="mb-8 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
                 <Link href="/v2" className="hover:text-cyan" {...link}>
-                  Home
+                  <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <Link href="/v2/services" className="hover:text-cyan" {...link}>
-                  Services
+                  <ScrambleText text="Services" />
                 </Link>
                 <span aria-hidden>/</span>
                 <Link
@@ -85,7 +86,7 @@ export default function ServiceDetailV2({
                   className="hover:text-cyan"
                   {...link}
                 >
-                  {categoryTitle}
+                  <ScrambleText text={categoryTitle} />
                 </Link>
                 <span aria-hidden>/</span>
                 <span className="text-paper/80">{service.name}</span>
@@ -140,7 +141,7 @@ export default function ServiceDetailV2({
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -204,7 +205,7 @@ export default function ServiceDetailV2({
                     className="font-mono text-[11px] uppercase tracking-[0.18em] text-fog transition-colors hover:text-cyan"
                     {...link}
                   >
-                    View all {categoryTitle} →
+                    <ScrambleText text={`View all ${categoryTitle}`} /> →
                   </Link>
                 </div>
                 <div className="grid gap-6 md:grid-cols-3">
@@ -220,7 +221,7 @@ export default function ServiceDetailV2({
                         style={{ background: domain.color }}
                       />
                       <h3 className="mt-5 font-display text-xl font-semibold tracking-tight transition-colors group-hover:text-cyan">
-                        {s.name}
+                        <ScrambleText text={s.name} />
                       </h3>
                       <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-fog">
                         {s.overview}
@@ -252,7 +253,7 @@ export default function ServiceDetailV2({
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

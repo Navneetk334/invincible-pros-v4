@@ -4,6 +4,7 @@ import Link from "next/link";
 import { DOMAINS } from "@/lib/services";
 import { CATEGORY, CONTACT } from "@/lib/v2content";
 import { useCursor } from "@/hooks/useCursor";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 export default function FooterV2() {
   const link = useCursor("hover");
@@ -42,7 +43,7 @@ export default function FooterV2() {
                       {c.label}
                     </span>
                     <span className="mt-0.5 block text-sm text-paper/75 transition-colors group-hover:text-cyan">
-                      {c.value}
+                      <ScrambleText text={c.value} />
                     </span>
                   </a>
                 </li>
@@ -63,7 +64,9 @@ export default function FooterV2() {
                     className="text-sm text-paper/75 transition-colors hover:text-cyan"
                     {...link}
                   >
-                    {d.title.charAt(0) + d.title.slice(1).toLowerCase()}
+                    <ScrambleText
+                      text={d.title.charAt(0) + d.title.slice(1).toLowerCase()}
+                    />
                   </Link>
                 </li>
               ))}
@@ -89,7 +92,7 @@ export default function FooterV2() {
                     className="text-sm text-paper/75 transition-colors hover:text-cyan"
                     {...link}
                   >
-                    {l.label}
+                    <ScrambleText text={l.label} />
                   </Link>
                 </li>
               ))}
@@ -115,7 +118,7 @@ export default function FooterV2() {
                     className="text-sm text-paper/75 transition-colors hover:text-cyan"
                     {...link}
                   >
-                    {l.label}
+                    <ScrambleText text={l.label} />
                   </Link>
                 </li>
               ))}

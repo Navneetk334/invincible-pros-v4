@@ -15,6 +15,7 @@ import Overlays from "@/components/layout/Overlays";
 import ContactOverlay from "@/components/contact/ContactOverlay";
 import NavbarV2 from "@/components/v2/NavbarV2";
 import FooterV2 from "@/components/v2/FooterV2";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
   ssr: false,
@@ -48,7 +49,7 @@ export default function ServicesLandingV2() {
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
                 <Link href="/v2" className="hover:text-cyan" {...link}>
-                  Home
+                  <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <span className="text-paper/80">Services</span>
@@ -127,7 +128,7 @@ export default function ServicesLandingV2() {
                       style={{ color: domain.color2 }}
                       {...link}
                     >
-                      Explore {title.toLowerCase()} →
+                      <ScrambleText text={`Explore ${title.toLowerCase()}`} /> →
                     </Link>
                   </div>
 
@@ -141,7 +142,7 @@ export default function ServicesLandingV2() {
                         >
                           <span className="min-w-0">
                             <span className="block font-display text-base font-medium leading-tight tracking-tight md:text-lg">
-                              {s.name}
+                              <ScrambleText text={s.name} />
                             </span>
                             <span className="mt-0.5 block truncate text-[11px] text-fog">
                               {content.serviceBlurbs[s.name] ?? ""}
@@ -182,7 +183,7 @@ export default function ServicesLandingV2() {
                     }}
                     {...primary}
                   >
-                    Start a project
+                    <ScrambleText text="Start a project" activeClassName="text-ink/60" />
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>

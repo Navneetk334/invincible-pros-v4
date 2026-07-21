@@ -1,19 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 
+const ORB =
+  "radial-gradient(circle, rgba(56,225,255,0.9), rgba(124,92,255,0.6) 55%, transparent 72%)";
+
 /**
- * A cinematic custom cursor: a small dot that trails an outer ring.
- * The ring scales up and reveals a label on interactive elements.
+ * Gradient glow-orb cursor: a soft, blurred cyan→violet orb trails the pointer
+ * while a crisp dot leads it. The orb grows and brightens over interactive
+ * elements. Also feeds normalized pointer position to the store for WebGL
+ * parallax.
  */
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const cursor = useStore((s) => s.cursor);
-  const label = useStore((s) => s.cursorLabel);
   const setPointer = useStore((s) => s.setPointer);
+  const active = cursor !== "default";
 
   useEffect(() => {
     const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -31,16 +36,14 @@ export default function CustomCursor() {
         -((e.clientY / window.innerHeight) * 2 - 1),
       );
     };
-
     const loop = () => {
-      ring.x += (pos.x - ring.x) * 0.15;
-      ring.y += (pos.y - ring.y) * 0.15;
+      ring.x += (pos.x - ring.x) * 0.16;
+      ring.y += (pos.y - ring.y) * 0.16;
       if (ringRef.current) {
         ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0)`;
       }
       raf = requestAnimationFrame(loop);
     };
-
     window.addEventListener("pointermove", onMove);
     raf = requestAnimationFrame(loop);
     return () => {
@@ -49,57 +52,33 @@ export default function CustomCursor() {
     };
   }, [setPointer]);
 
-  const isActive = cursor !== "default";
-
   return (
     <div className="pointer-events-none fixed inset-0 z-[200] hidden md:block">
-      {/* trailing ring */}
-      <div
-        ref={ringRef}
-        className="absolute left-0 top-0 -ml-5 -mt-5"
-        style={{ willChange: "transform" }}
-      >
+      {/* trailing glow orb */}
+      <div ref={ringRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
         <motion.div
-          className="flex items-center justify-center rounded-full border border-paper/60"
+          className="rounded-full blur-2xl"
           animate={{
-            width: isActive ? 76 : 40,
-            height: isActive ? 76 : 40,
-            marginLeft: isActive ? -18 : 0,
-            marginTop: isActive ? -18 : 0,
-            borderColor: isActive
-              ? "rgba(56,225,255,0.9)"
-              : "rgba(238,241,251,0.5)",
+            width: active ? 150 : 90,
+            height: active ? 150 : 90,
+            marginLeft: active ? -75 : -45,
+            marginTop: active ? -75 : -45,
+            opacity: active ? 0.9 : 0.55,
           }}
-          transition={{ type: "spring", stiffness: 260, damping: 24 }}
-        >
-          <AnimatePresence>
-            {label && (
-              <motion.span
-                key={label}
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
-                className="font-mono text-[9px] uppercase tracking-[0.2em] text-paper"
-              >
-                {label}
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.div>
+          transition={{ type: "spring", stiffness: 120, damping: 20 }}
+          style={{ background: ORB }}
+        />
       </div>
 
       {/* leading dot */}
-      <div
-        ref={dotRef}
-        className="absolute left-0 top-0"
-        style={{ willChange: "transform" }}
-      >
+      <div ref={dotRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
         <motion.div
-          className="-ml-[3px] -mt-[3px] rounded-full bg-cyan"
+          className="rounded-full bg-paper"
           animate={{
-            width: isActive ? 0 : 6,
-            height: isActive ? 0 : 6,
-            opacity: isActive ? 0 : 1,
+            width: active ? 8 : 6,
+            height: active ? 8 : 6,
+            marginLeft: active ? -4 : -3,
+            marginTop: active ? -4 : -3,
           }}
           transition={{ duration: 0.2 }}
         />

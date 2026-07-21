@@ -9,6 +9,7 @@ import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
 import AnimatedLogo from "@/components/layout/AnimatedLogo";
+import ScrambleText from "@/components/layout/ScrambleText";
 
 const NAV_LINK =
   "group relative font-mono text-xs uppercase tracking-[0.2em] text-fog transition-colors hover:text-paper";
@@ -48,7 +49,7 @@ export default function NavbarV2() {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           <Link href="/v2" className={NAV_LINK} {...link}>
-            Home
+            <ScrambleText text="Home" />
             <span className={UNDERLINE} />
           </Link>
 
@@ -65,21 +66,21 @@ export default function NavbarV2() {
               onClick={closeNow}
               {...link}
             >
-              Services
+              <ScrambleText text="Services" />
               <span className={UNDERLINE} />
             </Link>
           </div>
 
           <Link href="/v2/work" className={NAV_LINK} {...link}>
-            Work
+            <ScrambleText text="Work" />
             <span className={UNDERLINE} />
           </Link>
           <Link href="/v2/about" className={NAV_LINK} {...link}>
-            About
+            <ScrambleText text="About" />
             <span className={UNDERLINE} />
           </Link>
           <Link href="/v2/contact" className={NAV_LINK} {...link}>
-            Contact
+            <ScrambleText text="Contact" />
             <span className={UNDERLINE} />
           </Link>
         </nav>
@@ -91,7 +92,7 @@ export default function NavbarV2() {
             className="group flex items-center gap-2 rounded-full border border-paper/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
             {...link}
           >
-            Start a project
+            <ScrambleText text="Start a project" />
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>

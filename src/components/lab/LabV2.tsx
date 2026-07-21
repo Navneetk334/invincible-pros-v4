@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCursor } from "@/hooks/useCursor";
 import LabCursor from "@/components/lab/LabCursor";
-import ScrambleText, { SCRAMBLE_SETS } from "@/components/lab/ScrambleText";
+import ScrambleText, { SCRAMBLE_SETS } from "@/components/layout/ScrambleText";
 
 type CursorV = 1 | 2 | 3 | 4;
 

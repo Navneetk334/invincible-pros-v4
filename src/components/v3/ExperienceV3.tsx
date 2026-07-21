@@ -9,7 +9,6 @@ import ContactOverlay from "@/components/contact/ContactOverlay";
 import Preloader from "@/components/preloader/Preloader";
 import NavbarV2 from "@/components/v2/NavbarV2";
 import TrustBar from "@/components/v2/TrustBar";
-import StatsV2 from "@/components/v2/StatsV2";
 import Manifesto from "@/components/sections/Manifesto";
 import ServicesV2 from "@/components/v2/ServicesV2";
 import ProcessV2 from "@/components/v2/ProcessV2";
@@ -54,10 +53,9 @@ export default function ExperienceV3() {
           <HeroV3 />
           <TrustBar />
           <Manifesto />
-          <StatsV2 />
+          <ContrastBandV3 />
           <ServicesV2 />
           <ProcessV2 />
-          <ContrastBandV3 />
           <TechStackV2 />
           <CaseStudiesV2 />
           <IndustriesV2 />

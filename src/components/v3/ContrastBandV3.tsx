@@ -9,18 +9,15 @@ const METRICS = [
 ];
 
 /**
- * A near-light, full-bleed statement band (preview / V3). Breaks the
- * all-dark rhythm with a high-contrast beat mid-scroll.
+ * "The difference" statement + headline metrics (preview / V3). Sits in the
+ * dark theme — a bold beat where the stats section used to be.
  */
 export default function ContrastBandV3() {
   return (
-    <section
-      className="relative isolate overflow-hidden px-6 py-28 text-ink md:py-40"
-      style={{ background: "linear-gradient(180deg, #eef1fb 0%, #d6dcf0 100%)" }}
-    >
+    <section className="relative overflow-hidden border-y border-paper/10 px-6 py-28 md:py-40">
       <div className="mx-auto max-w-5xl text-center">
         <motion.p
-          className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink/50"
+          className="eyebrow"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -37,21 +34,10 @@ export default function ContrastBandV3() {
         >
           We don&rsquo;t ship features.
           <br />
-          We ship{" "}
-          <span
-            style={{
-              backgroundImage:
-                "linear-gradient(100deg, var(--color-accent), var(--color-accent-2))",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              color: "transparent",
-            }}
-          >
-            outcomes.
-          </span>
+          We ship <span className="gradient-text">outcomes.</span>
         </motion.h2>
         <motion.p
-          className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-ink/70 md:text-lg"
+          className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-fog md:text-lg"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -73,8 +59,8 @@ export default function ContrastBandV3() {
               <div className="font-display text-4xl font-bold tracking-tight md:text-5xl">
                 {m.v}
               </div>
-              <div className="mx-auto mt-3 h-px w-8 bg-ink/30" />
-              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-ink/60">
+              <div className="mx-auto mt-3 h-px w-8 bg-cyan" />
+              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-fog">
                 {m.label}
               </p>
             </motion.div>

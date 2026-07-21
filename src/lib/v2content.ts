@@ -924,3 +924,16 @@ export function serviceBySlug(
   if (!service) return null;
   return { domain: cat.domain, content: cat.content, service };
 }
+
+
+
+/* ------------------------------------------------------------------ */
+/*  Social profiles — update the URLs to the real handles before launch */
+/* ------------------------------------------------------------------ */
+
+export const SOCIAL: { label: string; href: string }[] = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/invinciblepros" },
+  { label: "X", href: "https://x.com/invinciblepros" },
+  { label: "Instagram", href: "https://www.instagram.com/invinciblepros" },
+  { label: "GitHub", href: "https://github.com/invinciblepros" },
+];

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DOMAINS } from "@/lib/services";
-import { CATEGORY, CONTACT } from "@/lib/v2content";
+import { CATEGORY, CONTACT, SOCIAL } from "@/lib/v2content";
 import { useCursor } from "@/hooks/useCursor";
 import ScrambleText from "@/components/layout/ScrambleText";
 
@@ -146,11 +146,28 @@ export default function FooterV2() {
       </div>
 
       <div className="mx-auto max-w-6xl">
-        <div className="mt-6 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-8 md:flex-row md:items-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-fog/70">
+        <div className="mt-6 flex flex-col items-start justify-between gap-5 border-t border-paper/10 pt-8 md:flex-row md:items-center">
+          <p className="order-2 font-mono text-[10px] uppercase tracking-[0.18em] text-fog/70 md:order-1">
             &copy; {year} INVINCIBLE&nbsp;PROS. All rights reserved.
           </p>
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-fog/70">
+          <nav
+            aria-label="Social"
+            className="order-1 flex flex-wrap items-center gap-x-5 gap-y-2 md:order-2"
+          >
+            {SOCIAL.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[10px] uppercase tracking-[0.18em] text-fog transition-colors hover:text-cyan"
+                {...link}
+              >
+                <ScrambleText text={s.label} />
+              </a>
+            ))}
+          </nav>
+          <p className="order-3 font-mono text-[10px] uppercase tracking-[0.18em] text-fog/70">
             Engineering the future.
           </p>
         </div>

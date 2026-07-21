@@ -26,6 +26,13 @@ export default function SmoothScroll({
       window.scrollTo(0, 0);
     }
 
+    // Respect reduced-motion: skip Lenis and use native scroll (ScrollTrigger
+    // still works on native scroll).
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      ScrollTrigger.refresh();
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

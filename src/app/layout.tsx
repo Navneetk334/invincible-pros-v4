@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieConsent from "@/components/layout/CookieConsent";
@@ -40,6 +40,10 @@ export const metadata: Metadata = {
       "A futuristic digital engineering company. Software · Intelligence · Design · Infrastructure · Hardware · Experience.",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050609",
 };
 
 export default function RootLayout({

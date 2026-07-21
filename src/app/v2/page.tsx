@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ExperienceV2 from "@/components/v2/ExperienceV2";
 import { DOMAINS } from "@/lib/services";
+import { CONTACT, SOCIAL } from "@/lib/v2content";
 
 export const metadata: Metadata = {
   title:
@@ -38,10 +39,23 @@ export default function V2Page() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "INVINCIBLE PROS.",
+    legalName: "INVINCIBLE PROS.",
     description:
       "A digital engineering company delivering software, AI, cloud infrastructure, hardware and live media end to end.",
     url: "https://invinciblepros.com/v2",
-    email: "admin@invinciblepros.com",
+    logo: "https://invinciblepros.com/opengraph-image",
+    image: "https://invinciblepros.com/opengraph-image",
+    email: CONTACT.email,
+    telephone: CONTACT.phone,
+    address: { "@type": "PostalAddress", addressCountry: "IN" },
+    sameAs: SOCIAL.map((s) => s.href),
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: CONTACT.email,
+      telephone: CONTACT.phone,
+      availableLanguage: ["English"],
+    },
     makesOffer: DOMAINS.map((d) => ({
       "@type": "Offer",
       itemOffered: {

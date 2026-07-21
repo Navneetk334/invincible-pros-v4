@@ -40,6 +40,14 @@ export default function ScrambleText({
 
   const run = useCallback(() => {
     if (raf.current) cancelAnimationFrame(raf.current);
+    // Respect reduced-motion: show the final text with no scramble.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setCells(text.split("").map((c) => ({ char: c, scrambling: false })));
+      return;
+    }
     const rnd = () => chars[Math.floor(Math.random() * chars.length)];
     const state = text.split("").map((to) => ({
       to,

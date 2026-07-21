@@ -6,7 +6,10 @@ import { useStore } from "@/store/useStore";
 import FlowForm from "./FlowForm";
 import SplitForm from "./SplitForm";
 
-/** Full-screen modal that hosts the Flow (Start a project) or Split (Contact) form. */
+/**
+ * Compact, centered modal that hosts the Flow (Start a project) or Split
+ * (Contact) form on a small card with a dimmed backdrop.
+ */
 export default function ContactOverlay() {
   const kind = useStore((s) => s.contactForm);
   const close = useStore((s) => s.closeContact);
@@ -28,22 +31,42 @@ export default function ContactOverlay() {
     <AnimatePresence>
       {kind && (
         <motion.div
-          className="fixed inset-0 z-[100] overflow-y-auto bg-ink"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+          className="fixed inset-0 z-[100] overflow-y-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
           data-lenis-prevent
         >
-          <button
-            type="button"
+          {/* backdrop */}
+          <div
+            className="fixed inset-0 bg-ink/80 backdrop-blur-sm"
             onClick={close}
-            aria-label="Close"
-            className="fixed right-5 top-5 z-[110] flex h-11 w-11 items-center justify-center rounded-full border border-paper/25 text-lg text-paper transition-colors hover:border-cyan hover:text-cyan"
-          >
-            ✕
-          </button>
-          {kind === "flow" ? <FlowForm /> : <SplitForm />}
+            aria-hidden
+          />
+
+          <div className="relative flex min-h-full items-center justify-center p-4 md:p-6">
+            {/* card */}
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="relative w-full max-w-lg rounded-2xl border border-paper/12 bg-ink-2 p-6 shadow-2xl md:p-8"
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.98 }}
+              transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
+            >
+              <button
+                type="button"
+                onClick={close}
+                aria-label="Close"
+                className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-paper/25 text-sm text-paper transition-colors hover:border-cyan hover:text-cyan"
+              >
+                ✕
+              </button>
+              {kind === "flow" ? <FlowForm /> : <SplitForm />}
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

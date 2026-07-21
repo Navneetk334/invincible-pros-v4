@@ -47,6 +47,11 @@ export default function NavbarV2() {
         <AnimatedLogo href="/v2" />
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+          <Link href="/v2" className={NAV_LINK} {...link}>
+            Home
+            <span className={UNDERLINE} />
+          </Link>
+
           <div
             className="relative"
             onMouseEnter={openMenu}

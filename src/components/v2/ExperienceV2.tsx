@@ -45,8 +45,8 @@ export default function ExperienceV2() {
         <main className="relative z-10">
           <HeroV2 />
           <TrustBar />
-          <StatsV2 />
           <Manifesto />
+          <StatsV2 />
           <ServicesV2 />
           <ProcessV2 />
           <TechStackV2 />

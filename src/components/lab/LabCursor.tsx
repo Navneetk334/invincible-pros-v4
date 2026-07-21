@@ -1,25 +1,76 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useStore } from "@/store/useStore";
 
+const ORB =
+  "radial-gradient(circle, rgba(56,225,255,0.9), rgba(124,92,255,0.6) 55%, transparent 72%)";
+
+function Dot({
+  dotRef,
+  size = 6,
+}: {
+  dotRef: React.RefObject<HTMLDivElement | null>;
+  size?: number;
+}) {
+  return (
+    <div ref={dotRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
+      <motion.div
+        className="rounded-full bg-paper"
+        animate={{ width: size, height: size, marginLeft: -size / 2, marginTop: -size / 2 }}
+        transition={{ duration: 0.2 }}
+      />
+    </div>
+  );
+}
+
+function TrailBlob({
+  blobRef,
+  size,
+  opacity,
+  active,
+}: {
+  blobRef: React.RefObject<HTMLDivElement | null>;
+  size: number;
+  opacity: number;
+  active: boolean;
+}) {
+  const s = active ? size * 1.5 : size;
+  return (
+    <div ref={blobRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
+      <motion.div
+        className="rounded-full blur-lg"
+        animate={{ width: s, height: s, marginLeft: -s / 2, marginTop: -s / 2 }}
+        transition={{ type: "spring", stiffness: 140, damping: 20 }}
+        style={{ background: ORB, opacity }}
+      />
+    </div>
+  );
+}
+
 /**
- * Preview-only cursor with three switchable styles:
- *   1 — blend dot        (minimal, inverts against content)
- *   2 — gradient glow orb (cinematic, on-brand)
- *   3 — precision bracket (techy focus frame)
+ * Preview-only cursor — variations on the gradient glow orb:
+ *   1 — Glow orb (classic)      blurred gradient orb + crisp dot
+ *   2 — Glow orb + bright core   orb with a solid core that scales on hover
+ *   3 — Glow ring                glowing hollow ring + dot
+ *   4 — Comet trail              orb with a soft trailing tail
  */
-export default function LabCursor({ variant }: { variant: 1 | 2 | 3 }) {
+export default function LabCursor({ variant }: { variant: 1 | 2 | 3 | 4 }) {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const t0 = useRef<HTMLDivElement>(null);
+  const t1 = useRef<HTMLDivElement>(null);
+  const t2 = useRef<HTMLDivElement>(null);
   const cursor = useStore((s) => s.cursor);
-  const label = useStore((s) => s.cursorLabel);
   const active = cursor !== "default";
 
   useEffect(() => {
     const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const ring = { x: pos.x, y: pos.y };
+    const trailEls = [t0, t1, t2];
+    const factors = [0.4, 0.24, 0.14];
+    const trail = trailEls.map(() => ({ x: pos.x, y: pos.y }));
     let raf = 0;
 
     const onMove = (e: PointerEvent) => {
@@ -35,6 +86,16 @@ export default function LabCursor({ variant }: { variant: 1 | 2 | 3 }) {
       if (ringRef.current) {
         ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0)`;
       }
+      let tx = pos.x;
+      let ty = pos.y;
+      trail.forEach((pt, i) => {
+        pt.x += (tx - pt.x) * factors[i];
+        pt.y += (ty - pt.y) * factors[i];
+        const el = trailEls[i].current;
+        if (el) el.style.transform = `translate3d(${pt.x}px, ${pt.y}px, 0)`;
+        tx = pt.x;
+        ty = pt.y;
+      });
       raf = requestAnimationFrame(loop);
     };
     window.addEventListener("pointermove", onMove);
@@ -45,31 +106,8 @@ export default function LabCursor({ variant }: { variant: 1 | 2 | 3 }) {
     };
   }, []);
 
-  // ---- Variant 1: blend dot ----
+  // ---- Variant 1: classic glow orb ----
   if (variant === 1) {
-    return (
-      <div
-        className="pointer-events-none fixed inset-0 z-[200] hidden md:block"
-        style={{ mixBlendMode: "difference" }}
-      >
-        <div ref={dotRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
-          <motion.div
-            className="rounded-full bg-white"
-            animate={{
-              width: active ? 52 : 16,
-              height: active ? 52 : 16,
-              marginLeft: active ? -26 : -8,
-              marginTop: active ? -26 : -8,
-            }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // ---- Variant 2: gradient glow orb ----
-  if (variant === 2) {
     return (
       <div className="pointer-events-none fixed inset-0 z-[200] hidden md:block">
         <div ref={ringRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
@@ -83,67 +121,84 @@ export default function LabCursor({ variant }: { variant: 1 | 2 | 3 }) {
               opacity: active ? 0.9 : 0.55,
             }}
             transition={{ type: "spring", stiffness: 120, damping: 20 }}
-            style={{
-              background:
-                "radial-gradient(circle, rgba(56,225,255,0.9), rgba(124,92,255,0.6) 55%, transparent 72%)",
+            style={{ background: ORB }}
+          />
+        </div>
+        <Dot dotRef={dotRef} />
+      </div>
+    );
+  }
+
+  // ---- Variant 2: glow orb + bright core ----
+  if (variant === 2) {
+    return (
+      <div className="pointer-events-none fixed inset-0 z-[200] hidden md:block">
+        <div ref={ringRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
+          <motion.div
+            className="rounded-full blur-xl"
+            animate={{
+              width: active ? 120 : 74,
+              height: active ? 120 : 74,
+              marginLeft: active ? -60 : -37,
+              marginTop: active ? -60 : -37,
+              opacity: active ? 0.85 : 0.5,
             }}
+            transition={{ type: "spring", stiffness: 130, damping: 20 }}
+            style={{ background: ORB }}
           />
         </div>
         <div ref={dotRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
           <motion.div
-            className="rounded-full bg-paper"
+            className="rounded-full"
             animate={{
-              width: active ? 8 : 6,
-              height: active ? 8 : 6,
-              marginLeft: active ? -4 : -3,
-              marginTop: active ? -4 : -3,
+              width: active ? 18 : 10,
+              height: active ? 18 : 10,
+              marginLeft: active ? -9 : -5,
+              marginTop: active ? -9 : -5,
             }}
-            transition={{ duration: 0.2 }}
+            transition={{ type: "spring", stiffness: 260, damping: 22 }}
+            style={{
+              background: "linear-gradient(120deg, var(--color-cyan), var(--color-accent-2))",
+              boxShadow: "0 0 12px 2px rgba(56,225,255,0.6)",
+            }}
           />
         </div>
       </div>
     );
   }
 
-  // ---- Variant 3: precision bracket ----
-  const size = active ? 64 : 34;
-  const corner =
-    "absolute h-3 w-3 border-cyan transition-all duration-200";
+  // ---- Variant 3: glow ring ----
+  if (variant === 3) {
+    return (
+      <div className="pointer-events-none fixed inset-0 z-[200] hidden md:block">
+        <div ref={ringRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
+          <motion.div
+            className="rounded-full border-2 border-cyan/70"
+            animate={{
+              width: active ? 60 : 38,
+              height: active ? 60 : 38,
+              marginLeft: active ? -30 : -19,
+              marginTop: active ? -30 : -19,
+            }}
+            transition={{ type: "spring", stiffness: 220, damping: 22 }}
+            style={{
+              boxShadow:
+                "0 0 22px 3px rgba(56,225,255,0.45), inset 0 0 12px rgba(124,92,255,0.35)",
+            }}
+          />
+        </div>
+        <Dot dotRef={dotRef} size={5} />
+      </div>
+    );
+  }
+
+  // ---- Variant 4: comet trail ----
   return (
     <div className="pointer-events-none fixed inset-0 z-[200] hidden md:block">
-      <div ref={ringRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
-        <motion.div
-          className="relative"
-          animate={{
-            width: size,
-            height: size,
-            marginLeft: -size / 2,
-            marginTop: -size / 2,
-          }}
-          transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        >
-          <span className={`${corner} left-0 top-0 border-l-2 border-t-2`} />
-          <span className={`${corner} right-0 top-0 border-r-2 border-t-2`} />
-          <span className={`${corner} bottom-0 left-0 border-b-2 border-l-2`} />
-          <span className={`${corner} bottom-0 right-0 border-b-2 border-r-2`} />
-          <AnimatePresence>
-            {label && (
-              <motion.span
-                key={label}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="absolute left-1/2 top-full -translate-x-1/2 whitespace-nowrap pt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-cyan"
-              >
-                {label}
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-      <div ref={dotRef} className="absolute left-0 top-0" style={{ willChange: "transform" }}>
-        <div className="-ml-[2px] -mt-[2px] h-1 w-1 rounded-full bg-cyan" />
-      </div>
+      <TrailBlob blobRef={t0} size={46} opacity={0.5} active={active} />
+      <TrailBlob blobRef={t1} size={30} opacity={0.32} active={active} />
+      <TrailBlob blobRef={t2} size={18} opacity={0.18} active={active} />
+      <Dot dotRef={dotRef} size={5} />
     </div>
   );
 }

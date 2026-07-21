@@ -115,42 +115,71 @@ export default function NavbarV2() {
               : "pointer-events-none -translate-y-2 opacity-0"
           }`}
         >
-          <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6">
-            {DOMAINS.map((domain) => {
-              const content = CATEGORY[domain.id];
-              const title =
-                domain.title.charAt(0) + domain.title.slice(1).toLowerCase();
-              return (
-                <div key={domain.id}>
-                  <Link
-                    href={`/v2/services/${content.slug}`}
-                    onClick={closeNow}
-                    className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-paper transition-colors hover:text-cyan"
-                    {...link}
-                  >
-                    <span
-                      className="h-1.5 w-1.5 shrink-0 rounded-full"
-                      style={{ background: domain.color }}
-                    />
-                    {title}
-                  </Link>
-                  <ul className="space-y-1.5">
-                    {servicesForCategory(domain.id).map((s) => (
-                      <li key={s.slug}>
-                        <Link
-                          href={`/v2/services/${content.slug}/${s.slug}`}
-                          onClick={closeNow}
-                          className="block text-[13px] leading-snug text-fog transition-colors hover:text-cyan"
-                          {...link}
-                        >
-                          {s.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
+          <div className="grid gap-6 md:grid-cols-[0.9fr_2.4fr]">
+            {/* featured panel */}
+            <div
+              className="flex flex-col justify-between rounded-xl p-6"
+              style={{
+                backgroundImage:
+                  "linear-gradient(140deg, rgba(56,225,255,0.14), rgba(124,92,255,0.14))",
+              }}
+            >
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan">
+                  Services
+                </p>
+                <p className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight text-paper">
+                  37 capabilities, one team.
+                </p>
+              </div>
+              <Link
+                href="/v2/services"
+                onClick={closeNow}
+                className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:text-cyan"
+                {...link}
+              >
+                View all services →
+              </Link>
+            </div>
+
+            {/* category columns */}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-3">
+              {DOMAINS.map((domain) => {
+                const content = CATEGORY[domain.id];
+                const title =
+                  domain.title.charAt(0) + domain.title.slice(1).toLowerCase();
+                return (
+                  <div key={domain.id}>
+                    <Link
+                      href={`/v2/services/${content.slug}`}
+                      onClick={closeNow}
+                      className="mb-2.5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-paper transition-colors hover:text-cyan"
+                      {...link}
+                    >
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ background: domain.color }}
+                      />
+                      {title}
+                    </Link>
+                    <ul className="space-y-1">
+                      {servicesForCategory(domain.id).map((s) => (
+                        <li key={s.slug}>
+                          <Link
+                            href={`/v2/services/${content.slug}/${s.slug}`}
+                            onClick={closeNow}
+                            className="block text-[13px] leading-snug text-fog transition-all hover:translate-x-1 hover:text-cyan"
+                            {...link}
+                          >
+                            {s.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

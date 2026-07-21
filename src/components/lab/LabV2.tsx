@@ -1,64 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useCursor } from "@/hooks/useCursor";
 import LabCursor from "@/components/lab/LabCursor";
-import LabMegaMenu from "@/components/lab/LabMegaMenu";
 
-type V = 1 | 2 | 3;
+type CursorV = 1 | 2 | 3 | 4;
 
-function ControlCard({
-  title,
-  note,
-  options,
-  value,
-  onSelect,
-}: {
-  title: string;
-  note?: string;
-  options: string[];
-  value: V;
-  onSelect: (v: V) => void;
-}) {
-  return (
-    <div className="rounded-2xl border border-paper/12 p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan">
-        {title}
-      </p>
-      {note && <p className="mt-1 text-xs text-fog">{note}</p>}
-      <div className="mt-4 flex flex-col gap-2.5">
-        {options.map((o, i) => {
-          const v = (i + 1) as V;
-          const on = value === v;
-          return (
-            <button
-              key={o}
-              type="button"
-              onClick={() => onSelect(v)}
-              className={`flex items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition-all ${
-                on
-                  ? "border-cyan bg-cyan/10 text-paper"
-                  : "border-paper/15 text-fog hover:border-paper/40 hover:text-paper"
-              }`}
-            >
-              <span>
-                <span className="font-mono text-[10px] text-fog">
-                  0{v}
-                </span>{" "}
-                {o}
-              </span>
-              {on && <span className="text-cyan">●</span>}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
+const CURSORS = [
+  "Glow orb (classic)",
+  "Glow orb + bright core",
+  "Glow ring",
+  "Comet trail",
+];
 
 export default function LabV2() {
-  const [cursorV, setCursorV] = useState<V>(1);
-  const [menuV, setMenuV] = useState<V>(1);
+  const [cursorV, setCursorV] = useState<CursorV>(1);
 
   const start = useCursor("hover", "Start");
   const send = useCursor("hover", "Send");
@@ -69,48 +26,54 @@ export default function LabV2() {
     <div className="relative min-h-screen bg-ink text-paper md:cursor-none">
       <LabCursor variant={cursorV} />
 
-      {/* Menu preview (hover “Services”) */}
-      <div className="sticky top-0 z-40">
-        <LabMegaMenu variant={menuV} />
-      </div>
-
-      <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-cyan">
-          Design lab
+          Cursor lab
         </p>
         <h1 className="mt-3 font-display text-[12vw] font-bold uppercase leading-[0.9] tracking-tight md:text-[4.5vw]">
-          Pick your <span className="gradient-text">favourites.</span>
+          Glow orb <span className="gradient-text">variants.</span>
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-fog">
-          Hover <strong className="text-paper">Services</strong> in the bar
-          above to preview each mega-menu layout. Move your mouse around and
-          hover the elements below to feel each cursor. Switch options with the
-          controls, then tell me which menu + cursor you want and I&rsquo;ll make
-          it the real one.
+          Move your mouse around and hover the elements below to feel each
+          style. Switch variants with the controls, then tell me the number you
+          want and I&rsquo;ll make it the real site cursor.
         </p>
 
-        {/* Controls */}
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <ControlCard
-            title="Services mega menu"
-            note="Hover “Services” in the top bar to see it."
-            options={["Featured + columns", "Icon cards", "Interactive split"]}
-            value={menuV}
-            onSelect={setMenuV}
-          />
-          <ControlCard
-            title="Custom cursor"
-            note="Move your mouse and hover the playground."
-            options={["Blend dot", "Gradient glow orb", "Precision bracket"]}
-            value={cursorV}
-            onSelect={setCursorV}
-          />
+        {/* Cursor variant switcher */}
+        <div className="mt-10 rounded-2xl border border-paper/12 p-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan">
+            Custom cursor
+          </p>
+          <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+            {CURSORS.map((o, i) => {
+              const v = (i + 1) as CursorV;
+              const on = cursorV === v;
+              return (
+                <button
+                  key={o}
+                  type="button"
+                  onClick={() => setCursorV(v)}
+                  className={`flex items-center justify-between rounded-xl border px-4 py-3 text-left text-sm transition-all ${
+                    on
+                      ? "border-cyan bg-cyan/10 text-paper"
+                      : "border-paper/15 text-fog hover:border-paper/40 hover:text-paper"
+                  }`}
+                >
+                  <span>
+                    <span className="font-mono text-[10px] text-fog">0{v}</span>{" "}
+                    {o}
+                  </span>
+                  {on && <span className="text-cyan">●</span>}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Cursor playground */}
+        {/* Playground */}
         <div className="mt-16 border-t border-paper/10 pt-12">
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-fog">
-            Cursor playground
+            Playground
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -132,7 +95,12 @@ export default function LabV2() {
             >
               Send a message
             </button>
-            <a href="#" onClick={(e) => e.preventDefault()} className="text-fog underline underline-offset-4" {...viewLink}>
+            <a
+              href="#"
+              onClick={(e) => e.preventDefault()}
+              className="text-fog underline underline-offset-4"
+              {...viewLink}
+            >
               A text link
             </a>
           </div>
@@ -163,6 +131,15 @@ export default function LabV2() {
           >
             Hover the big text.
           </h2>
+
+          <p className="mt-12 text-sm text-fog">
+            The <strong className="text-paper">Features + Columns</strong> mega
+            menu you picked is now live in the real header —{" "}
+            <Link href="/v2" className="text-cyan underline underline-offset-2">
+              open the site
+            </Link>{" "}
+            and hover “Services”.
+          </p>
         </div>
       </div>
     </div>

@@ -393,3 +393,534 @@ export const CONTACT = {
   phone: "+91 8700025535",
   whatsapp: "https://wa.me/918700025535",
 };
+
+
+
+/* ------------------------------------------------------------------ */
+/*  Individual service pages — one per capability, grouped by category */
+/* ------------------------------------------------------------------ */
+
+export type ServiceDetail = {
+  /** url slug within its category, e.g. "web-development" */
+  slug: string;
+  /** display name, matches the name in DOMAINS[].services */
+  name: string;
+  /** parent category (domain id) */
+  category: string;
+  /** SEO/AI-readable overview paragraph */
+  overview: string;
+  /** "what you get" highlights */
+  points: string[];
+};
+
+export const SERVICES: ServiceDetail[] = [
+  // BUILD
+  {
+    slug: "web-development",
+    name: "Web Development",
+    category: "build",
+    overview:
+      "We build fast, accessible and SEO-friendly web applications on modern frameworks. From marketing sites to complex, data-heavy platforms, your product is engineered to load quickly, rank well and scale cleanly.",
+    points: [
+      "Responsive, accessible interfaces",
+      "Modern frameworks (React, Next.js)",
+      "SEO and performance built in",
+      "Secure, maintainable codebase you own",
+    ],
+  },
+  {
+    slug: "mobile-app-development",
+    name: "Mobile App Development",
+    category: "build",
+    overview:
+      "We design and ship native and cross-platform mobile apps for iOS and Android. One shared backend, one polished experience, and an app your users actually keep on their home screen.",
+    points: [
+      "iOS, Android & cross-platform",
+      "Shared backend and API layer",
+      "Offline-ready with push notifications",
+      "App store submission support",
+    ],
+  },
+  {
+    slug: "enterprise-software",
+    name: "Enterprise Software",
+    category: "build",
+    overview:
+      "We build robust internal systems that run your operation — workflow, operations and admin tools tailored to how your business actually works, not how a template thinks it should.",
+    points: [
+      "Tailored to your workflows",
+      "Role-based access and audit trails",
+      "Integrates with existing systems",
+      "Built to scale with your organisation",
+    ],
+  },
+  {
+    slug: "saas-platforms",
+    name: "SaaS Platforms",
+    category: "build",
+    overview:
+      "We architect multi-tenant SaaS products from the ground up — authentication, billing, dashboards and everything needed to launch and grow a subscription business.",
+    points: [
+      "Multi-tenant architecture",
+      "Subscriptions and billing",
+      "Secure auth and roles",
+      "Usage analytics and dashboards",
+    ],
+  },
+  {
+    slug: "crm",
+    name: "CRM",
+    category: "build",
+    overview:
+      "We build customer platforms tailored to how you actually sell — pipelines, contacts and automation that fit your process instead of forcing you into someone else's.",
+    points: [
+      "Custom pipelines and stages",
+      "Contact and deal management",
+      "Email and workflow automation",
+      "Reporting and forecasting",
+    ],
+  },
+  {
+    slug: "erp",
+    name: "ERP",
+    category: "build",
+    overview:
+      "We unify operations, finance and supply chain into one connected ERP system so your teams work from a single source of truth.",
+    points: [
+      "Finance and accounting modules",
+      "Inventory and supply chain",
+      "Operations and HR workflows",
+      "Real-time reporting",
+    ],
+  },
+  {
+    slug: "api-development",
+    name: "API Development",
+    category: "build",
+    overview:
+      "We design secure, well-documented APIs and integrations that connect your systems and power your apps — built to be reliable, versioned and easy to consume.",
+    points: [
+      "REST and GraphQL APIs",
+      "Third-party integrations",
+      "Auth, rate limiting and docs",
+      "Versioning and monitoring",
+    ],
+  },
+  {
+    slug: "database-engineering",
+    name: "Database Engineering",
+    category: "build",
+    overview:
+      "We design and tune data models for speed and reliability — from schema design and indexing to query optimization and scaling.",
+    points: [
+      "Schema and data modeling",
+      "Query and index optimization",
+      "Migrations and backups",
+      "Scaling and replication",
+    ],
+  },
+  {
+    slug: "custom-software",
+    name: "Custom Software",
+    category: "build",
+    overview:
+      "We build bespoke systems around your exact workflow when off-the-shelf tools don't fit. Engineered for your process, owned by you, and built to last.",
+    points: [
+      "Built around your process",
+      "Full source ownership",
+      "Scalable architecture",
+      "Long-term maintainability",
+    ],
+  },
+
+  // INTELLIGENCE
+  {
+    slug: "ai-integration",
+    name: "AI Integration",
+    category: "intelligence",
+    overview:
+      "We add intelligent features — chat, search, recommendations and copilots — to your products using LLMs and modern AI, tied to real business outcomes rather than hype.",
+    points: [
+      "LLM and OpenAI integration",
+      "RAG and semantic search",
+      "AI assistants and copilots",
+      "Grounded, safe outputs",
+    ],
+  },
+  {
+    slug: "machine-learning",
+    name: "Machine Learning",
+    category: "intelligence",
+    overview:
+      "We build and deploy custom machine-learning models trained on your data for prediction, classification and insight — and keep them improving in production.",
+    points: [
+      "Custom model development",
+      "Training on your data",
+      "Deployment and monitoring",
+      "Continuous improvement",
+    ],
+  },
+  {
+    slug: "automation",
+    name: "Automation",
+    category: "intelligence",
+    overview:
+      "We replace repetitive work with reliable pipelines and workflow automation that cut operating cost and human error.",
+    points: [
+      "Workflow and process automation",
+      "Data pipelines and ETL",
+      "Integrations across your tools",
+      "Scheduled and event-driven jobs",
+    ],
+  },
+  {
+    slug: "data-visualization",
+    name: "Data Visualization",
+    category: "intelligence",
+    overview:
+      "We turn complex data into clear, interactive visuals that make insight instant — designed for decisions, not decoration.",
+    points: [
+      "Interactive charts and maps",
+      "Clear, decision-ready design",
+      "Real-time data sources",
+      "Embeddable in your apps",
+    ],
+  },
+  {
+    slug: "dashboard-engineering",
+    name: "Dashboard Engineering",
+    category: "intelligence",
+    overview:
+      "We build live, decision-ready dashboards that unify your metrics into one operational view your whole team can trust.",
+    points: [
+      "Unified KPI dashboards",
+      "Real-time data feeds",
+      "Role-based views",
+      "Alerts and thresholds",
+    ],
+  },
+  {
+    slug: "digital-transformation",
+    name: "Digital Transformation",
+    category: "intelligence",
+    overview:
+      "We modernise how your whole business runs — legacy systems, manual processes and disconnected tools brought into one modern, connected stack.",
+    points: [
+      "Legacy modernization",
+      "Process digitization",
+      "System integration",
+      "Change enablement",
+    ],
+  },
+
+  // DESIGN
+  {
+    slug: "ui-ux-design",
+    name: "UI/UX Design",
+    category: "design",
+    overview:
+      "We design interfaces engineered around real user behaviour — usable, beautiful and built to convert. Because our designers and engineers work together, what we design is what ships.",
+    points: [
+      "User research and flows",
+      "Wireframes and prototypes",
+      "Design systems",
+      "Accessibility-minded UI",
+    ],
+  },
+  {
+    slug: "brand-identity",
+    name: "Brand Identity",
+    category: "design",
+    overview:
+      "We craft distinctive brand systems that scale across every touchpoint — logo, type, colour and voice that make you unmistakable.",
+    points: [
+      "Logo and visual identity",
+      "Type and colour systems",
+      "Brand guidelines",
+      "Scalable across every medium",
+    ],
+  },
+  {
+    slug: "graphic-design",
+    name: "Graphic Design",
+    category: "design",
+    overview:
+      "We create crafted visuals for every surface — from social and ads to decks and print — all consistent with your brand.",
+    points: [
+      "Marketing and social creative",
+      "Presentations and decks",
+      "Print-ready assets",
+      "On-brand templates",
+    ],
+  },
+  {
+    slug: "motion-graphics",
+    name: "Motion Graphics",
+    category: "design",
+    overview:
+      "We give your product and brand life with motion — explainers, UI motion and animated content that hold attention.",
+    points: [
+      "Explainer and promo videos",
+      "UI and product motion",
+      "Animated logos",
+      "Social motion content",
+    ],
+  },
+  {
+    slug: "video-production",
+    name: "Video Production",
+    category: "design",
+    overview:
+      "We produce cinematic video end to end — concept, shoot and post — that tells your story with craft.",
+    points: [
+      "Concept and scripting",
+      "Filming and direction",
+      "Editing and post-production",
+      "Colour and sound",
+    ],
+  },
+
+  // INFRASTRUCTURE
+  {
+    slug: "it-infrastructure",
+    name: "IT Infrastructure",
+    category: "infrastructure",
+    overview:
+      "We design and manage the dependable foundation your systems run on — servers, storage and the environments around them.",
+    points: [
+      "Architecture and provisioning",
+      "Servers and storage",
+      "Backups and disaster recovery",
+      "Monitoring and support",
+    ],
+  },
+  {
+    slug: "cloud-solutions",
+    name: "Cloud Solutions",
+    category: "infrastructure",
+    overview:
+      "We build scalable, cost-efficient cloud architecture and migrate you with phased, zero-downtime plans and full observability.",
+    points: [
+      "AWS and multi-cloud",
+      "Zero-downtime migration",
+      "Auto-scaling architecture",
+      "Cost optimization",
+    ],
+  },
+  {
+    slug: "cyber-security",
+    name: "Cyber Security",
+    category: "infrastructure",
+    overview:
+      "We engineer defence into every layer — audits, hardening, monitoring and threat protection that keep your systems and data safe.",
+    points: [
+      "Security audits and hardening",
+      "Threat monitoring",
+      "Access and identity controls",
+      "Compliance support",
+    ],
+  },
+  {
+    slug: "anti-debugging",
+    name: "Anti Debugging",
+    category: "infrastructure",
+    overview:
+      "We protect your code and intellectual property with anti-debugging, obfuscation and tamper-resistance techniques.",
+    points: [
+      "Code obfuscation",
+      "Anti-tamper protection",
+      "Runtime integrity checks",
+      "Intellectual-property protection",
+    ],
+  },
+  {
+    slug: "devops",
+    name: "DevOps",
+    category: "infrastructure",
+    overview:
+      "We ship faster and safer with automated, observable CI/CD pipelines and infrastructure as code.",
+    points: [
+      "CI/CD pipelines",
+      "Infrastructure as code",
+      "Containers and orchestration",
+      "Observability and alerting",
+    ],
+  },
+  {
+    slug: "networking",
+    name: "Networking",
+    category: "infrastructure",
+    overview:
+      "We design reliable, secure connectivity at any scale — from office networks to distributed systems.",
+    points: [
+      "Network design and setup",
+      "VPN and secure access",
+      "Performance tuning",
+      "Monitoring and support",
+    ],
+  },
+
+  // HARDWARE
+  {
+    slug: "hardware-solutions",
+    name: "Hardware Solutions",
+    category: "hardware",
+    overview:
+      "We engineer machines and sensing systems for real-world demands, integrated cleanly with your software.",
+    points: [
+      "Custom hardware builds",
+      "Sensor and device integration",
+      "Software connectivity",
+      "Reliability engineering",
+    ],
+  },
+  {
+    slug: "workstations",
+    name: "Workstations",
+    category: "hardware",
+    overview:
+      "We build high-performance workstations for demanding creative and engineering workloads.",
+    points: [
+      "Purpose-built configurations",
+      "Performance-tuned components",
+      "Reliability and cooling",
+      "Deployment and support",
+    ],
+  },
+  {
+    slug: "cctv",
+    name: "CCTV",
+    category: "hardware",
+    overview:
+      "We deploy surveillance that integrates with your systems — cameras, storage and remote monitoring you can rely on.",
+    points: [
+      "Camera systems and storage",
+      "Remote monitoring",
+      "Integration with dashboards",
+      "Maintenance and support",
+    ],
+  },
+  {
+    slug: "attendance-systems",
+    name: "Attendance Systems",
+    category: "hardware",
+    overview:
+      "We install automated, tamper-proof attendance systems connected to your HR and access-control software.",
+    points: [
+      "Biometric and RFID attendance",
+      "HR and payroll integration",
+      "Access control",
+      "Reports and audit logs",
+    ],
+  },
+
+  // EXPERIENCE
+  {
+    slug: "event-management",
+    name: "Event Management",
+    category: "experience",
+    overview:
+      "We engineer live events down to the second — planning, crew and on-site technical operations for moments that run flawlessly.",
+    points: [
+      "End-to-end planning",
+      "On-site crew and operations",
+      "Technical direction",
+      "Vendor coordination",
+    ],
+  },
+  {
+    slug: "led-walls",
+    name: "LED Walls",
+    category: "experience",
+    overview:
+      "We supply and run big, brilliant LED walls for any stage or venue, indoor or outdoor.",
+    points: [
+      "Indoor and outdoor LED",
+      "Setup and operation",
+      "Content playback",
+      "On-site technicians",
+    ],
+  },
+  {
+    slug: "walkie-talkie-rental",
+    name: "Walkie Talkie Rental",
+    category: "experience",
+    overview:
+      "We provide reliable comms for live operations — walkie-talkie rental with coverage planning and on-site support.",
+    points: [
+      "Fleet rental",
+      "Coverage planning",
+      "On-site support",
+      "Flexible durations",
+    ],
+  },
+  {
+    slug: "drone-coverage",
+    name: "Drone Coverage",
+    category: "experience",
+    overview:
+      "We capture cinematic aerial footage with licensed drone operations for events and sites.",
+    points: [
+      "Aerial photography and video",
+      "Licensed operators",
+      "Cinematic movement",
+      "Event and site coverage",
+    ],
+  },
+  {
+    slug: "photography",
+    name: "Photography",
+    category: "experience",
+    overview:
+      "We shoot crafted stills that tell your story — events, products and brand — delivered fast and polished.",
+    points: [
+      "Event and product photography",
+      "Brand and lifestyle shoots",
+      "Professional editing",
+      "Fast delivery",
+    ],
+  },
+  {
+    slug: "videography",
+    name: "Videography",
+    category: "experience",
+    overview:
+      "We deliver multi-camera video production done right — capture and post for any occasion.",
+    points: [
+      "Multi-camera capture",
+      "Event and corporate video",
+      "Editing and post-production",
+      "Broadcast-quality output",
+    ],
+  },
+  {
+    slug: "live-streaming",
+    name: "Live Streaming",
+    category: "experience",
+    overview:
+      "We deliver broadcast-grade streams to any platform — single or multi-camera, reliable and clean.",
+    points: [
+      "Multi-platform streaming",
+      "Multi-camera switching",
+      "Overlays and graphics",
+      "Reliable encoding",
+    ],
+  },
+];
+
+export function servicesForCategory(categoryId: string): ServiceDetail[] {
+  return SERVICES.filter((s) => s.category === categoryId);
+}
+
+export function serviceBySlug(
+  categorySlug: string,
+  serviceSlug: string,
+): { domain: Domain; content: CategoryContent; service: ServiceDetail } | null {
+  const cat = categoryBySlug(categorySlug);
+  if (!cat) return null;
+  const service = SERVICES.find(
+    (s) => s.category === cat.domain.id && s.slug === serviceSlug,
+  );
+  if (!service) return null;
+  return { domain: cat.domain, content: cat.content, service };
+}

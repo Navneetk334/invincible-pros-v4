@@ -6,7 +6,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Domain } from "@/lib/services";
 import { DOMAINS } from "@/lib/services";
-import { CATEGORY, PROCESS, type CategoryContent } from "@/lib/v2content";
+import {
+  CATEGORY,
+  PROCESS,
+  servicesForCategory,
+  type CategoryContent,
+} from "@/lib/v2content";
 import { useStore } from "@/store/useStore";
 import { useCursor } from "@/hooks/useCursor";
 import Magnetic from "@/components/layout/Magnetic";
@@ -172,30 +177,37 @@ export default function ServicePageV2({
             <div className="mx-auto max-w-6xl">
               <p className="eyebrow mb-10">What we deliver</p>
               <ul className="grid grid-cols-1 border-t border-paper/12 md:grid-cols-2">
-                {domain.services.map((service, i) => (
+                {servicesForCategory(domain.id).map((s, i) => (
                   <motion.li
-                    key={service}
-                    className="flex items-start gap-4 border-b border-paper/12 py-5 md:odd:pr-8 md:even:border-l md:even:border-paper/12 md:even:pl-8"
+                    key={s.slug}
+                    className="border-b border-paper/12 md:odd:pr-8 md:even:border-l md:even:border-paper/12 md:even:pl-8"
                     variants={reveal}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: (i % 2) * 0.05 }}
                   >
-                    <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
-                      style={{ background: domain.color }}
-                    />
-                    <span>
-                      <span className="block font-display text-lg font-medium tracking-tight md:text-xl">
-                        {service}
-                      </span>
-                      {content.serviceBlurbs[service] && (
-                        <span className="mt-1 block text-sm leading-relaxed text-fog">
-                          {content.serviceBlurbs[service]}
+                    <Link
+                      href={`/v2/services/${content.slug}/${s.slug}`}
+                      className="group flex items-start gap-4 py-5"
+                      {...linkCursor}
+                    >
+                      <span
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ background: domain.color }}
+                      />
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-display text-lg font-medium tracking-tight transition-colors group-hover:text-cyan md:text-xl">
+                          {s.name}
                         </span>
-                      )}
-                    </span>
+                        <span className="mt-1 block text-sm leading-relaxed text-fog">
+                          {content.serviceBlurbs[s.name] ?? s.overview}
+                        </span>
+                      </span>
+                      <span className="mt-1 shrink-0 text-fog opacity-0 transition-opacity group-hover:opacity-100">
+                        →
+                      </span>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>

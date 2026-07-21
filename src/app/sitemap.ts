@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CATEGORY } from "@/lib/v2content";
+import { CATEGORY, SERVICES } from "@/lib/v2content";
 
 const BASE = "https://invinciblepros.com";
 
@@ -8,6 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries: MetadataRoute.Sitemap = [
     { url: `${BASE}/v2`, changeFrequency: "weekly", priority: 1 },
+    { url: `${BASE}/v2/services`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/v2/work`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/v2/about`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/v2/contact`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/v2/careers`, changeFrequency: "monthly", priority: 0.6 },
@@ -17,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/v2/refund`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const serviceEntries: MetadataRoute.Sitemap = Object.values(CATEGORY).map(
+  const categoryEntries: MetadataRoute.Sitemap = Object.values(CATEGORY).map(
     (c) => ({
       url: `${BASE}/v2/services/${c.slug}`,
       changeFrequency: "monthly",
@@ -25,7 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticEntries, ...serviceEntries].map((e) => ({
+  const serviceEntries: MetadataRoute.Sitemap = SERVICES.map((s) => ({
+    url: `${BASE}/v2/services/${CATEGORY[s.category].slug}/${s.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...categoryEntries, ...serviceEntries].map((e) => ({
     ...e,
     lastModified: now,
   }));

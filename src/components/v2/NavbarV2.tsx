@@ -77,7 +77,7 @@ export default function NavbarV2() {
           </Link>
 
           <div
-            className="relative"
+            className="relative flex items-center"
             onMouseEnter={openMenu}
             onMouseLeave={scheduleClose}
             onFocus={openMenu}

@@ -1,0 +1,72 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import SmoothScroll from "@/components/layout/SmoothScroll";
+import CustomCursor from "@/components/layout/CustomCursor";
+import Overlays from "@/components/layout/Overlays";
+import ChapterFlash from "@/components/layout/ChapterFlash";
+import ContactOverlay from "@/components/contact/ContactOverlay";
+import Preloader from "@/components/preloader/Preloader";
+import NavbarV2 from "@/components/v2/NavbarV2";
+import TrustBar from "@/components/v2/TrustBar";
+import StatsV2 from "@/components/v2/StatsV2";
+import Manifesto from "@/components/sections/Manifesto";
+import ServicesV2 from "@/components/v2/ServicesV2";
+import ProcessV2 from "@/components/v2/ProcessV2";
+import TechStackV2 from "@/components/v2/TechStackV2";
+import CaseStudiesV2 from "@/components/v2/CaseStudiesV2";
+import IndustriesV2 from "@/components/v2/IndustriesV2";
+import TestimonialsV2 from "@/components/v2/TestimonialsV2";
+import ContactV2 from "@/components/v2/ContactV2";
+import FooterV2 from "@/components/v2/FooterV2";
+
+// V3 preview-only enhancements
+import AtmosphereV3 from "@/components/v3/AtmosphereV3";
+import HeroV3 from "@/components/v3/HeroV3";
+import ContrastBandV3 from "@/components/v3/ContrastBandV3";
+import WhyUsV3 from "@/components/v3/WhyUsV3";
+
+const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
+  ssr: false,
+});
+
+/**
+ * Preview build of the homepage with depth (B), rhythm/contrast (C) and a
+ * signature hero (D). Reuses all existing sections; only Hero, Why-Us and the
+ * added atmosphere + contrast band differ from the live /v2 flow.
+ */
+export default function ExperienceV3() {
+  return (
+    <>
+      <Preloader />
+      <CustomCursor />
+      <Overlays />
+      <AtmosphereV3 />
+
+      <SceneCanvas />
+
+      <ChapterFlash />
+      <ContactOverlay />
+
+      <SmoothScroll>
+        <NavbarV2 />
+        <main className="relative z-10">
+          <HeroV3 />
+          <TrustBar />
+          <Manifesto />
+          <StatsV2 />
+          <ServicesV2 />
+          <ProcessV2 />
+          <ContrastBandV3 />
+          <TechStackV2 />
+          <CaseStudiesV2 />
+          <IndustriesV2 />
+          <TestimonialsV2 />
+          <WhyUsV3 />
+          <ContactV2 />
+          <FooterV2 />
+        </main>
+      </SmoothScroll>
+    </>
+  );
+}

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 type P = { x: number; y: number; vx: number; vy: number };
 
 /** Drifting particles connected by lines; they repel from the cursor. */
-export default function ParticleField() {
+export default function ParticleField({ windowTracked = false }: { windowTracked?: boolean }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointer = useRef({ x: -999, y: -999 });
@@ -16,6 +16,14 @@ export default function ParticleField() {
     if (!wrap || !canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // When used as a full-page background, the element sits behind the content,
+    // so container pointer events never fire. Track the pointer on window instead.
+    const onWindowMove = (e: PointerEvent) => {
+      const r = wrap.getBoundingClientRect();
+      pointer.current = { x: e.clientX - r.left, y: e.clientY - r.top };
+    };
+    if (windowTracked) window.addEventListener("pointermove", onWindowMove);
 
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     let w = 0;
@@ -96,8 +104,9 @@ export default function ParticleField() {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      if (windowTracked) window.removeEventListener("pointermove", onWindowMove);
     };
-  }, []);
+  }, [windowTracked]);
 
   return (
     <div

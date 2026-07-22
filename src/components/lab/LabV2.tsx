@@ -13,7 +13,13 @@ import ParticleField from "./ParticleField";
 import SpotlightGrid from "./SpotlightGrid";
 import TiltCards from "./TiltCards";
 
-type Demo = { id: string; title: string; blurb: string; render: () => React.ReactNode };
+type Demo = {
+  id: string;
+  title: string;
+  blurb: string;
+  render: () => React.ReactNode;
+  siteHref?: string;
+};
 
 const GROUPS: { heading: string; note: string; demos: Demo[] }[] = [
   {
@@ -25,18 +31,21 @@ const GROUPS: { heading: string; note: string; demos: Demo[] }[] = [
         title: "Particle Field",
         blurb: "Drifting nodes linked by lines; they scatter away from your cursor.",
         render: () => <ParticleField />,
+        siteHref: "/v2?labbg=particle-field",
       },
       {
         id: "aurora-mesh",
         title: "Aurora Mesh",
         blurb: "Slow-breathing colour clouds in the brand palette. Pure ambience.",
         render: () => <AuroraMesh />,
+        siteHref: "/v2?labbg=aurora-mesh",
       },
       {
         id: "spotlight-grid",
         title: "Spotlight Grid",
         blurb: "A technical grid that only reveals itself around the cursor.",
         render: () => <SpotlightGrid />,
+        siteHref: "/v2?labbg=spotlight-grid",
       },
     ],
   },
@@ -105,6 +114,16 @@ function DemoCard({ demo, onExpand }: { demo: Demo; onExpand: (demo: Demo) => vo
       <figcaption className="border-t border-white/10 p-5">
         <h3 className="text-base font-semibold text-paper">{demo.title}</h3>
         <p className="mt-1 text-sm leading-relaxed text-fog">{demo.blurb}</p>
+        {demo.siteHref && (
+          <a
+            href={demo.siteHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-cyan/40 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan transition-colors hover:bg-cyan/10"
+          >
+            See on real page &#8599;
+          </a>
+        )}
       </figcaption>
     </figure>
   );

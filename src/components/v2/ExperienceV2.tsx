@@ -1,6 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import LabBgPreview from "@/components/lab/LabBgPreview";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/layout/CustomCursor";
 import Overlays from "@/components/layout/Overlays";
@@ -28,14 +30,24 @@ const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
 });
 
 export default function ExperienceV2() {
+  // Optional lab background preview: /v2?labbg=<id> swaps the WebGL scene for a
+  // candidate ambient background so it can be judged behind real content.
+  const [labBg, setLabBg] = useState<string | null>(null);
+  useEffect(() => {
+    const value = new URLSearchParams(window.location.search).get("labbg");
+    if (!value) return;
+    const raf = requestAnimationFrame(() => setLabBg(value));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <>
       <Preloader />
       <CustomCursor />
       <Overlays />
 
-      {/* Persistent WebGL background behind all content */}
-      <SceneCanvas />
+      {/* Persistent WebGL background behind all content (or a lab preview) */}
+      {labBg ? <LabBgPreview id={labBg} /> : <SceneCanvas />}
 
       <ChapterFlash />
       <ContactOverlay />

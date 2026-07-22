@@ -39,7 +39,7 @@ export default function Manifesto() {
     <section
       id="manifesto"
       ref={container}
-      className="relative flex min-h-screen items-center px-6 py-24 md:px-12 md:py-28"
+      className="relative flex items-center px-6 py-16 md:px-12 md:py-24"
     >
       <div className="mx-auto max-w-5xl">
         <p className="font-display text-3xl font-medium leading-[1.25] tracking-tight md:text-5xl md:leading-[1.2]">

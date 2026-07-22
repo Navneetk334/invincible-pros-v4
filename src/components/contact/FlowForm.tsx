@@ -112,13 +112,15 @@ export default function FlowForm() {
 
   return (
     <div className="text-paper">
-      {/* progress */}
-      <div className="mb-6 h-0.5 w-full rounded bg-paper/10">
-        <motion.div
-          className="h-full rounded bg-gradient-to-r from-cyan to-accent-2"
-          animate={{ width: status === "sent" ? "100%" : `${progress}%` }}
-          transition={{ duration: 0.5, ease: EASE }}
-        />
+      {/* progress (kept clear of the close button on the right) */}
+      <div className="mb-6 pr-12">
+        <div className="h-0.5 w-full rounded bg-paper/10">
+          <motion.div
+            className="h-full rounded bg-gradient-to-r from-cyan to-accent-2"
+            animate={{ width: status === "sent" ? "100%" : `${progress}%` }}
+            transition={{ duration: 0.5, ease: EASE }}
+          />
+        </div>
       </div>
 
       <AnimatePresence mode="wait">

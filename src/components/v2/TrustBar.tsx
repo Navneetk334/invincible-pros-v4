@@ -16,7 +16,7 @@ export default function TrustBar() {
   return (
     <section
       aria-label="Industries served"
-      className="relative px-6 py-20 md:px-12 md:py-28"
+      className="relative px-6 pt-20 pb-14 md:px-12 md:pt-28 md:pb-16"
     >
       <div className="mx-auto max-w-6xl">
         <p className="mb-6 text-center font-mono text-[10px] uppercase tracking-[0.28em] text-fog md:mb-7">

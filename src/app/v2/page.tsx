@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ExperienceV2 from "@/components/v2/ExperienceV2";
+import ExperienceV3 from "@/components/v3/ExperienceV3";
 import { DOMAINS } from "@/lib/services";
 import { CONTACT, SOCIAL } from "@/lib/v2content";
 
@@ -72,7 +72,7 @@ export default function V2Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ExperienceV2 />
+      <ExperienceV3 />
     </>
   );
 }

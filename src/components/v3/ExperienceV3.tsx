@@ -30,9 +30,8 @@ const SceneCanvas = dynamic(() => import("@/components/canvas/SceneCanvas"), {
 });
 
 /**
- * Preview build of the homepage with depth (B), rhythm/contrast (C) and a
- * signature hero (D). Reuses all existing sections; only Hero, Why-Us and the
- * added atmosphere + contrast band differ from the live /v2 flow.
+ * Live homepage experience: signature hero, atmospheric depth, contrast band
+ * and enhanced Why-Us, on top of the shared section components.
  */
 export default function ExperienceV3() {
   return (

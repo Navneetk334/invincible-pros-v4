@@ -32,7 +32,7 @@ export default function NotFound() {
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
           <Link
-            href="/v2"
+            href="/"
             className="group flex items-center gap-2 rounded-full px-8 py-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-ink"
             style={{
               backgroundImage:
@@ -45,7 +45,7 @@ export default function NotFound() {
             </span>
           </Link>
           <Link
-            href="/v2/contact"
+            href="/contact"
             className="rounded-full border border-paper/25 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-cyan hover:text-cyan"
           >
             Contact us

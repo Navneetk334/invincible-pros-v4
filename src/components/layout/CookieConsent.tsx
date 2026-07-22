@@ -48,7 +48,7 @@ export default function CookieConsent() {
           We use cookies to run this site, remember your preferences and
           understand usage. See our{" "}
           <Link
-            href="/v2/cookies"
+            href="/cookies"
             className="text-paper underline decoration-cyan/50 underline-offset-2 transition-colors hover:text-cyan"
           >
             Cookie Policy

@@ -48,7 +48,7 @@ export default function ServicesLandingV2() {
                 aria-label="Breadcrumb"
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
-                <Link href="/v2" className="hover:text-cyan" {...link}>
+                <Link href="/" className="hover:text-cyan" {...link}>
                   <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
@@ -123,7 +123,7 @@ export default function ServicesLandingV2() {
                       {content.blurb}
                     </p>
                     <Link
-                      href={`/v2/services/${content.slug}`}
+                      href={`/services/${content.slug}`}
                       className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors hover:text-cyan"
                       style={{ color: domain.color2 }}
                       {...link}
@@ -136,7 +136,7 @@ export default function ServicesLandingV2() {
                     {services.map((s) => (
                       <li key={s.slug}>
                         <Link
-                          href={`/v2/services/${content.slug}/${s.slug}`}
+                          href={`/services/${content.slug}/${s.slug}`}
                           className="group flex items-center justify-between gap-3 border-b border-paper/12 py-4 transition-colors hover:text-cyan sm:odd:sm:pr-6 sm:even:border-l sm:even:border-paper/12 sm:even:pl-6"
                           {...link}
                         >

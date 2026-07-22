@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Terms of Service — INVINCIBLE PROS.",
   description:
     "The terms that govern your access to and use of the INVINCIBLE PROS. website and services.",
-  alternates: { canonical: "/v2/terms" },
+  alternates: { canonical: "/terms" },
   openGraph: {
     title: "Terms of Service — INVINCIBLE PROS.",
     description:
       "The terms that govern your access to and use of the INVINCIBLE PROS. website and services.",
-    url: "/v2/terms",
+    url: "/terms",
     type: "website",
   },
 };

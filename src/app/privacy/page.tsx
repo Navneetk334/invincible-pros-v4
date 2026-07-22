@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Privacy Policy — INVINCIBLE PROS.",
   description:
     "How INVINCIBLE PROS. collects, uses, shares and protects your personal information when you use our website and services.",
-  alternates: { canonical: "/v2/privacy" },
+  alternates: { canonical: "/privacy" },
   openGraph: {
     title: "Privacy Policy — INVINCIBLE PROS.",
     description:
       "How INVINCIBLE PROS. collects, uses, shares and protects your personal information.",
-    url: "/v2/privacy",
+    url: "/privacy",
     type: "website",
   },
 };

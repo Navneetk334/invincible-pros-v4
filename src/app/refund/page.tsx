@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Refund & Cancellation Policy — INVINCIBLE PROS.",
   description:
     "How cancellations, refunds and deposits work for INVINCIBLE PROS. engagements and services.",
-  alternates: { canonical: "/v2/refund" },
+  alternates: { canonical: "/refund" },
   openGraph: {
     title: "Refund & Cancellation Policy — INVINCIBLE PROS.",
     description:
       "How cancellations, refunds and deposits work for INVINCIBLE PROS. engagements.",
-    url: "/v2/refund",
+    url: "/refund",
     type: "website",
   },
 };

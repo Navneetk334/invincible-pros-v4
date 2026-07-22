@@ -63,7 +63,7 @@ export default function LegalPageV2({
                 aria-label="Breadcrumb"
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
-                <Link href="/v2" className="hover:text-cyan" {...linkCursor}>
+                <Link href="/" className="hover:text-cyan" {...linkCursor}>
                   <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>

@@ -72,12 +72,12 @@ export default function ServicePageV2({
                 aria-label="Breadcrumb"
                 className="mb-8 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
-                <Link href="/v2" className="hover:text-cyan" {...linkCursor}>
+                <Link href="/" className="hover:text-cyan" {...linkCursor}>
                   <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
                 <Link
-                  href="/v2/services"
+                  href="/services"
                   className="hover:text-cyan"
                   {...linkCursor}
                 >
@@ -189,7 +189,7 @@ export default function ServicePageV2({
                     transition={{ duration: 0.4, delay: (i % 2) * 0.05 }}
                   >
                     <Link
-                      href={`/v2/services/${content.slug}/${s.slug}`}
+                      href={`/services/${content.slug}/${s.slug}`}
                       className="group flex items-start gap-4 py-5"
                       {...linkCursor}
                     >
@@ -303,7 +303,7 @@ export default function ServicePageV2({
                 {related.map((d) => (
                   <Link
                     key={d.id}
-                    href={`/v2/services/${CATEGORY[d.id].slug}`}
+                    href={`/services/${CATEGORY[d.id].slug}`}
                     className="group rounded-2xl border border-paper/12 p-8 transition-colors hover:border-paper/30"
                     {...linkCursor}
                   >

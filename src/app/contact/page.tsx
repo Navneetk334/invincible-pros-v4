@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: "Contact — INVINCIBLE PROS. | Start a Project",
   description:
     "Get in touch with INVINCIBLE PROS. Email admin@invinciblepros.com, call +91 8700025535 or message us on WhatsApp. We reply within one business day.",
-  alternates: { canonical: "/v2/contact" },
+  alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — INVINCIBLE PROS.",
     description:
       "Tell us what you're building. Email, call or WhatsApp — we reply within one business day.",
-    url: "/v2/contact",
+    url: "/contact",
     type: "website",
   },
 };
@@ -21,11 +21,11 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: "Contact INVINCIBLE PROS.",
-    url: "https://invinciblepros.com/v2/contact",
+    url: "https://invinciblepros.com/contact",
     mainEntity: {
       "@type": "Organization",
       name: "INVINCIBLE PROS.",
-      url: "https://invinciblepros.com/v2",
+      url: "https://invinciblepros.com",
       email: CONTACT.email,
       contactPoint: {
         "@type": "ContactPoint",

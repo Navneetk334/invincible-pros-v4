@@ -18,7 +18,7 @@ export default function SmoothScroll({
 
     // Don't let the browser restore the previous scroll position on reload —
     // the page should always open at the top. Deep-links to an anchor
-    // (e.g. /v2#services) are still respected.
+    // (e.g. /#services) are still respected.
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }

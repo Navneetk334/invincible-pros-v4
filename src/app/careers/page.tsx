@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: "Careers — INVINCIBLE PROS. | Join Our Engineering Team",
   description:
     "Join INVINCIBLE PROS. — a senior team of engineers, designers and builders working across software, AI, cloud, hardware and live media. See how to apply.",
-  alternates: { canonical: "/v2/careers" },
+  alternates: { canonical: "/careers" },
   openGraph: {
     title: "Careers — INVINCIBLE PROS.",
     description:
       "Join a senior team building across software, AI, cloud, hardware and live media.",
-    url: "/v2/careers",
+    url: "/careers",
     type: "website",
   },
 };

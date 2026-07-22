@@ -23,11 +23,11 @@ export async function generateMetadata({
     title: `${svc.name} — ${domain.kicker} | INVINCIBLE PROS.`,
     description: svc.overview,
     keywords: [svc.name, domain.title, ...svc.points, "INVINCIBLE PROS."],
-    alternates: { canonical: `/v2/services/${slug}/${svc.slug}` },
+    alternates: { canonical: `/services/${slug}/${svc.slug}` },
     openGraph: {
       title: `${svc.name} — INVINCIBLE PROS.`,
       description: svc.overview,
-      url: `/v2/services/${slug}/${svc.slug}`,
+      url: `/services/${slug}/${svc.slug}`,
       type: "website",
     },
   };
@@ -53,7 +53,7 @@ export default async function ServiceDetailPage({
     provider: {
       "@type": "Organization",
       name: "INVINCIBLE PROS.",
-      url: "https://invinciblepros.com/v2",
+      url: "https://invinciblepros.com",
     },
     areaServed: content.industries,
   };

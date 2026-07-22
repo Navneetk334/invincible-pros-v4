@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Cookie Policy — INVINCIBLE PROS.",
   description:
     "How INVINCIBLE PROS. uses cookies and similar technologies on its website, and how you can control them.",
-  alternates: { canonical: "/v2/cookies" },
+  alternates: { canonical: "/cookies" },
   openGraph: {
     title: "Cookie Policy — INVINCIBLE PROS.",
     description:
       "How INVINCIBLE PROS. uses cookies and similar technologies, and how you can control them.",
-    url: "/v2/cookies",
+    url: "/cookies",
     type: "website",
   },
 };

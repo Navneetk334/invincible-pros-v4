@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     "digital transformation",
     "INVINCIBLE PROS.",
   ],
-  alternates: { canonical: "/v2" },
+  alternates: { canonical: "/" },
   openGraph: {
     title: "INVINCIBLE PROS. — Engineering the Future",
     description:
       "Custom software, AI, cloud, hardware and live media — engineered end to end.",
-    url: "/v2",
+    url: "/",
     type: "website",
   },
 };
@@ -42,7 +42,7 @@ export default function V2Page() {
     legalName: "INVINCIBLE PROS.",
     description:
       "A digital engineering company delivering software, AI, cloud infrastructure, hardware and live media end to end.",
-    url: "https://invinciblepros.com/v2",
+    url: "https://invinciblepros.com",
     logo: "https://invinciblepros.com/opengraph-image",
     image: "https://invinciblepros.com/opengraph-image",
     email: CONTACT.email,

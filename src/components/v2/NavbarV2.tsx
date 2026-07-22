@@ -67,11 +67,11 @@ export default function NavbarV2() {
         animate={entered ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.9, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
       >
-        <AnimatedLogo href="/v2" />
+        <AnimatedLogo href="/" />
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-          <Link href="/v2" className={NAV_LINK} {...link}>
+          <Link href="/" className={NAV_LINK} {...link}>
             <ScrambleText text="Home" />
             <span className={UNDERLINE} />
           </Link>
@@ -87,7 +87,7 @@ export default function NavbarV2() {
             }}
           >
             <Link
-              href="/v2/services"
+              href="/services"
               className={NAV_LINK}
               aria-haspopup="true"
               aria-expanded={servicesOpen}
@@ -99,15 +99,15 @@ export default function NavbarV2() {
             </Link>
           </div>
 
-          <Link href="/v2/work" className={NAV_LINK} {...link}>
+          <Link href="/work" className={NAV_LINK} {...link}>
             <ScrambleText text="Work" />
             <span className={UNDERLINE} />
           </Link>
-          <Link href="/v2/about" className={NAV_LINK} {...link}>
+          <Link href="/about" className={NAV_LINK} {...link}>
             <ScrambleText text="About" />
             <span className={UNDERLINE} />
           </Link>
-          <Link href="/v2/contact" className={NAV_LINK} {...link}>
+          <Link href="/contact" className={NAV_LINK} {...link}>
             <ScrambleText text="Contact" />
             <span className={UNDERLINE} />
           </Link>
@@ -182,7 +182,7 @@ export default function NavbarV2() {
                 </p>
               </div>
               <Link
-                href="/v2/services"
+                href="/services"
                 onClick={closeNow}
                 className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:text-cyan"
                 {...link}
@@ -200,7 +200,7 @@ export default function NavbarV2() {
                 return (
                   <div key={domain.id}>
                     <Link
-                      href={`/v2/services/${content.slug}`}
+                      href={`/services/${content.slug}`}
                       onClick={closeNow}
                       className="mb-2.5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-paper transition-colors hover:text-cyan"
                       {...link}
@@ -215,7 +215,7 @@ export default function NavbarV2() {
                       {servicesForCategory(domain.id).map((s) => (
                         <li key={s.slug}>
                           <Link
-                            href={`/v2/services/${content.slug}/${s.slug}`}
+                            href={`/services/${content.slug}/${s.slug}`}
                             onClick={closeNow}
                             className="block text-[13px] leading-snug text-fog transition-all hover:translate-x-1 hover:text-cyan"
                             {...link}
@@ -271,7 +271,7 @@ export default function NavbarV2() {
               </div>
 
               <div className="mt-10 flex flex-col gap-1">
-                <Link href="/v2" onClick={closeMobile} className={MOBILE_LINK}>
+                <Link href="/" onClick={closeMobile} className={MOBILE_LINK}>
                   Home
                 </Link>
 
@@ -293,7 +293,7 @@ export default function NavbarV2() {
                 {mobileServices && (
                   <div className="mb-2 flex flex-col gap-1 border-l border-paper/12 pl-4">
                     <Link
-                      href="/v2/services"
+                      href="/services"
                       onClick={closeMobile}
                       className="py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-cyan"
                     >
@@ -302,7 +302,7 @@ export default function NavbarV2() {
                     {DOMAINS.map((d) => (
                       <Link
                         key={d.id}
-                        href={`/v2/services/${CATEGORY[d.id].slug}`}
+                        href={`/services/${CATEGORY[d.id].slug}`}
                         onClick={closeMobile}
                         className="flex items-center gap-2.5 py-2 text-base text-fog transition-colors hover:text-paper"
                       >
@@ -316,13 +316,13 @@ export default function NavbarV2() {
                   </div>
                 )}
 
-                <Link href="/v2/work" onClick={closeMobile} className={MOBILE_LINK}>
+                <Link href="/work" onClick={closeMobile} className={MOBILE_LINK}>
                   Work
                 </Link>
-                <Link href="/v2/about" onClick={closeMobile} className={MOBILE_LINK}>
+                <Link href="/about" onClick={closeMobile} className={MOBILE_LINK}>
                   About
                 </Link>
-                <Link href="/v2/contact" onClick={closeMobile} className={MOBILE_LINK}>
+                <Link href="/contact" onClick={closeMobile} className={MOBILE_LINK}>
                   Contact
                 </Link>
               </div>

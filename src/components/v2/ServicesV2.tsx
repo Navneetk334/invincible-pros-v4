@@ -46,7 +46,7 @@ function DomainPanel({ domain }: { domain: Domain }) {
             {content.blurb}
           </p>
           <Link
-            href={`/v2/services/${content.slug}`}
+            href={`/services/${content.slug}`}
             className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors"
             style={{ color: domain.color2 }}
             {...cursor}
@@ -59,7 +59,7 @@ function DomainPanel({ domain }: { domain: Domain }) {
           {domain.services.map((s) => (
             <li key={s}>
               <Link
-                href={`/v2/services/${content.slug}`}
+                href={`/services/${content.slug}`}
                 className="group flex items-center justify-between gap-3 border-b border-paper/8 py-2.5 transition-transform duration-300 hover:translate-x-1.5"
                 {...cursor}
               >

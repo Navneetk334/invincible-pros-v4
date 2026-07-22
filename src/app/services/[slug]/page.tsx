@@ -21,11 +21,11 @@ export async function generateMetadata({
     title: `${title} — ${domain.kicker} | INVINCIBLE PROS.`,
     description: content.overview,
     keywords: [...content.features, ...content.tech, "INVINCIBLE PROS."],
-    alternates: { canonical: `/v2/services/${slug}` },
+    alternates: { canonical: `/services/${slug}` },
     openGraph: {
       title: `${title} — INVINCIBLE PROS.`,
       description: content.overview,
-      url: `/v2/services/${slug}`,
+      url: `/services/${slug}`,
       type: "website",
     },
   };
@@ -51,7 +51,7 @@ export default async function ServiceCategoryPage({
     provider: {
       "@type": "Organization",
       name: "INVINCIBLE PROS.",
-      url: "https://invinciblepros.com/v2",
+      url: "https://invinciblepros.com",
     },
     areaServed: content.industries,
     hasOfferCatalog: {

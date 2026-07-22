@@ -15,12 +15,12 @@ export const metadata: Metadata = {
     "AI and automation",
     "cloud and security",
   ],
-  alternates: { canonical: "/v2/about" },
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About — INVINCIBLE PROS.",
     description:
       "A digital engineering company delivering software, AI, cloud, hardware and live media — engineered end to end by one accountable team.",
-    url: "/v2/about",
+    url: "/about",
     type: "website",
   },
 };
@@ -30,13 +30,13 @@ export default function AboutPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About INVINCIBLE PROS.",
-    url: "https://invinciblepros.com/v2/about",
+    url: "https://invinciblepros.com/about",
     mainEntity: {
       "@type": "Organization",
       name: "INVINCIBLE PROS.",
       description:
         "A digital engineering company delivering software, AI, cloud infrastructure, hardware and live media end to end.",
-      url: "https://invinciblepros.com/v2",
+      url: "https://invinciblepros.com",
       email: "admin@invinciblepros.com",
       knowsAbout: DOMAINS.map((d) => d.kicker),
     },

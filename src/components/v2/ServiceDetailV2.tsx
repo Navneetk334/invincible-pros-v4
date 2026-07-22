@@ -73,16 +73,16 @@ export default function ServiceDetailV2({
                 aria-label="Breadcrumb"
                 className="mb-8 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-fog"
               >
-                <Link href="/v2" className="hover:text-cyan" {...link}>
+                <Link href="/" className="hover:text-cyan" {...link}>
                   <ScrambleText text="Home" />
                 </Link>
                 <span aria-hidden>/</span>
-                <Link href="/v2/services" className="hover:text-cyan" {...link}>
+                <Link href="/services" className="hover:text-cyan" {...link}>
                   <ScrambleText text="Services" />
                 </Link>
                 <span aria-hidden>/</span>
                 <Link
-                  href={`/v2/services/${content.slug}`}
+                  href={`/services/${content.slug}`}
                   className="hover:text-cyan"
                   {...link}
                 >
@@ -201,7 +201,7 @@ export default function ServiceDetailV2({
                 <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
                   <p className="eyebrow">More in {categoryTitle}</p>
                   <Link
-                    href={`/v2/services/${content.slug}`}
+                    href={`/services/${content.slug}`}
                     className="font-mono text-[11px] uppercase tracking-[0.18em] text-fog transition-colors hover:text-cyan"
                     {...link}
                   >
@@ -212,7 +212,7 @@ export default function ServiceDetailV2({
                   {related.map((s) => (
                     <Link
                       key={s.slug}
-                      href={`/v2/services/${content.slug}/${s.slug}`}
+                      href={`/services/${content.slug}/${s.slug}`}
                       className="group rounded-2xl border border-paper/12 p-8 transition-colors hover:border-paper/30"
                       {...link}
                     >

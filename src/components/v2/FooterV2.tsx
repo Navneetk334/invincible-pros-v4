@@ -60,7 +60,7 @@ export default function FooterV2() {
               {DOMAINS.map((d) => (
                 <li key={d.id}>
                   <Link
-                    href={`/v2/services/${CATEGORY[d.id].slug}`}
+                    href={`/services/${CATEGORY[d.id].slug}`}
                     className="text-sm text-paper/75 transition-colors hover:text-cyan"
                     {...link}
                   >
@@ -80,11 +80,11 @@ export default function FooterV2() {
             </h3>
             <ul className="mt-5 space-y-2.5">
               {[
-                { label: "Services", href: "/v2/services" },
-                { label: "Work", href: "/v2/work" },
-                { label: "About", href: "/v2/about" },
-                { label: "Careers", href: "/v2/careers" },
-                { label: "Contact", href: "/v2/contact" },
+                { label: "Services", href: "/services" },
+                { label: "Work", href: "/work" },
+                { label: "About", href: "/about" },
+                { label: "Careers", href: "/careers" },
+                { label: "Contact", href: "/contact" },
               ].map((l) => (
                 <li key={l.href}>
                   <Link
@@ -106,11 +106,11 @@ export default function FooterV2() {
             </h3>
             <ul className="mt-5 space-y-2.5">
               {[
-                { label: "Case Studies", href: "/v2/work" },
-                { label: "Privacy", href: "/v2/privacy" },
-                { label: "Terms", href: "/v2/terms" },
-                { label: "Cookies", href: "/v2/cookies" },
-                { label: "Refund", href: "/v2/refund" },
+                { label: "Case Studies", href: "/work" },
+                { label: "Privacy", href: "/privacy" },
+                { label: "Terms", href: "/terms" },
+                { label: "Cookies", href: "/cookies" },
+                { label: "Refund", href: "/refund" },
               ].map((l) => (
                 <li key={l.label}>
                   <Link

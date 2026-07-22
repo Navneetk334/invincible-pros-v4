@@ -935,5 +935,5 @@ export const SOCIAL: { label: string; href: string }[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/invinciblepros" },
   { label: "Instagram", href: "https://www.instagram.com/invinciblepros" },
   { label: "WhatsApp", href: "https://wa.me/918700025535" },
-  { label: "Telegram", href: "https://t.me/+918700025535" },
+  { label: "Telegram", href: "https://t.me/invinciblepros" },
 ];

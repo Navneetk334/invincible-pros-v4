@@ -928,12 +928,12 @@ export function serviceBySlug(
 
 
 /* ------------------------------------------------------------------ */
-/*  Social profiles — update the URLs to the real handles before launch */
+/*  Social & contact channels                                          */
 /* ------------------------------------------------------------------ */
 
 export const SOCIAL: { label: string; href: string }[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/invinciblepros" },
-  { label: "X", href: "https://x.com/invinciblepros" },
   { label: "Instagram", href: "https://www.instagram.com/invinciblepros" },
-  { label: "GitHub", href: "https://github.com/invinciblepros" },
+  { label: "WhatsApp", href: "https://wa.me/918700025535" },
+  { label: "Telegram", href: "https://t.me/+918700025535" },
 ];

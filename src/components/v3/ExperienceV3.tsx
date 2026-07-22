@@ -15,6 +15,7 @@ import ProcessV2 from "@/components/v2/ProcessV2";
 import TechStackV2 from "@/components/v2/TechStackV2";
 import CaseStudiesV2 from "@/components/v2/CaseStudiesV2";
 import IndustriesV2 from "@/components/v2/IndustriesV2";
+import TestimonialsV2 from "@/components/v2/TestimonialsV2";
 import ContactV2 from "@/components/v2/ContactV2";
 import FooterV2 from "@/components/v2/FooterV2";
 
@@ -57,6 +58,7 @@ export default function ExperienceV3() {
           <TechStackV2 />
           <CaseStudiesV2 />
           <IndustriesV2 />
+          <TestimonialsV2 />
           <WhyUsV3 />
           <ContactV2 />
           <FooterV2 />
